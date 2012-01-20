@@ -38,7 +38,8 @@
     [result setAlphaValue:0.9];
     [result setOpaque:NO];
     [result setHasShadow: YES];
-    return result;
+	
+    return (NotificationWindow *)result;
 }
 
 - (BOOL)canBecomeKeyWindow 

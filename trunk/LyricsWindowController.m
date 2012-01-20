@@ -47,12 +47,6 @@
 	[self.window makeFirstResponder:nil];
 }
 
-- (void)dealloc
-{
-	[track release];
-	[super dealloc];
-}
-
 
 - (NSFont *)lyricsFont
 {

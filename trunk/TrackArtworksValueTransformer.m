@@ -53,7 +53,7 @@
 			artwork = (iTunesArtwork *)[value lastObject];
 		
 		if (artwork) 
-			artworkImage = [[[NSImage alloc] initWithData:artwork.rawData] autorelease];
+			artworkImage = [[NSImage alloc] initWithData:artwork.rawData];
 		
 		if (artworkImage == nil) 
 			artworkImage = [NSImage imageNamed:@"app_icon.icns"];

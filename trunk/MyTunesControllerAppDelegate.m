@@ -58,12 +58,6 @@
 {
 	[[NSDistributedNotificationCenter defaultCenter] removeObserver:self];
 	[[NSUserDefaultsController sharedUserDefaultsController] removeObserver:self forKeyPath:@"values.NotificationCorner"];
-	[lyricsController release];
-	[statusItem release];
-	[controllerItem release];
-	[notificationController release];
-	[preferencesController release];
-	[super dealloc];
 }
 
 - (NSApplicationTerminateReply)applicationShouldTerminate:(NSApplication *)sender 
@@ -115,7 +109,6 @@
 	if (notificationController) {
 		[notificationController setDelegate:nil];
 		[notificationController close];
-		[notificationController release];
 		notificationController = nil;
 	}
 	notificationController = [[NotificationWindowController alloc] init];
@@ -130,7 +123,6 @@
 - (void)notificationCanBeRemoved 
 {
 	[notificationController close];
-	[notificationController release];
 	notificationController = nil;
 }
 
@@ -139,10 +131,10 @@
 	NSWindow *w = [notification object];
 	
 	if ([w isEqualTo:lyricsController.window]) {
-		[lyricsController release]; lyricsController = nil;
+		lyricsController = nil;
 	}
 	else if ([w isEqualTo:preferencesController.window]) {
-		[preferencesController release]; preferencesController = nil;
+		preferencesController = nil;
 	}
 		
 }
@@ -203,11 +195,11 @@
 - (void)_setupStatusItem 
 {	
 	NSImage *statusIcon = [NSImage imageNamed:@"status_icon.png"];
-	controllerItem = [[[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength] retain];
+	controllerItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
 	[controllerItem setImage:statusIcon];
 	[controllerItem setHighlightMode:YES];
 	
-	statusItem = [[[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength] retain];
+	statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
 	[statusItem setImage:[NSImage imageNamed:@"blank.png"]];
 	[statusItem setView:statusView];
 	
@@ -245,7 +237,6 @@
 	[theItem setTarget:self];
 	
 	[controllerItem setMenu:mainMenu];
-	[mainMenu release];
 }
 
 - (void)_updateStatusItemButtons 

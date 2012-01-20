@@ -36,7 +36,6 @@
 @interface iTunesController : NSObject 
 {
 	iTunesApplication *iTunesApp;
-	id<iTunesControllerDelegate> delegate;
 }
 
 @property (nonatomic, readwrite, assign) id<iTunesControllerDelegate> delegate;

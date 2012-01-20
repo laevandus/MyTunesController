@@ -51,7 +51,7 @@
 	NSRect destinationRect = NSZeroRect;
 	destinationRect.size = targetSize;
 	
-	NSImage *final = [[[NSImage alloc] initWithSize:targetSize] autorelease];
+	NSImage *final = [[NSImage alloc] initWithSize:targetSize];
 	[final lockFocus];
 	[[NSGraphicsContext currentContext] setImageInterpolation:NSImageInterpolationHigh];
 	[sourceImage drawInRect:destinationRect fromRect:sourceRect operation:NSCompositeSourceOver fraction:1.0];

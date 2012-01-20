@@ -47,9 +47,6 @@
 - (void)dealloc 
 {
 	[hideTimer invalidate];
-	[hideTimer release];
-	[track release];
-	[super dealloc];
 }
 
 - (void)awakeFromNib 
@@ -106,7 +103,6 @@
 - (void)close
 {
 	[hideTimer invalidate];
-	[hideTimer release];
 	hideTimer = nil;
 	[super close];
 }
@@ -124,12 +120,11 @@
 	[[self.window animator] setAlphaValue:0.9];
 	
 	[hideTimer invalidate];
-	[hideTimer release];
-	hideTimer = [[NSTimer scheduledTimerWithTimeInterval:5.0 
+	hideTimer = [NSTimer scheduledTimerWithTimeInterval:5.0 
 												 target:self 
 												selector:@selector(timerFired:) 
 											   userInfo:nil 
-												repeats:NO] retain];    
+												repeats:NO];    
 }
 
 - (void)timerFired:(NSTimer *)timer 

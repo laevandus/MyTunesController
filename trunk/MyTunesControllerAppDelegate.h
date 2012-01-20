@@ -46,7 +46,7 @@
 	PreferencesController *preferencesController;
 }
 
-@property (assign) IBOutlet NSWindow *window;
+@property (strong) IBOutlet NSWindow *window;
 
 - (IBAction)playPrevious:(id)sender;
 - (IBAction)playPause:(id)sender;
