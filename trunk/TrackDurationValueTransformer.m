@@ -35,21 +35,26 @@
 	return [NSString class]; 
 }
 
+
 + (BOOL)allowsReverseTransformation 
 { 
 	return NO; 
 }
 
+
 - (id)transformedValue:(id)value 
 {
-	if ([value isKindOfClass:[NSNumber class]]) {
+	if ([value isKindOfClass:[NSNumber class]]) 
+	{
 		CGFloat floatValue = [value floatValue];
 		
-		if (floatValue > 0.0) {
+		if (floatValue > 0.0) 
+		{
 			NSUInteger duration = floatValue + 0.5;
 			NSUInteger minutes = 0;
 			
-			while (duration >= 60) {
+			while (duration >= 60) 
+			{
 				duration -= 60;
 				minutes++;
 			}
@@ -60,7 +65,9 @@
 				value = [NSString stringWithFormat:@"%d:%d", minutes, duration];
 		}
 		else 
+		{
 			value = nil;
+		}
 	}
 	
 	return value;

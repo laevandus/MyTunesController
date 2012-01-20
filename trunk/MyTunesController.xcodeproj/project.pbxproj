@@ -28,7 +28,6 @@
 		C82BB73710EE3F7000B24464 /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C82BB73610EE3F7000B24464 /* CoreServices.framework */; };
 		C83BBB7910FBA08000595F2D /* COPYING.txt in Resources */ = {isa = PBXBuildFile; fileRef = C83BBB7810FBA08000595F2D /* COPYING.txt */; };
 		C83E393D121450C300708ADE /* blank.png in Resources */ = {isa = PBXBuildFile; fileRef = C83E393C121450C300708ADE /* blank.png */; };
-		C874064E1244D81F008F0DD4 /* LyricsWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = C874064D1244D81F008F0DD4 /* LyricsWindowController.m */; };
 		C89FC95510F944970093B4A6 /* next.png in Resources */ = {isa = PBXBuildFile; fileRef = C89FC95110F944970093B4A6 /* next.png */; };
 		C89FC95610F944970093B4A6 /* pause.png in Resources */ = {isa = PBXBuildFile; fileRef = C89FC95210F944970093B4A6 /* pause.png */; };
 		C89FC95710F944970093B4A6 /* play.png in Resources */ = {isa = PBXBuildFile; fileRef = C89FC95310F944970093B4A6 /* play.png */; };
@@ -36,8 +35,6 @@
 		C8BF8EC01284A86300BB5CAC /* TrackRatingValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = C8BF8EBF1284A86300BB5CAC /* TrackRatingValueTransformer.m */; };
 		C8BF8EE11284AB9700BB5CAC /* TrackDurationValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = C8BF8EE01284AB9700BB5CAC /* TrackDurationValueTransformer.m */; };
 		C8BF8EE61284AD4500BB5CAC /* TrackArtworksValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = C8BF8EE51284AD4500BB5CAC /* TrackArtworksValueTransformer.m */; };
-		C8BF8F7D1284B9AD00BB5CAC /* RecessedScroller.m in Sources */ = {isa = PBXBuildFile; fileRef = C8BF8F7C1284B9AD00BB5CAC /* RecessedScroller.m */; };
-		C8C92EF114CA15DC0032FE12 /* LyricsWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8C92EEF14CA15DC0032FE12 /* LyricsWindow.xib */; };
 		C8D98D9C12032CD200356DC1 /* ImageScaler.m in Sources */ = {isa = PBXBuildFile; fileRef = C8D98D9B12032CD200356DC1 /* ImageScaler.m */; };
 		C8DA653B113999A60069460B /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = C8DA6539113999A60069460B /* dsa_pub.pem */; };
 		C8E933C41200BB0B00F4D6BD /* LayerTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = C8E933C31200BB0B00F4D6BD /* LayerTextField.m */; };
@@ -93,8 +90,6 @@
 		C82BB73610EE3F7000B24464 /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = /System/Library/Frameworks/CoreServices.framework; sourceTree = "<absolute>"; };
 		C83BBB7810FBA08000595F2D /* COPYING.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = COPYING.txt; sourceTree = "<group>"; };
 		C83E393C121450C300708ADE /* blank.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blank.png; sourceTree = "<group>"; };
-		C874064C1244D81F008F0DD4 /* LyricsWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LyricsWindowController.h; sourceTree = "<group>"; };
-		C874064D1244D81F008F0DD4 /* LyricsWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LyricsWindowController.m; sourceTree = "<group>"; };
 		C89FC95110F944970093B4A6 /* next.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = next.png; sourceTree = "<group>"; };
 		C89FC95210F944970093B4A6 /* pause.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pause.png; sourceTree = "<group>"; };
 		C89FC95310F944970093B4A6 /* play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = play.png; sourceTree = "<group>"; };
@@ -105,9 +100,6 @@
 		C8BF8EE01284AB9700BB5CAC /* TrackDurationValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrackDurationValueTransformer.m; sourceTree = "<group>"; };
 		C8BF8EE41284AD4500BB5CAC /* TrackArtworksValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrackArtworksValueTransformer.h; sourceTree = "<group>"; };
 		C8BF8EE51284AD4500BB5CAC /* TrackArtworksValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrackArtworksValueTransformer.m; sourceTree = "<group>"; };
-		C8BF8F7B1284B9AD00BB5CAC /* RecessedScroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecessedScroller.h; sourceTree = "<group>"; };
-		C8BF8F7C1284B9AD00BB5CAC /* RecessedScroller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecessedScroller.m; sourceTree = "<group>"; };
-		C8C92EF014CA15DC0032FE12 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/LyricsWindow.xib; sourceTree = "<group>"; };
 		C8D98D9A12032CD200356DC1 /* ImageScaler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageScaler.h; sourceTree = "<group>"; };
 		C8D98D9B12032CD200356DC1 /* ImageScaler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageScaler.m; sourceTree = "<group>"; };
 		C8DA653A113999A60069460B /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = English; path = English.lproj/dsa_pub.pem; sourceTree = "<group>"; };
@@ -138,7 +130,6 @@
 			isa = PBXGroup;
 			children = (
 				C8BF8F431284B65F00BB5CAC /* ValueTransformers */,
-				C874064B1244D7FE008F0DD4 /* Lyrics */,
 				C8214F6910E6B71F008D012C /* Preferences */,
 				C8214EF010E6B010008D012C /* Notification */,
 				C8D98D9A12032CD200356DC1 /* ImageScaler.h */,
@@ -262,18 +253,6 @@
 			name = Preferences;
 			sourceTree = "<group>";
 		};
-		C874064B1244D7FE008F0DD4 /* Lyrics */ = {
-			isa = PBXGroup;
-			children = (
-				C8C92EEF14CA15DC0032FE12 /* LyricsWindow.xib */,
-				C874064C1244D81F008F0DD4 /* LyricsWindowController.h */,
-				C874064D1244D81F008F0DD4 /* LyricsWindowController.m */,
-				C8BF8F7B1284B9AD00BB5CAC /* RecessedScroller.h */,
-				C8BF8F7C1284B9AD00BB5CAC /* RecessedScroller.m */,
-			);
-			name = Lyrics;
-			sourceTree = "<group>";
-		};
 		C8BF8F431284B65F00BB5CAC /* ValueTransformers */ = {
 			isa = PBXGroup;
 			children = (
@@ -352,7 +331,6 @@
 				C83BBB7910FBA08000595F2D /* COPYING.txt in Resources */,
 				C8DA653B113999A60069460B /* dsa_pub.pem in Resources */,
 				C83E393D121450C300708ADE /* blank.png in Resources */,
-				C8C92EF114CA15DC0032FE12 /* LyricsWindow.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -374,11 +352,9 @@
 				C8FE898011FF7D6100290DEC /* iTunesController.m in Sources */,
 				C8E933C41200BB0B00F4D6BD /* LayerTextField.m in Sources */,
 				C8D98D9C12032CD200356DC1 /* ImageScaler.m in Sources */,
-				C874064E1244D81F008F0DD4 /* LyricsWindowController.m in Sources */,
 				C8BF8EC01284A86300BB5CAC /* TrackRatingValueTransformer.m in Sources */,
 				C8BF8EE11284AB9700BB5CAC /* TrackDurationValueTransformer.m in Sources */,
 				C8BF8EE61284AD4500BB5CAC /* TrackArtworksValueTransformer.m in Sources */,
-				C8BF8F7D1284B9AD00BB5CAC /* RecessedScroller.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -415,14 +391,6 @@
 				C8214F7010E6B743008D012C /* English */,
 			);
 			name = Preferences.xib;
-			sourceTree = "<group>";
-		};
-		C8C92EEF14CA15DC0032FE12 /* LyricsWindow.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				C8C92EF014CA15DC0032FE12 /* English */,
-			);
-			name = LyricsWindow.xib;
 			sourceTree = "<group>";
 		};
 		C8DA6539113999A60069460B /* dsa_pub.pem */ = {

@@ -29,8 +29,4 @@
 
 
 @interface TrackArtworksValueTransformer : NSValueTransformer 
-{
-
-}
-
 @end

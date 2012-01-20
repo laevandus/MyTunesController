@@ -29,8 +29,4 @@
 
 
 @interface TrackDurationValueTransformer : NSValueTransformer 
-{
-
-}
-
 @end

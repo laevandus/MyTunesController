@@ -29,8 +29,4 @@
 
 
 @interface TrackRatingValueTransformer : NSValueTransformer 
-{
-
-}
-
 @end

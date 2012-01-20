@@ -37,14 +37,17 @@
 	return [NSImage class]; 
 }
 
+
 + (BOOL)allowsReverseTransformation 
 { 
 	return NO; 
 }
 
+
 - (id)transformedValue:(id)value 
 {
-	if ([value isKindOfClass:[NSArray class]]) {
+	if ([value isKindOfClass:[NSArray class]]) 
+	{
 		// TODO: try to get the album artwork instead
 		iTunesArtwork *artwork = nil;
 		NSImage *artworkImage = nil;

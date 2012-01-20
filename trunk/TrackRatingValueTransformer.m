@@ -35,14 +35,17 @@
 	return [NSNumber class]; 
 }
 
+
 + (BOOL)allowsReverseTransformation 
 { 
 	return YES; 
 }
 
+
 - (id)transformedValue:(id)value 
 {
-	if ([value isKindOfClass:[NSNumber class]]) {
+	if ([value isKindOfClass:[NSNumber class]]) 
+	{
 		CGFloat floatValue = [value floatValue];
 		value = [NSNumber numberWithFloat:floatValue/20.f];
 	}
@@ -52,7 +55,8 @@
 
 - (id)reverseTransformedValue:(id)value
 {
-	if ([value isKindOfClass:[NSNumber class]]) {
+	if ([value isKindOfClass:[NSNumber class]]) 
+	{
 		CGFloat floatValue = [value floatValue];
 		value = [NSNumber numberWithFloat:floatValue * 20.f];
 	}
