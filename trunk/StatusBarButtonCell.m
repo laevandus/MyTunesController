@@ -33,17 +33,12 @@
 - (void)drawInteriorWithFrame:(NSRect)cellFrame inView:(NSView *)controlView 
 {
 	NSBezierPath *path = [NSBezierPath bezierPathWithRect:cellFrame];
-	 
-	if ([self isHighlighted]) {
-		[[NSColor blueColor] set];
-	} else {
-		[[NSColor clearColor] set];
-	}
+	[([self isHighlighted] ? [NSColor blueColor] : [NSColor clearColor]) set];
 	[path fill];
 	
 	// has image
-	if(self.image) {
-		//NSLog(@"%d", [[self.image representations]count]);
+	if (self.image) 
+	{
 		[self.image setFlipped:YES];
 		[self.image drawInRect:[self imageRectForBounds:cellFrame] 
 					  fromRect:NSZeroRect 
@@ -51,15 +46,13 @@
 					  fraction:1.0];
 	}
 	// has title
-	if(self.title) {
+	if (self.title) 
+	{
 		//NSMutableParagraphStyle* style = [[[NSParagraphStyle defaultParagraphStyle] mutableCopy] autorelease];
 		//[style setAlignment:NSCenterTextAlignment];
-		NSDictionary *styleDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
-										 [NSColor blackColor], NSForegroundColorAttributeName,
-										 [NSFont fontWithName:@"Helvetica" size:(CGFloat)14.0], NSFontAttributeName,
-										 //style, NSParagraphStyleAttributeName, 
-										 nil];
+		NSDictionary *styleDictionary = [NSDictionary dictionaryWithObjectsAndKeys: [NSColor blackColor], NSForegroundColorAttributeName, [NSFont fontWithName:@"Helvetica" size:(CGFloat)14.0], NSFontAttributeName, nil];
 		NSRect titleRect = [self titleRectForBounds:cellFrame];
+		
 		[self.title drawInRect:titleRect withAttributes:styleDictionary];
 	}
 }

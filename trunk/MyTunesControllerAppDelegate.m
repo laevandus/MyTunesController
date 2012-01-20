@@ -28,13 +28,10 @@
 
 
 #import "MyTunesControllerAppDelegate.h"
-#import "LyricsWindowController.h"
 #import "NotificationWindowController.h"
 #import "PreferencesController.h"
 #import "iTunesController.h"
 #import "StatusView.h"
-#import "UserDefaults.h"
-
 #import "ImageScaler.h"
 
 @interface MyTunesControllerAppDelegate()
@@ -93,9 +90,6 @@
 - (void)iTunesTrackDidChange:(iTunesTrack *)newTrack
 {
 	[self _updateStatusItemButtons];
-	
-	if (lyricsController) 
-		lyricsController.track = newTrack;
 		
 	if (newTrack == nil) 
 		return;
@@ -130,10 +124,7 @@
 {
 	NSWindow *w = [notification object];
 	
-	if ([w isEqualTo:lyricsController.window]) {
-		lyricsController = nil;
-	}
-	else if ([w isEqualTo:preferencesController.window]) {
+	if ([w isEqualTo:preferencesController.window]) {
 		preferencesController = nil;
 	}
 		
@@ -161,18 +152,6 @@
 - (void)_aboutApp 
 {
 	[NSApp orderFrontStandardAboutPanel:self];
-	[NSApp activateIgnoringOtherApps:YES];
-}
-
-- (void)_openLyrics
-{
-	if (lyricsController == nil) {
-		lyricsController = [[LyricsWindowController alloc] init];
-		lyricsController.window.delegate = self;
-	}
-	
-	lyricsController.track = [[iTunesController sharedInstance] currentTrack];
-	[lyricsController showWindow:self];
 	[NSApp activateIgnoringOtherApps:YES];
 }
 
@@ -250,3 +229,5 @@
 }
 
 @end
+
+NSString *CONotificationCorner = @"NotificationCorner";

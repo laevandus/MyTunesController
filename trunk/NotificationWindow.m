@@ -42,6 +42,7 @@
     return (NotificationWindow *)result;
 }
 
+
 - (BOOL)canBecomeKeyWindow 
 {
     return NO;

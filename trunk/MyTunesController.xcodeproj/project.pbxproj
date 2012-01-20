@@ -19,7 +19,6 @@
 		C8214EF810E6B021008D012C /* NotificationWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = C8214EF210E6B021008D012C /* NotificationWindow.m */; };
 		C8214EFA10E6B021008D012C /* NotificationWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8214EF610E6B021008D012C /* NotificationWindowController.m */; };
 		C8214EFE10E6B037008D012C /* Notification.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8214EFC10E6B037008D012C /* Notification.xib */; };
-		C8214F0E10E6B0C8008D012C /* UserDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = C8214F0D10E6B0C8008D012C /* UserDefaults.m */; };
 		C8214F6E10E6B72C008D012C /* PreferencesController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8214F6C10E6B72C008D012C /* PreferencesController.m */; };
 		C8214F7110E6B743008D012C /* Preferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8214F6F10E6B743008D012C /* Preferences.xib */; };
 		C8214F7B10E6B774008D012C /* pref_desktop.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C8214F7A10E6B774008D012C /* pref_desktop.jpg */; };
@@ -79,8 +78,6 @@
 		C8214EF510E6B021008D012C /* NotificationWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationWindowController.h; sourceTree = "<group>"; };
 		C8214EF610E6B021008D012C /* NotificationWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationWindowController.m; sourceTree = "<group>"; };
 		C8214EFD10E6B037008D012C /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/Notification.xib; sourceTree = "<group>"; };
-		C8214F0C10E6B0C8008D012C /* UserDefaults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDefaults.h; sourceTree = "<group>"; };
-		C8214F0D10E6B0C8008D012C /* UserDefaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDefaults.m; sourceTree = "<group>"; };
 		C8214F6B10E6B72C008D012C /* PreferencesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreferencesController.h; sourceTree = "<group>"; };
 		C8214F6C10E6B72C008D012C /* PreferencesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreferencesController.m; sourceTree = "<group>"; };
 		C8214F7010E6B743008D012C /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/Preferences.xib; sourceTree = "<group>"; };
@@ -143,8 +140,6 @@
 				C8214EAD10E6ABC8008D012C /* StatusBarButtonCell.m */,
 				C8214EA710E6AB7D008D012C /* StatusView.h */,
 				C8214EA810E6AB7D008D012C /* StatusView.m */,
-				C8214F0C10E6B0C8008D012C /* UserDefaults.h */,
-				C8214F0D10E6B0C8008D012C /* UserDefaults.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -347,7 +342,6 @@
 				C8214EAE10E6ABC8008D012C /* StatusBarButtonCell.m in Sources */,
 				C8214EF810E6B021008D012C /* NotificationWindow.m in Sources */,
 				C8214EFA10E6B021008D012C /* NotificationWindowController.m in Sources */,
-				C8214F0E10E6B0C8008D012C /* UserDefaults.m in Sources */,
 				C8214F6E10E6B72C008D012C /* PreferencesController.m in Sources */,
 				C8FE898011FF7D6100290DEC /* iTunesController.m in Sources */,
 				C8E933C41200BB0B00F4D6BD /* LayerTextField.m in Sources */,

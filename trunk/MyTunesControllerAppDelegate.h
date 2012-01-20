@@ -53,3 +53,5 @@
 - (IBAction)playNext:(id)sender;
 
 @end
+
+extern NSString *CONotificationCorner;

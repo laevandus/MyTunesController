@@ -28,8 +28,11 @@
 #import <Cocoa/Cocoa.h>
 
 
-@interface PreferencesController : NSWindowController {
+@interface PreferencesController : NSWindowController 
+{
 	IBOutlet NSButton *loginCheckBox;
 }
+
 - (IBAction)toggleStartOnLogin:(id)sender;
+
 @end

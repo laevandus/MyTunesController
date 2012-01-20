@@ -43,15 +43,17 @@
 	return [super initWithWindowNibName:@"Preferences"];
 }
 
+
 - (void)showWindow:(id)sender 
 {
 	[self.window center];
 	[super showWindow:sender];
-	NSInteger state = 0;
-	([self isAppStartingOnLogin]) ? (state = NSOnState) : (state = NSOffState);
-	[loginCheckBox setState:state];
+	
+	[loginCheckBox setState:[self isAppStartingOnLogin] ? NSOnState : NSOffState];
+	
 	[self.window makeKeyAndOrderFront:self];
 }
+
 
 - (IBAction)toggleStartOnLogin:(id)sender 
 {
@@ -62,6 +64,7 @@
 		[self removeAppFromLoginItems];
 	}
 }
+
 
 #pragma mark -
 
@@ -83,6 +86,7 @@
 	return NO;
 }
 
+
 - (void)insertAppToLoginItems 
 {
 	LSSharedFileListRef loginListRef = LSSharedFileListCreate(NULL, kLSSharedFileListSessionLoginItems, NULL);
@@ -96,6 +100,7 @@
 		CFRelease(loginListRef);
 	}
 }
+
 
 - (void)removeAppFromLoginItems 
 {

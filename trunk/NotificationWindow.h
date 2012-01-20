@@ -28,8 +28,5 @@
 #import <Cocoa/Cocoa.h>
 
 
-@interface NotificationWindow : NSWindow {
-
-}
-
+@interface NotificationWindow : NSWindow
 @end
