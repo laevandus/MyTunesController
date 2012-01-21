@@ -33,6 +33,7 @@
 #import "iTunesController.h"
 #import "StatusView.h"
 #import "StatusBarController.h"
+#import "LyricsWindowController.h"
 
 
 @implementation MyTunesControllerAppDelegate
@@ -151,6 +152,18 @@
 - (void)showAboutPanel
 {
 	[NSApp orderFrontStandardAboutPanel:self];
+	[NSApp activateIgnoringOtherApps:YES];
+}
+
+
+- (void)showLyricsWindow
+{
+	if (lyricsWindowController == nil) 
+	{
+		lyricsWindowController = [[LyricsWindowController alloc] init];
+	}
+	
+	[lyricsWindowController showWindow:self];
 	[NSApp activateIgnoringOtherApps:YES];
 }
 

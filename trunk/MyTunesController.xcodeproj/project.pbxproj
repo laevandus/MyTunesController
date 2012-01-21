@@ -39,6 +39,8 @@
 		C8E933C41200BB0B00F4D6BD /* LayerTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = C8E933C31200BB0B00F4D6BD /* LayerTextField.m */; };
 		C8ECFF4414CA1DDD00703971 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8ECFF4314CA1DDD00703971 /* Sparkle.framework */; };
 		C8ECFF4714CA254700703971 /* StatusBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8ECFF4614CA254600703971 /* StatusBarController.m */; };
+		C8ECFF5314CAC60600703971 /* LyricsWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8ECFF5214CAC60600703971 /* LyricsWindowController.m */; };
+		C8ECFF5614CAC61500703971 /* LyricsWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8ECFF5414CAC61500703971 /* LyricsWindow.xib */; };
 		C8FE898011FF7D6100290DEC /* iTunesController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8FE897F11FF7D6100290DEC /* iTunesController.m */; };
 /* End PBXBuildFile section */
 
@@ -106,6 +108,9 @@
 		C8ECFF4314CA1DDD00703971 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
 		C8ECFF4514CA254600703971 /* StatusBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatusBarController.h; sourceTree = "<group>"; };
 		C8ECFF4614CA254600703971 /* StatusBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatusBarController.m; sourceTree = "<group>"; };
+		C8ECFF5114CAC60600703971 /* LyricsWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LyricsWindowController.h; sourceTree = "<group>"; };
+		C8ECFF5214CAC60600703971 /* LyricsWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LyricsWindowController.m; sourceTree = "<group>"; };
+		C8ECFF5514CAC61500703971 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/LyricsWindow.xib; sourceTree = "<group>"; };
 		C8FE897E11FF7D6100290DEC /* iTunesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iTunesController.h; sourceTree = "<group>"; };
 		C8FE897F11FF7D6100290DEC /* iTunesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iTunesController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -129,9 +134,10 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				C8BF8F431284B65F00BB5CAC /* ValueTransformers */,
-				C8214F6910E6B71F008D012C /* Preferences */,
+				C8ECFF5014CAC5B700703971 /* Lyrics */,
 				C8214EF010E6B010008D012C /* Notification */,
+				C8214F6910E6B71F008D012C /* Preferences */,
+				C8BF8F431284B65F00BB5CAC /* ValueTransformers */,
 				256AC3D80F4B6AC300CF3369 /* MyTunesControllerAppDelegate.h */,
 				256AC3D90F4B6AC300CF3369 /* MyTunesControllerAppDelegate.m */,
 				C8ECFF4514CA254600703971 /* StatusBarController.h */,
@@ -266,6 +272,16 @@
 			name = ValueTransformers;
 			sourceTree = "<group>";
 		};
+		C8ECFF5014CAC5B700703971 /* Lyrics */ = {
+			isa = PBXGroup;
+			children = (
+				C8ECFF5114CAC60600703971 /* LyricsWindowController.h */,
+				C8ECFF5214CAC60600703971 /* LyricsWindowController.m */,
+				C8ECFF5414CAC61500703971 /* LyricsWindow.xib */,
+			);
+			name = Lyrics;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -334,6 +350,7 @@
 				C83BBB7910FBA08000595F2D /* COPYING.txt in Resources */,
 				C8DA653B113999A60069460B /* dsa_pub.pem in Resources */,
 				C83E393D121450C300708ADE /* blank.png in Resources */,
+				C8ECFF5614CAC61500703971 /* LyricsWindow.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -358,6 +375,7 @@
 				C8BF8EE11284AB9700BB5CAC /* TrackDurationValueTransformer.m in Sources */,
 				C8BF8EE61284AD4500BB5CAC /* TrackArtworksValueTransformer.m in Sources */,
 				C8ECFF4714CA254700703971 /* StatusBarController.m in Sources */,
+				C8ECFF5314CAC60600703971 /* LyricsWindowController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -402,6 +420,14 @@
 				C8DA653A113999A60069460B /* English */,
 			);
 			name = dsa_pub.pem;
+			sourceTree = "<group>";
+		};
+		C8ECFF5414CAC61500703971 /* LyricsWindow.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C8ECFF5514CAC61500703971 /* English */,
+			);
+			name = LyricsWindow.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
