@@ -8,16 +8,14 @@
 
 #import "LyricsWindowController.h"
 
+
 @implementation LyricsWindowController
+
+@synthesize track = _track;
 
 - (id)init
 {
-	if ((self = [self initWithWindowNibName:@"LyricsWindow"])) 
-	{
-		
-	}
-	
-	return self;
+	return [self initWithWindowNibName:@"LyricsWindow"];
 }
 
 
@@ -25,6 +23,39 @@
 {
     [super windowDidLoad];
     
+}
+
+
++ (NSSet *)keyPathsForValuesAffectingAttributedLyrics 
+{
+    return [NSSet setWithObjects:@"track", nil];
+}
+
+
+- (NSAttributedString *)attributedLyrics
+{
+	NSDictionary *textAttributes = [[NSDictionary alloc] initWithObjectsAndKeys:
+									[NSColor colorWithDeviceWhite:0.9 alpha:1.0], NSForegroundColorAttributeName, 
+									nil];
+	return [[NSAttributedString alloc] initWithString:[self.track lyrics] attributes:textAttributes];
+}
+
+
++ (NSSet *)keyPathsForValuesAffectingTrackDescription 
+{
+    return [NSSet setWithObjects:@"track", nil];
+}
+
+
+- (NSString *)trackDescription
+{
+	return [NSString stringWithFormat:@"%@ - %@", self.track.name, self.track.artist];
+}
+
+
+- (IBAction)fetch:(id)sender
+{
+	
 }
 
 @end

@@ -61,7 +61,7 @@
 		if (artworkImage == nil) 
 			artworkImage = [NSImage imageNamed:@"app_icon.icns"];
 		
-		value = [ImageScaler scaleImage:artworkImage fillSize:NSMakeSize(128.0, 128.0)];
+		value = [ImageScaler scaleImage:artworkImage fillSize:NSMakeSize(256.0, 256.0)];
 	}
 	
 	return value;

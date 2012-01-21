@@ -79,6 +79,9 @@
 - (void)iTunesTrackDidChange:(iTunesTrack *)newTrack
 {
 	[self.statusBarController updatePlayButtonState];
+	
+	if (lyricsWindowController)
+		lyricsWindowController.track = [[iTunesController sharedInstance] currentTrack];
 		
 	if (newTrack == nil) 
 		return;
@@ -163,6 +166,7 @@
 		lyricsWindowController = [[LyricsWindowController alloc] init];
 	}
 	
+	lyricsWindowController.track = [[iTunesController sharedInstance] currentTrack];
 	[lyricsWindowController showWindow:self];
 	[NSApp activateIgnoringOtherApps:YES];
 }

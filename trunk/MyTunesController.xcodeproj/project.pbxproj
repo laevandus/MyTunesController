@@ -34,6 +34,7 @@
 		C8BF8EC01284A86300BB5CAC /* TrackRatingValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = C8BF8EBF1284A86300BB5CAC /* TrackRatingValueTransformer.m */; };
 		C8BF8EE11284AB9700BB5CAC /* TrackDurationValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = C8BF8EE01284AB9700BB5CAC /* TrackDurationValueTransformer.m */; };
 		C8BF8EE61284AD4500BB5CAC /* TrackArtworksValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = C8BF8EE51284AD4500BB5CAC /* TrackArtworksValueTransformer.m */; };
+		C8CCE8AE14CB67D2008A7FCF /* LyricsBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = C8CCE8AD14CB67D2008A7FCF /* LyricsBackgroundView.m */; };
 		C8D98D9C12032CD200356DC1 /* ImageScaler.m in Sources */ = {isa = PBXBuildFile; fileRef = C8D98D9B12032CD200356DC1 /* ImageScaler.m */; };
 		C8DA653B113999A60069460B /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = C8DA6539113999A60069460B /* dsa_pub.pem */; };
 		C8E933C41200BB0B00F4D6BD /* LayerTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = C8E933C31200BB0B00F4D6BD /* LayerTextField.m */; };
@@ -100,6 +101,8 @@
 		C8BF8EE01284AB9700BB5CAC /* TrackDurationValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrackDurationValueTransformer.m; sourceTree = "<group>"; };
 		C8BF8EE41284AD4500BB5CAC /* TrackArtworksValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrackArtworksValueTransformer.h; sourceTree = "<group>"; };
 		C8BF8EE51284AD4500BB5CAC /* TrackArtworksValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrackArtworksValueTransformer.m; sourceTree = "<group>"; };
+		C8CCE8AC14CB67D2008A7FCF /* LyricsBackgroundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LyricsBackgroundView.h; sourceTree = "<group>"; };
+		C8CCE8AD14CB67D2008A7FCF /* LyricsBackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LyricsBackgroundView.m; sourceTree = "<group>"; };
 		C8D98D9A12032CD200356DC1 /* ImageScaler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageScaler.h; sourceTree = "<group>"; };
 		C8D98D9B12032CD200356DC1 /* ImageScaler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageScaler.m; sourceTree = "<group>"; };
 		C8DA653A113999A60069460B /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = English; path = English.lproj/dsa_pub.pem; sourceTree = "<group>"; };
@@ -278,6 +281,8 @@
 				C8ECFF5114CAC60600703971 /* LyricsWindowController.h */,
 				C8ECFF5214CAC60600703971 /* LyricsWindowController.m */,
 				C8ECFF5414CAC61500703971 /* LyricsWindow.xib */,
+				C8CCE8AC14CB67D2008A7FCF /* LyricsBackgroundView.h */,
+				C8CCE8AD14CB67D2008A7FCF /* LyricsBackgroundView.m */,
 			);
 			name = Lyrics;
 			sourceTree = "<group>";
@@ -376,6 +381,7 @@
 				C8BF8EE61284AD4500BB5CAC /* TrackArtworksValueTransformer.m in Sources */,
 				C8ECFF4714CA254700703971 /* StatusBarController.m in Sources */,
 				C8ECFF5314CAC60600703971 /* LyricsWindowController.m in Sources */,
+				C8CCE8AE14CB67D2008A7FCF /* LyricsBackgroundView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
