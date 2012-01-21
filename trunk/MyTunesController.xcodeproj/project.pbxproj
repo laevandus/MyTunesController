@@ -38,6 +38,7 @@
 		C8DA653B113999A60069460B /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = C8DA6539113999A60069460B /* dsa_pub.pem */; };
 		C8E933C41200BB0B00F4D6BD /* LayerTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = C8E933C31200BB0B00F4D6BD /* LayerTextField.m */; };
 		C8ECFF4414CA1DDD00703971 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8ECFF4314CA1DDD00703971 /* Sparkle.framework */; };
+		C8ECFF4714CA254700703971 /* StatusBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8ECFF4614CA254600703971 /* StatusBarController.m */; };
 		C8FE898011FF7D6100290DEC /* iTunesController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8FE897F11FF7D6100290DEC /* iTunesController.m */; };
 /* End PBXBuildFile section */
 
@@ -103,6 +104,8 @@
 		C8E933C21200BB0B00F4D6BD /* LayerTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LayerTextField.h; sourceTree = "<group>"; };
 		C8E933C31200BB0B00F4D6BD /* LayerTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LayerTextField.m; sourceTree = "<group>"; };
 		C8ECFF4314CA1DDD00703971 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
+		C8ECFF4514CA254600703971 /* StatusBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatusBarController.h; sourceTree = "<group>"; };
+		C8ECFF4614CA254600703971 /* StatusBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatusBarController.m; sourceTree = "<group>"; };
 		C8FE897E11FF7D6100290DEC /* iTunesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iTunesController.h; sourceTree = "<group>"; };
 		C8FE897F11FF7D6100290DEC /* iTunesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iTunesController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -129,13 +132,15 @@
 				C8BF8F431284B65F00BB5CAC /* ValueTransformers */,
 				C8214F6910E6B71F008D012C /* Preferences */,
 				C8214EF010E6B010008D012C /* Notification */,
+				256AC3D80F4B6AC300CF3369 /* MyTunesControllerAppDelegate.h */,
+				256AC3D90F4B6AC300CF3369 /* MyTunesControllerAppDelegate.m */,
+				C8ECFF4514CA254600703971 /* StatusBarController.h */,
+				C8ECFF4614CA254600703971 /* StatusBarController.m */,
 				C8D98D9A12032CD200356DC1 /* ImageScaler.h */,
 				C8D98D9B12032CD200356DC1 /* ImageScaler.m */,
 				C8214EE110E6ADC4008D012C /* iTunes.h */,
 				C8FE897E11FF7D6100290DEC /* iTunesController.h */,
 				C8FE897F11FF7D6100290DEC /* iTunesController.m */,
-				256AC3D80F4B6AC300CF3369 /* MyTunesControllerAppDelegate.h */,
-				256AC3D90F4B6AC300CF3369 /* MyTunesControllerAppDelegate.m */,
 				C8214EAC10E6ABC8008D012C /* StatusBarButtonCell.h */,
 				C8214EAD10E6ABC8008D012C /* StatusBarButtonCell.m */,
 				C8214EA710E6AB7D008D012C /* StatusView.h */,
@@ -349,6 +354,7 @@
 				C8BF8EC01284A86300BB5CAC /* TrackRatingValueTransformer.m in Sources */,
 				C8BF8EE11284AB9700BB5CAC /* TrackDurationValueTransformer.m in Sources */,
 				C8BF8EE61284AD4500BB5CAC /* TrackArtworksValueTransformer.m in Sources */,
+				C8ECFF4714CA254700703971 /* StatusBarController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

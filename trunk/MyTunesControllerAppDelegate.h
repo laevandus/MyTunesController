@@ -28,29 +28,20 @@
 
 #import <Cocoa/Cocoa.h>
 
-@class LyricsWindowController, NotificationWindowController, PreferencesController, StatusView;
+@class NotificationWindowController, PreferencesController, StatusBarController, StatusView;
 
 @interface MyTunesControllerAppDelegate : NSObject <NSApplicationDelegate, NSWindowDelegate> 
-{
-	IBOutlet id sparkle;
-	IBOutlet NSButton *playButton;
-	IBOutlet NSImageView *artworkImageView;
-	IBOutlet StatusView *statusView;
-	
-	NSUInteger positionCorner;
-	NSWindow *window;
-	NSStatusItem *statusItem;
-	NSStatusItem *controllerItem;
-	LyricsWindowController *lyricsController;
-	NotificationWindowController *notificationController;
-	PreferencesController *preferencesController;
+{	
+	NSUInteger notificationCorner;
+	NotificationWindowController *notificationWindowController;
+	PreferencesController *preferencesWindowController;
 }
 
-@property (strong) IBOutlet NSWindow *window;
+@property (nonatomic, weak) IBOutlet StatusBarController *statusBarController;
 
-- (IBAction)playPrevious:(id)sender;
-- (IBAction)playPause:(id)sender;
-- (IBAction)playNext:(id)sender;
+// Managing application windows
+- (void)showAboutPanel;
+- (void)showPreferencesWindow;
 
 @end
 
