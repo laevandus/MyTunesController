@@ -60,9 +60,7 @@
 - (void)_fetchLyricsForTrackInBackground:(iTunesTrack *)track
 {
 	@autoreleasepool 
-	{
-		NSLog(@"%s %@ - %@", __func__, [track name], [track artist]);
-		
+	{		
 		// Randomize plugins for distributing the load
 		NSString *fetchedLyrics = nil;
 		NSArray *plugIns = [[self pluginManager] plugIns];
@@ -81,6 +79,9 @@
 			bundleInstance = [plugIns objectAtIndex:j];
 			
 			fetchedLyrics = [(id<LyricsFetching>)bundleInstance lyricsForTrackName:[track name] artist:[track artist] album:[track album]];
+			
+			// Reduce the interval of querying websites
+			usleep(500000);
 			
 			if ([fetchedLyrics length] > 0) 
 			{

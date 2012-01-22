@@ -24,6 +24,7 @@
 {
     [super windowDidLoad];
     
+	[self.window makeFirstResponder:nil];
 }
 
 
@@ -56,7 +57,7 @@
 
 - (IBAction)clear:(id)sender
 {
-	self.track.lyrics = @"";
+	[self.track setLyrics:@""];
 }
 
 

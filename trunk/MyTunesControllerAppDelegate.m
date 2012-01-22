@@ -88,14 +88,13 @@
 		return;
 	}
 	
-	NSString *pluginsSubpath = @"/MyTunesController/PlugIns";
+	NSString *pluginsSubpath = @"MyTunesController/PlugIns/";
 	plugInsURL = [plugInsURL URLByAppendingPathComponent:pluginsSubpath];
+	error = nil;
 	
-	if (plugInsURL && ![fileManager fileExistsAtPath:[plugInsURL absoluteString]]) 
+	if (![plugInsURL checkResourceIsReachableAndReturnError:&error]) 
 	{
-		error = nil;
-		
-		if (![[NSFileManager defaultManager] createDirectoryAtPath:[plugInsURL absoluteString] withIntermediateDirectories:YES attributes:nil error:&error])
+		if (![fileManager createDirectoryAtURL:plugInsURL withIntermediateDirectories:YES attributes:nil error:&error])
 		{
 			NSLog(@"%s %@", __func__, [error localizedDescription]);
 		}
@@ -116,8 +115,16 @@
 {
 	[self.statusBarController updatePlayButtonState];
 	
-	if (lyricsWindowController)
+	if ([lyricsWindowController.window isVisible])
+	{
 		lyricsWindowController.track = [[iTunesController sharedInstance] currentTrack];
+		
+		if ([[lyricsWindowController.track lyrics] length] == 0) 
+		{
+			// Start fetching
+			[[LyricsFetcher sharedFetcher] fetchLyricsForTrack:[lyricsWindowController track]];
+		}
+	}
 		
 	if (newTrack == nil) 
 		return;
@@ -152,7 +159,7 @@
 {
 	if ([fetcher isEqual:[LyricsFetcher sharedFetcher]]) 
 	{
-		NSLog(@"%s track = (%@) lyrics length = (%lu)", __func__, track.name, [lyrics length]);
+		NSLog(@"%s track = (%@ - %@) lyrics length = (%lu)", __func__, track.name, track.artist, [lyrics length]);
 		// Handles main fetcher's requests
 		track.lyrics = lyrics;
 	}
@@ -208,7 +215,6 @@
 - (void)showAboutPanel
 {
 	[NSApp orderFrontStandardAboutPanel:self];
-	[NSApp activateIgnoringOtherApps:YES];
 }
 
 
@@ -220,8 +226,14 @@
 	}
 	
 	lyricsWindowController.track = [[iTunesController sharedInstance] currentTrack];
-	[lyricsWindowController showWindow:self];
-	[NSApp activateIgnoringOtherApps:YES];
+	
+	if ([[lyricsWindowController.track lyrics] length] == 0) 
+	{
+		// Start fetching
+		[[LyricsFetcher sharedFetcher] fetchLyricsForTrack:[lyricsWindowController track]];
+	}
+	
+	[lyricsWindowController showWindow:self];	
 }
 
 

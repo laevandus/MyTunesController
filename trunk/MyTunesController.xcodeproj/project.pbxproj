@@ -17,13 +17,16 @@
 		C803ED9514CC1256001568E3 /* AZLyrcis.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C803ED9214CC1256001568E3 /* AZLyrcis.bundle */; };
 		C803ED9614CC1256001568E3 /* MetroLyrics.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C803ED9314CC1256001568E3 /* MetroLyrics.bundle */; };
 		C803ED9714CC1256001568E3 /* PLyrics.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C803ED9414CC1256001568E3 /* PLyrics.bundle */; };
+		C803EDDC14CC3208001568E3 /* AZLyrcis.bundle in Copy Files */ = {isa = PBXBuildFile; fileRef = C803ED9214CC1256001568E3 /* AZLyrcis.bundle */; };
+		C803EDDD14CC320B001568E3 /* MetroLyrics.bundle in Copy Files */ = {isa = PBXBuildFile; fileRef = C803ED9314CC1256001568E3 /* MetroLyrics.bundle */; };
+		C803EDDE14CC320D001568E3 /* PLyrics.bundle in Copy Files */ = {isa = PBXBuildFile; fileRef = C803ED9414CC1256001568E3 /* PLyrics.bundle */; };
 		C8214EA910E6AB7D008D012C /* StatusView.m in Sources */ = {isa = PBXBuildFile; fileRef = C8214EA810E6AB7D008D012C /* StatusView.m */; };
 		C8214EAE10E6ABC8008D012C /* StatusBarButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C8214EAD10E6ABC8008D012C /* StatusBarButtonCell.m */; };
 		C8214EE610E6AE8B008D012C /* ScriptingBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8214EE510E6AE8B008D012C /* ScriptingBridge.framework */; };
 		C8214EEA10E6AE97008D012C /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8214EE910E6AE97008D012C /* QuartzCore.framework */; };
 		C8214EF810E6B021008D012C /* NotificationWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = C8214EF210E6B021008D012C /* NotificationWindow.m */; };
 		C8214EFA10E6B021008D012C /* NotificationWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8214EF610E6B021008D012C /* NotificationWindowController.m */; };
-		C8214EFE10E6B037008D012C /* Notification.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8214EFC10E6B037008D012C /* Notification.xib */; };
+		C8214EFE10E6B037008D012C /* NotificationWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8214EFC10E6B037008D012C /* NotificationWindow.xib */; };
 		C8214F6E10E6B72C008D012C /* PreferencesController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8214F6C10E6B72C008D012C /* PreferencesController.m */; };
 		C8214F7110E6B743008D012C /* Preferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8214F6F10E6B743008D012C /* Preferences.xib */; };
 		C8214F7B10E6B774008D012C /* pref_desktop.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C8214F7A10E6B774008D012C /* pref_desktop.jpg */; };
@@ -57,6 +60,9 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
+				C803EDDC14CC3208001568E3 /* AZLyrcis.bundle in Copy Files */,
+				C803EDDD14CC320B001568E3 /* MetroLyrics.bundle in Copy Files */,
+				C803EDDE14CC320D001568E3 /* PLyrics.bundle in Copy Files */,
 			);
 			name = "Copy Files";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -95,7 +101,7 @@
 		C8214EF210E6B021008D012C /* NotificationWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationWindow.m; sourceTree = "<group>"; };
 		C8214EF510E6B021008D012C /* NotificationWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationWindowController.h; sourceTree = "<group>"; };
 		C8214EF610E6B021008D012C /* NotificationWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationWindowController.m; sourceTree = "<group>"; };
-		C8214EFD10E6B037008D012C /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/Notification.xib; sourceTree = "<group>"; };
+		C8214EFD10E6B037008D012C /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/NotificationWindow.xib; sourceTree = "<group>"; };
 		C8214F6B10E6B72C008D012C /* PreferencesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreferencesController.h; sourceTree = "<group>"; };
 		C8214F6C10E6B72C008D012C /* PreferencesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreferencesController.m; sourceTree = "<group>"; };
 		C8214F7010E6B743008D012C /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/Preferences.xib; sourceTree = "<group>"; };
@@ -109,9 +115,9 @@
 		C89FC95210F944970093B4A6 /* pause.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pause.png; sourceTree = "<group>"; };
 		C89FC95310F944970093B4A6 /* play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = play.png; sourceTree = "<group>"; };
 		C89FC95410F944970093B4A6 /* previous.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = previous.png; sourceTree = "<group>"; };
-		C8BF8EBE1284A86300BB5CAC /* iTunesTrackRatingValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; path = iTunesTrackRatingValueTransformer.h; sourceTree = "<group>"; };
+		C8BF8EBE1284A86300BB5CAC /* iTunesTrackRatingValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iTunesTrackRatingValueTransformer.h; sourceTree = "<group>"; };
 		C8BF8EBF1284A86300BB5CAC /* iTunesTrackRatingValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iTunesTrackRatingValueTransformer.m; sourceTree = "<group>"; };
-		C8BF8EDF1284AB9700BB5CAC /* iTunesTrackDurationValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; path = iTunesTrackDurationValueTransformer.h; sourceTree = "<group>"; };
+		C8BF8EDF1284AB9700BB5CAC /* iTunesTrackDurationValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iTunesTrackDurationValueTransformer.h; sourceTree = "<group>"; };
 		C8BF8EE01284AB9700BB5CAC /* iTunesTrackDurationValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iTunesTrackDurationValueTransformer.m; sourceTree = "<group>"; };
 		C8BF8EE41284AD4500BB5CAC /* iTunesTrackArtworkValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iTunesTrackArtworkValueTransformer.h; sourceTree = "<group>"; };
 		C8BF8EE51284AD4500BB5CAC /* iTunesTrackArtworkValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iTunesTrackArtworkValueTransformer.m; sourceTree = "<group>"; };
@@ -266,7 +272,7 @@
 		C8214EF010E6B010008D012C /* Notification */ = {
 			isa = PBXGroup;
 			children = (
-				C8214EFC10E6B037008D012C /* Notification.xib */,
+				C8214EFC10E6B037008D012C /* NotificationWindow.xib */,
 				C8214EF110E6B021008D012C /* NotificationWindow.h */,
 				C8214EF210E6B021008D012C /* NotificationWindow.m */,
 				C8214EF510E6B021008D012C /* NotificationWindowController.h */,
@@ -373,7 +379,7 @@
 			files = (
 				8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */,
 				1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */,
-				C8214EFE10E6B037008D012C /* Notification.xib in Resources */,
+				C8214EFE10E6B037008D012C /* NotificationWindow.xib in Resources */,
 				C8214F7110E6B743008D012C /* Preferences.xib in Resources */,
 				C8214F7B10E6B774008D012C /* pref_desktop.jpg in Resources */,
 				C8214FA310E6BAB1008D012C /* status_icon.png in Resources */,
@@ -439,12 +445,12 @@
 			name = MainMenu.xib;
 			sourceTree = "<group>";
 		};
-		C8214EFC10E6B037008D012C /* Notification.xib */ = {
+		C8214EFC10E6B037008D012C /* NotificationWindow.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
 				C8214EFD10E6B037008D012C /* English */,
 			);
-			name = Notification.xib;
+			name = NotificationWindow.xib;
 			sourceTree = "<group>";
 		};
 		C8214F6F10E6B743008D012C /* Preferences.xib */ = {

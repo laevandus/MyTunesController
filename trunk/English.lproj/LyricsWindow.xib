@@ -47,7 +47,7 @@
 			<object class="NSWindowTemplate" id="643184312">
 				<int key="NSWindowStyleMask">8215</int>
 				<int key="NSWindowBacking">2</int>
-				<string key="NSWindowRect">{{131, 159}, {256, 256}}</string>
+				<string key="NSWindowRect">{{131, 502}, {256, 256}}</string>
 				<int key="NSWTFlags">611845120</int>
 				<string key="NSWindowTitle">Lyrics</string>
 				<string key="NSWindowClass">NSPanel</string>
