@@ -41,16 +41,15 @@
 
 - (id)init 
 {
-	return [super initWithWindowNibName:@"Notification"];
+	return [super initWithWindowNibName:@"NotificationWindow"];
 }
+
 
 - (void)dealloc 
 {
 	[hideTimer invalidate];
-	[hideTimer release];
-	[track release];
-	[super dealloc];
 }
+
 
 - (void)awakeFromNib 
 {
@@ -76,6 +75,7 @@
 	
 	[self.window setCollectionBehavior:NSWindowCollectionBehaviorCanJoinAllSpaces];
 }
+
 
 - (void)drawLayer:(CALayer *)layer inContext:(CGContextRef)ctx 
 {	
@@ -103,13 +103,14 @@
 	CFRelease(fillColorsArray);
 }
 
+
 - (void)close
 {
 	[hideTimer invalidate];
-	[hideTimer release];
 	hideTimer = nil;
 	[super close];
 }
+
 
 - (IBAction)showWindow:(id)sender 
 {
@@ -124,13 +125,9 @@
 	[[self.window animator] setAlphaValue:0.9];
 	
 	[hideTimer invalidate];
-	[hideTimer release];
-	hideTimer = [[NSTimer scheduledTimerWithTimeInterval:5.0 
-												 target:self 
-												selector:@selector(timerFired:) 
-											   userInfo:nil 
-												repeats:NO] retain];    
+	hideTimer = [NSTimer scheduledTimerWithTimeInterval:5.0 target:self selector:@selector(timerFired:) userInfo:nil repeats:NO];    
 }
+
 
 - (void)timerFired:(NSTimer *)timer 
 {
@@ -139,10 +136,12 @@
 	[[self.window animator] setAlphaValue:0.0];
 }
 
+
 - (void)disappear
 {
 	[self timerFired:nil];
 }
+
 
 #define kWindowMinimumWidth 236
 
@@ -165,13 +164,15 @@
 	[self.window setFrame:newFrame display:YES animate:NO];
 }
 
+
 - (void)setPositionCorner:(NSUInteger)pos 
 {
 	NSRect visibleFrame = [[NSScreen mainScreen] visibleFrame];
 	NSRect windowFrame = [self.window frame];
 	NSPoint pointOrigin = NSZeroPoint;
 	
-	switch (pos) {
+	switch (pos) 
+	{
 		case 0:	// left up
 			pointOrigin = NSMakePoint(NSMinX(visibleFrame) + 20.f, NSMaxY(visibleFrame) - NSHeight(windowFrame) - 20.f);
 			break;
@@ -192,6 +193,7 @@
 	positionCorner = pos;
 }
 
+
 #pragma mark Animations
 
 - (CABasicAnimation *)appearAnimation 
@@ -209,6 +211,7 @@
 	return animation;
 }
 
+
 - (CABasicAnimation *)disappearAnimation 
 {	
 	CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"transform"];
@@ -225,6 +228,7 @@
 	animation.duration = 0.5;	
 	return animation;
 }
+
 
 - (void)animationDidStop:(CAAnimation *)animation finished:(BOOL)flag 
 {

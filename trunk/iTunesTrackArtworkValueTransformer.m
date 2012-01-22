@@ -1,8 +1,8 @@
 //
-//  PreferencesController.h
+//  TrackArtworksValueTransformer.m
 //  MyTunesController
 //
-//  Created by Toomas Vahter on 25.12.09.
+//  Created by Toomas Vahter on 05.11.10.
 //  Copyright (c) 2010 Toomas Vahter
 //
 //  This content is released under the MIT License (http://www.opensource.org/licenses/mit-license.php).
@@ -25,14 +25,76 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-#import <Cocoa/Cocoa.h>
+#import "iTunesTrackArtworkValueTransformer.h"
+#import "iTunes.h"
+#import "ImageScaler.h"
 
 
-@interface PreferencesController : NSWindowController 
+@implementation iTunesTrackArtworkValueTransformer
+
+@synthesize artworkSize = _artworkSize;
+
+- (id)init 
 {
-	IBOutlet NSButton *loginCheckBox;
+    if ((self = [super init])) 
+	{
+        _artworkSize = NSMakeSize(128.0, 128.0);
+    }
+	
+    return self;
 }
 
-- (IBAction)toggleStartOnLogin:(id)sender;
+
++ (Class)transformedValueClass 
+{ 
+	return [NSImage class]; 
+}
+
+
++ (BOOL)allowsReverseTransformation 
+{ 
+	return NO; 
+}
+
+
+- (id)transformedValue:(id)value 
+{
+	if ([value isKindOfClass:[NSArray class]]) 
+	{
+		// TODO: try to get the album artwork instead
+		iTunesArtwork *artwork = nil;
+		NSImage *artworkImage = nil;
+		
+		if ([value count]) 
+			artwork = (iTunesArtwork *)[value lastObject];
+		
+		if (artwork) 
+			artworkImage = [[NSImage alloc] initWithData:artwork.rawData];
+		
+		if (artworkImage == nil) 
+			artworkImage = [NSImage imageNamed:@"app_icon.icns"];
+		
+		value = [ImageScaler scaleImage:artworkImage fillSize:self.artworkSize];
+	}
+	
+	return value;
+}
 
 @end
+
+
+@implementation iTunesTrackLargeArtworkValueTransformer
+
+- (id)init 
+{
+    if ((self = [super init])) 
+	{
+        self.artworkSize = NSMakeSize(256.0, 256.0);
+    }
+	
+    return self;
+}
+
+@end
+
+

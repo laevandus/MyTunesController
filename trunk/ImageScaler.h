@@ -28,9 +28,8 @@
 #import <Foundation/Foundation.h>
 
 
-@interface ImageScaler : NSObject {
+@interface ImageScaler : NSObject
 
-}
 + (NSImage *)scaleImage:(NSImage *)sourceImage fillSize:(NSSize)targetSize;
 
 @end

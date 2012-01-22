@@ -28,8 +28,5 @@
 #import <Cocoa/Cocoa.h>
 
 
-@interface StatusBarButtonCell : NSButtonCell {
-
-}
-
+@interface StatusBarButtonCell : NSButtonCell
 @end

@@ -43,15 +43,17 @@
 	return [super initWithWindowNibName:@"Preferences"];
 }
 
+
 - (void)showWindow:(id)sender 
 {
 	[self.window center];
 	[super showWindow:sender];
-	NSInteger state = 0;
-	([self isAppStartingOnLogin]) ? (state = NSOnState) : (state = NSOffState);
-	[loginCheckBox setState:state];
+	
+	[loginCheckBox setState:[self isAppStartingOnLogin] ? NSOnState : NSOffState];
+	
 	[self.window makeKeyAndOrderFront:self];
 }
+
 
 - (IBAction)toggleStartOnLogin:(id)sender 
 {
@@ -63,25 +65,27 @@
 	}
 }
 
+
 #pragma mark -
 
 - (BOOL)isAppStartingOnLogin 
 {
 	LSSharedFileListRef loginListRef = LSSharedFileListCreate(NULL, kLSSharedFileListSessionLoginItems, NULL);
 	if (loginListRef) {
-		NSArray *loginItemsArray = (NSArray *)LSSharedFileListCopySnapshot(loginListRef, NULL);
-		NSURL *itemURL;
-		for (id itemRef in loginItemsArray) {		
-			if (LSSharedFileListItemResolve((LSSharedFileListItemRef)itemRef, 0, (CFURLRef *) &itemURL, NULL) == noErr) {
-				if ([[itemURL path] hasPrefix:[[NSBundle mainBundle] bundlePath]])
+		NSArray *loginItemsArray = (__bridge NSArray *)LSSharedFileListCopySnapshot(loginListRef, NULL);
+		CFURLRef itemURLRef;
+		for (id itemRef in loginItemsArray) {
+			if (LSSharedFileListItemResolve((__bridge LSSharedFileListItemRef)itemRef, 0,&itemURLRef, NULL) == noErr) {
+				if ([(__bridge NSString *)CFURLGetString(itemURLRef) hasPrefix:[[NSBundle mainBundle] bundlePath]])
 					return YES;
 			}
 		}
-		[loginItemsArray release];
+
 		CFRelease(loginListRef);
 	}
 	return NO;
 }
+
 
 - (void)insertAppToLoginItems 
 {
@@ -89,7 +93,7 @@
 	if (loginListRef) {
 		NSURL *bundleURL = [NSURL fileURLWithPath:[[NSBundle mainBundle] bundlePath] isDirectory:YES];
 		LSSharedFileListItemRef loginItemRef = LSSharedFileListInsertItemURL(loginListRef, kLSSharedFileListItemLast, 
-																			 NULL, NULL, (CFURLRef)bundleURL, NULL, NULL);             
+																			 NULL, NULL, (__bridge CFURLRef)bundleURL, NULL, NULL);             
 		if (loginItemRef) {
 			CFRelease(loginItemRef);
 		}
@@ -97,19 +101,20 @@
 	}
 }
 
+
 - (void)removeAppFromLoginItems 
 {
 	LSSharedFileListRef loginListRef = LSSharedFileListCreate(NULL, kLSSharedFileListSessionLoginItems, NULL);
 	if (loginListRef) {
-		NSArray *loginItemsArray = (NSArray *)LSSharedFileListCopySnapshot(loginListRef, NULL);
-		NSURL *itemURL;
+		NSArray *loginItemsArray = (__bridge NSArray *)LSSharedFileListCopySnapshot(loginListRef, NULL);
+		CFURLRef itemURLRef;
 		for (id itemRef in loginItemsArray) {		
-			if (LSSharedFileListItemResolve((LSSharedFileListItemRef)itemRef, 0, (CFURLRef *) &itemURL, NULL) == noErr) {
-				if ([[itemURL path] hasPrefix:[[NSBundle mainBundle] bundlePath]])
-					LSSharedFileListItemRemove(loginListRef, (LSSharedFileListItemRef)itemRef);
+			if (LSSharedFileListItemResolve((__bridge LSSharedFileListItemRef)itemRef, 0, &itemURLRef, NULL) == noErr) {
+				if ([(__bridge NSString *)CFURLGetString(itemURLRef) hasPrefix:[[NSBundle mainBundle] bundlePath]])
+					LSSharedFileListItemRemove(loginListRef, (__bridge LSSharedFileListItemRef)itemRef);
 			}
 		}
-		[loginItemsArray release];
+
 		CFRelease(loginListRef);
 	}
 }

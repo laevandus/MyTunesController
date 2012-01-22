@@ -35,27 +35,25 @@
 	NSSize sourceSize = sourceImage.size;
 	
 	NSRect sourceRect = NSZeroRect;
-	if (sourceSize.height > sourceSize.width) {
-		sourceRect = NSMakeRect(0.0, 
-								round((sourceSize.height - sourceSize.width) / 2), 
-								sourceSize.width, 
-								sourceSize.width);
+	
+	if (sourceSize.height > sourceSize.width) 
+	{
+		sourceRect = NSMakeRect(0.0, round((sourceSize.height - sourceSize.width) / 2), sourceSize.width, sourceSize.width);
 	}
-	else {
-		sourceRect = NSMakeRect(round((sourceSize.width - sourceSize.height) / 2), 
-								0.0, 
-								sourceSize.height, 
-								sourceSize.height);
+	else 
+	{
+		sourceRect = NSMakeRect(round((sourceSize.width - sourceSize.height) / 2), 0.0, sourceSize.height, sourceSize.height);
 	}
 	
 	NSRect destinationRect = NSZeroRect;
 	destinationRect.size = targetSize;
 	
-	NSImage *final = [[[NSImage alloc] initWithSize:targetSize] autorelease];
+	NSImage *final = [[NSImage alloc] initWithSize:targetSize];
 	[final lockFocus];
 	[[NSGraphicsContext currentContext] setImageInterpolation:NSImageInterpolationHigh];
 	[sourceImage drawInRect:destinationRect fromRect:sourceRect operation:NSCompositeSourceOver fraction:1.0];
 	[final unlockFocus];
+	
 	return final;
 }
 

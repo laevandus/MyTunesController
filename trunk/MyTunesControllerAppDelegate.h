@@ -27,29 +27,27 @@
 
 
 #import <Cocoa/Cocoa.h>
+#import "iTunesController.h"
+#import "LyricsFetcher.h"
 
-@class LyricsWindowController, NotificationWindowController, PreferencesController, StatusView;
+@class LyricsWindowController, NotificationWindowController, PreferencesController, StatusBarController, StatusView;
 
-@interface MyTunesControllerAppDelegate : NSObject <NSApplicationDelegate, NSWindowDelegate> 
-{
-	IBOutlet id sparkle;
-	IBOutlet NSButton *playButton;
-	IBOutlet NSImageView *artworkImageView;
-	IBOutlet StatusView *statusView;
+@interface MyTunesControllerAppDelegate : NSObject <NSApplicationDelegate, NSWindowDelegate, iTunesControllerDelegate, LyricsFetcherDelegate> 
+{	
+	NSUInteger notificationCorner;
 	
-	NSUInteger positionCorner;
-	NSWindow *window;
-	NSStatusItem *statusItem;
-	NSStatusItem *controllerItem;
-	LyricsWindowController *lyricsController;
-	NotificationWindowController *notificationController;
-	PreferencesController *preferencesController;
+	LyricsWindowController *lyricsWindowController;
+	NotificationWindowController *notificationWindowController;
+	PreferencesController *preferencesWindowController;
 }
 
-@property (assign) IBOutlet NSWindow *window;
+@property (nonatomic, weak) IBOutlet StatusBarController *statusBarController;
 
-- (IBAction)playPrevious:(id)sender;
-- (IBAction)playPause:(id)sender;
-- (IBAction)playNext:(id)sender;
+// Managing application windows
+- (void)showAboutPanel;
+- (void)showLyricsWindow;
+- (void)showPreferencesWindow;
 
 @end
+
+extern NSString *CONotificationCorner;

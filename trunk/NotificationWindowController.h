@@ -33,9 +33,6 @@
 	IBOutlet NSTextField *nameField, *artistField, *albumField, *durationField;
 	IBOutlet NSView *subview;
 	NSTimer *hideTimer;
-	id delegate;
-	iTunesTrack *track;
-	NSUInteger positionCorner;
 }
 
 @property (nonatomic, readwrite, retain) iTunesTrack *track;

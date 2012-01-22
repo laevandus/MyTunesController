@@ -32,14 +32,17 @@
 
 @synthesize delegate;
 
-+ (id)sharedInstance 
++ (iTunesController *)sharedInstance 
 {	
-	static iTunesController *sharedInstance = nil;
+	static iTunesController *sharediTunesControllerInstance = nil;
+	static dispatch_once_t onceToken;
 	
-	if (!sharedInstance)
-		sharedInstance = [[iTunesController alloc] init];
+	dispatch_once(&onceToken, ^
+				  {
+					  sharediTunesControllerInstance = [[[self class] alloc] init];
+				  });
 	
-	return sharedInstance;
+	return sharediTunesControllerInstance;
 }
 
 - (id)init 
@@ -50,7 +53,7 @@
 																name:@"com.apple.iTunes.playerInfo" 
 															  object:@"com.apple.iTunes.player"];
 		
-		iTunesApp = (iTunesApplication *)[[SBApplication applicationWithBundleIdentifier:@"com.apple.iTunes"] retain];
+		iTunesApp = (iTunesApplication *)[SBApplication applicationWithBundleIdentifier:@"com.apple.iTunes"];
 	}
 	return self;
 }
@@ -58,8 +61,6 @@
 - (void)dealloc 
 {
 	[[NSDistributedNotificationCenter defaultCenter] removeObserver:self];
-	[iTunesApp release];
-	[super dealloc];
 }
 
 - (BOOL)isPlaying

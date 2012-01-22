@@ -28,8 +28,5 @@
 #import <Cocoa/Cocoa.h>
 
 
-@interface LayerTextField : NSTextField {
-
-}
-
+@interface LayerTextField : NSTextField
 @end

@@ -28,234 +28,226 @@
 
 
 #import "MyTunesControllerAppDelegate.h"
-#import "LyricsWindowController.h"
 #import "NotificationWindowController.h"
 #import "PreferencesController.h"
-#import "iTunesController.h"
 #import "StatusView.h"
-#import "UserDefaults.h"
+#import "StatusBarController.h"
+#import "LyricsWindowController.h"
 
-#import "ImageScaler.h"
 
 @interface MyTunesControllerAppDelegate()
-- (void)_setupStatusItem;
-- (void)_updateStatusItemButtons;
+- (void)_createDirectories;
 @end
 
 
 @implementation MyTunesControllerAppDelegate
 
-@synthesize window;
+@synthesize statusBarController = _statusBarController;
 
 + (void)initialize
 {
-	[[NSUserDefaults standardUserDefaults] registerDefaults:[NSDictionary dictionaryWithObjectsAndKeys:
-															 [NSNumber numberWithUnsignedInteger:3], CONotificationCorner,    
-															 nil]];
+	if (self == [MyTunesControllerAppDelegate class]) 
+	{
+		[[NSUserDefaults standardUserDefaults] registerDefaults:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithUnsignedInteger:3], CONotificationCorner, nil]];
+	}
 }
 
-- (void)dealloc 
-{
-	[[NSDistributedNotificationCenter defaultCenter] removeObserver:self];
-	[[NSUserDefaultsController sharedUserDefaultsController] removeObserver:self forKeyPath:@"values.NotificationCorner"];
-	[lyricsController release];
-	[statusItem release];
-	[controllerItem release];
-	[notificationController release];
-	[preferencesController release];
-	[super dealloc];
-}
+
+#pragma mark Application Delegate
 
 - (NSApplicationTerminateReply)applicationShouldTerminate:(NSApplication *)sender 
 {
 	return NSTerminateNow;
 }
 
+
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification 
 {
-	[[NSUserDefaultsController sharedUserDefaultsController] addObserver:self
-															  forKeyPath:@"values.NotificationCorner"
-																 options:NSKeyValueObservingOptionInitial
-																 context:nil];
+	srand((unsigned int)time(NULL));
+	
+	[self _createDirectories];
+	
+	[[NSUserDefaultsController sharedUserDefaultsController] addObserver:self forKeyPath:@"values.NotificationCorner" options:NSKeyValueObservingOptionInitial context:nil];
+	
 	[[iTunesController sharedInstance] setDelegate:self];
-	[self _setupStatusItem];
-	[self _updateStatusItemButtons];
+	[[LyricsFetcher sharedFetcher] setDelegate:self];
+	
+	[self.statusBarController addStatusItems];
 }
 
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context 
+
+- (void)_createDirectories
 {
-	if ([keyPath isEqualToString:@"values.NotificationCorner"]) {
-		positionCorner = [[[NSUserDefaults standardUserDefaults] objectForKey:CONotificationCorner] unsignedIntValue];
-		
-		if (notificationController)
-			[notificationController setPositionCorner:positionCorner];
-	} 
-	else 
-		[super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
+	NSError *error = nil;
+	NSFileManager *fileManager = [[NSFileManager alloc] init];
+	NSURL *plugInsURL = [fileManager URLForDirectory:NSApplicationSupportDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:YES error:&error];
+	
+	if (plugInsURL == nil) 
+	{
+		NSLog(@"%s error = (%@)", __func__, [error localizedDescription]);
+		return;
+	}
+	
+	NSString *pluginsSubpath = @"MyTunesController/PlugIns/";
+	plugInsURL = [plugInsURL URLByAppendingPathComponent:pluginsSubpath];
+	error = nil;
+	
+	if (![plugInsURL checkResourceIsReachableAndReturnError:&error]) 
+	{
+		if (![fileManager createDirectoryAtURL:plugInsURL withIntermediateDirectories:YES attributes:nil error:&error])
+		{
+			NSLog(@"%s %@", __func__, [error localizedDescription]);
+		}
+	}
 }
 
-#pragma mark Delegates
+
+- (void)applicationWillTerminate:(NSNotification *)notification
+{
+	[[NSDistributedNotificationCenter defaultCenter] removeObserver:self];
+	[[NSUserDefaultsController sharedUserDefaultsController] removeObserver:self forKeyPath:@"values.NotificationCorner"];
+}
+
+
+#pragma mark iTunesController Delegate
 
 - (void)iTunesTrackDidChange:(iTunesTrack *)newTrack
 {
-	[self _updateStatusItemButtons];
+	[self.statusBarController updatePlayButtonState];
 	
-	if (lyricsController) 
-		lyricsController.track = newTrack;
+	if ([lyricsWindowController.window isVisible])
+	{
+		lyricsWindowController.track = [[iTunesController sharedInstance] currentTrack];
+		
+		if ([[lyricsWindowController.track lyrics] length] == 0) 
+		{
+			// Start fetching
+			[[LyricsFetcher sharedFetcher] fetchLyricsForTrack:[lyricsWindowController track]];
+		}
+	}
 		
 	if (newTrack == nil) 
 		return;
 	
-	if ([[iTunesController sharedInstance] isPlaying] == NO) {
-		[notificationController disappear];
+	if ([[iTunesController sharedInstance] isPlaying] == NO) 
+	{
+		[notificationWindowController disappear];
 		return;
 	}
 	
 	// if I reused the window then text got blurred
-	if (notificationController) {
-		[notificationController setDelegate:nil];
-		[notificationController close];
-		[notificationController release];
-		notificationController = nil;
+	if (notificationWindowController) 
+	{
+		[notificationWindowController setDelegate:nil];
+		[notificationWindowController close];
+		notificationWindowController = nil;
 	}
-	notificationController = [[NotificationWindowController alloc] init];
-	[notificationController setDelegate:self];
-	[notificationController.window setAlphaValue:0.0];
-	[notificationController setTrack:newTrack];
-	[notificationController resize];
-	[notificationController setPositionCorner:positionCorner];
-	[notificationController showWindow:self];
+	
+	notificationWindowController = [[NotificationWindowController alloc] init];
+	[notificationWindowController setDelegate:self];
+	[notificationWindowController.window setAlphaValue:0.0];
+	[notificationWindowController setTrack:newTrack];
+	[notificationWindowController resize];
+	[notificationWindowController setPositionCorner:notificationCorner];
+	[notificationWindowController showWindow:self];
 }
+
+
+#pragma mark LyricsFetcher Delegate
+
+- (void)lyricsFetcher:(LyricsFetcher *)fetcher didFetchLyrics:(NSString *)lyrics forTrack:(iTunesTrack *)track
+{
+	if ([fetcher isEqual:[LyricsFetcher sharedFetcher]]) 
+	{
+		NSLog(@"%s track = (%@ - %@) lyrics length = (%lu)", __func__, track.name, track.artist, [lyrics length]);
+		// Handles main fetcher's requests
+		track.lyrics = lyrics;
+	}
+	else
+	{
+		NSLog(@"%s ignored LyricsFetcher (%@) in AppDelegate", __func__, fetcher);
+	}
+}
+
+
+#pragma mark NotificationWindowController Delegate
 
 - (void)notificationCanBeRemoved 
 {
-	[notificationController close];
-	[notificationController release];
-	notificationController = nil;
+	[notificationWindowController close];
+	notificationWindowController = nil;
 }
+
+
+#pragma mark NSWindow Delegate
 
 - (void)windowWillClose:(NSNotification *)notification
 {
-	NSWindow *w = [notification object];
+	NSWindow *window = [notification object];
 	
-	if ([w isEqualTo:lyricsController.window]) {
-		[lyricsController release]; lyricsController = nil;
-	}
-	else if ([w isEqualTo:preferencesController.window]) {
-		[preferencesController release]; preferencesController = nil;
-	}
+	if ([window isEqualTo:[preferencesWindowController window]]) 
+	{
+		preferencesWindowController = nil;
+	}	
+}
+
+
+#pragma mark KVO
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context 
+{
+	if ([keyPath isEqualToString:@"values.NotificationCorner"]) 
+	{
+		notificationCorner = [[[NSUserDefaults standardUserDefaults] objectForKey:CONotificationCorner] unsignedIntValue];
 		
+		if (notificationWindowController)
+			[notificationWindowController setPositionCorner:notificationCorner];
+	} 
+	else 
+	{
+		[super observeValueForKeyPath:keyPath ofObject:object change:change context:context];	
+	}
 }
 
-#pragma mark Actions
 
-- (IBAction)playPrevious:(id)sender 
-{
-	[[iTunesController sharedInstance] playPrevious];
-}
+#pragma mark Managing Windows
 
-- (IBAction)playPause:(id)sender 
-{
-	[[iTunesController sharedInstance] playPause];
-}
-
-- (IBAction)playNext:(id)sender 
-{
-	[[iTunesController sharedInstance] playNext];
-}
-
-#pragma mark Private
-
-- (void)_aboutApp 
+- (void)showAboutPanel
 {
 	[NSApp orderFrontStandardAboutPanel:self];
+}
+
+
+- (void)showLyricsWindow
+{
+	if (lyricsWindowController == nil) 
+	{
+		lyricsWindowController = [[LyricsWindowController alloc] init];
+	}
+	
+	lyricsWindowController.track = [[iTunesController sharedInstance] currentTrack];
+	
+	if ([[lyricsWindowController.track lyrics] length] == 0) 
+	{
+		// Start fetching
+		[[LyricsFetcher sharedFetcher] fetchLyricsForTrack:[lyricsWindowController track]];
+	}
+	
+	[lyricsWindowController showWindow:self];	
+}
+
+
+- (void)showPreferencesWindow
+{
+	if (preferencesWindowController == nil) 
+	{
+		preferencesWindowController = [[PreferencesController alloc] init];
+	}
+	
+	[preferencesWindowController showWindow:self];
 	[NSApp activateIgnoringOtherApps:YES];
-}
-
-- (void)_openLyrics
-{
-	if (lyricsController == nil) {
-		lyricsController = [[LyricsWindowController alloc] init];
-		lyricsController.window.delegate = self;
-	}
-	
-	lyricsController.track = [[iTunesController sharedInstance] currentTrack];
-	[lyricsController showWindow:self];
-	[NSApp activateIgnoringOtherApps:YES];
-}
-
-- (void)_openPreferences 
-{
-	if (preferencesController == nil) {
-		preferencesController = [[PreferencesController alloc] init];
-		preferencesController.window.delegate = self;
-	}
-	
-	[preferencesController showWindow:self];
-	[NSApp activateIgnoringOtherApps:YES];
-}
-
-- (void)_quitApp 
-{
-	[NSApp terminate:self];
-}
-
-- (void)_setupStatusItem 
-{	
-	NSImage *statusIcon = [NSImage imageNamed:@"status_icon.png"];
-	controllerItem = [[[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength] retain];
-	[controllerItem setImage:statusIcon];
-	[controllerItem setHighlightMode:YES];
-	
-	statusItem = [[[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength] retain];
-	[statusItem setImage:[NSImage imageNamed:@"blank.png"]];
-	[statusItem setView:statusView];
-	
-	NSMenu *mainMenu = [[NSMenu alloc] init];
-	[mainMenu setAutoenablesItems:NO];
-	
-	NSMenuItem *theItem = [mainMenu addItemWithTitle:@"About"
-								  action:@selector(_aboutApp)
-						   keyEquivalent:@""];
-	[theItem setTarget:self];
-	
-	theItem = [mainMenu addItemWithTitle:@"Check for Updates..."
-								  action:@selector(checkForUpdates:)
-						   keyEquivalent:@""];
-	[theItem setTarget:sparkle];
-	
-	theItem = [mainMenu addItemWithTitle:@"Preferences..."
-								  action:@selector(_openPreferences)
-						   keyEquivalent:@""];
-	[theItem setTarget:self];
-	
-	[mainMenu addItem:[NSMenuItem separatorItem]];
-	
-	theItem = [mainMenu addItemWithTitle:@"Lyrics..."
-								  action:@selector(_openLyrics)
-						   keyEquivalent:@""];
-	[theItem setTarget:self];
-	
-	[mainMenu addItem:[NSMenuItem separatorItem]];
-	
-	
-	theItem = [mainMenu addItemWithTitle:@"Quit"
-								  action:@selector(_quitApp)
-						   keyEquivalent:@"Q"];
-	[theItem setTarget:self];
-	
-	[controllerItem setMenu:mainMenu];
-	[mainMenu release];
-}
-
-- (void)_updateStatusItemButtons 
-{
-	if ([[iTunesController sharedInstance] isPlaying] == NO) {
-		[playButton setImage:[NSImage imageNamed:@"play"]];
-	}
-	else {
-		[playButton setImage:[NSImage imageNamed:@"pause"]];
-	}
 }
 
 @end
+
+NSString *CONotificationCorner = @"NotificationCorner";

@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 45;
+	objectVersion = 46;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -12,14 +12,21 @@
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
+		C803ED6814CBF985001568E3 /* LyricsFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = C803ED6414CBF985001568E3 /* LyricsFetcher.m */; };
+		C803ED6914CBF985001568E3 /* PlugInManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C803ED6714CBF985001568E3 /* PlugInManager.m */; };
+		C803ED9514CC1256001568E3 /* AZLyrcis.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C803ED9214CC1256001568E3 /* AZLyrcis.bundle */; };
+		C803ED9614CC1256001568E3 /* MetroLyrics.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C803ED9314CC1256001568E3 /* MetroLyrics.bundle */; };
+		C803ED9714CC1256001568E3 /* PLyrics.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C803ED9414CC1256001568E3 /* PLyrics.bundle */; };
+		C803EDDC14CC3208001568E3 /* AZLyrcis.bundle in Copy Files */ = {isa = PBXBuildFile; fileRef = C803ED9214CC1256001568E3 /* AZLyrcis.bundle */; };
+		C803EDDD14CC320B001568E3 /* MetroLyrics.bundle in Copy Files */ = {isa = PBXBuildFile; fileRef = C803ED9314CC1256001568E3 /* MetroLyrics.bundle */; };
+		C803EDDE14CC320D001568E3 /* PLyrics.bundle in Copy Files */ = {isa = PBXBuildFile; fileRef = C803ED9414CC1256001568E3 /* PLyrics.bundle */; };
 		C8214EA910E6AB7D008D012C /* StatusView.m in Sources */ = {isa = PBXBuildFile; fileRef = C8214EA810E6AB7D008D012C /* StatusView.m */; };
 		C8214EAE10E6ABC8008D012C /* StatusBarButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C8214EAD10E6ABC8008D012C /* StatusBarButtonCell.m */; };
 		C8214EE610E6AE8B008D012C /* ScriptingBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8214EE510E6AE8B008D012C /* ScriptingBridge.framework */; };
 		C8214EEA10E6AE97008D012C /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8214EE910E6AE97008D012C /* QuartzCore.framework */; };
 		C8214EF810E6B021008D012C /* NotificationWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = C8214EF210E6B021008D012C /* NotificationWindow.m */; };
 		C8214EFA10E6B021008D012C /* NotificationWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8214EF610E6B021008D012C /* NotificationWindowController.m */; };
-		C8214EFE10E6B037008D012C /* Notification.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8214EFC10E6B037008D012C /* Notification.xib */; };
-		C8214F0E10E6B0C8008D012C /* UserDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = C8214F0D10E6B0C8008D012C /* UserDefaults.m */; };
+		C8214EFE10E6B037008D012C /* NotificationWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8214EFC10E6B037008D012C /* NotificationWindow.xib */; };
 		C8214F6E10E6B72C008D012C /* PreferencesController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8214F6C10E6B72C008D012C /* PreferencesController.m */; };
 		C8214F7110E6B743008D012C /* Preferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8214F6F10E6B743008D012C /* Preferences.xib */; };
 		C8214F7B10E6B774008D012C /* pref_desktop.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C8214F7A10E6B774008D012C /* pref_desktop.jpg */; };
@@ -28,33 +35,36 @@
 		C82BB73710EE3F7000B24464 /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C82BB73610EE3F7000B24464 /* CoreServices.framework */; };
 		C83BBB7910FBA08000595F2D /* COPYING.txt in Resources */ = {isa = PBXBuildFile; fileRef = C83BBB7810FBA08000595F2D /* COPYING.txt */; };
 		C83E393D121450C300708ADE /* blank.png in Resources */ = {isa = PBXBuildFile; fileRef = C83E393C121450C300708ADE /* blank.png */; };
-		C85D36F81139933C006FEE88 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C85D36F71139933C006FEE88 /* Sparkle.framework */; };
-		C85D371A11399390006FEE88 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = C85D36F71139933C006FEE88 /* Sparkle.framework */; };
-		C87406481244D7D0008F0DD4 /* LyricsWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = C87406471244D7D0008F0DD4 /* LyricsWindow.xib */; };
-		C874064E1244D81F008F0DD4 /* LyricsWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = C874064D1244D81F008F0DD4 /* LyricsWindowController.m */; };
 		C89FC95510F944970093B4A6 /* next.png in Resources */ = {isa = PBXBuildFile; fileRef = C89FC95110F944970093B4A6 /* next.png */; };
 		C89FC95610F944970093B4A6 /* pause.png in Resources */ = {isa = PBXBuildFile; fileRef = C89FC95210F944970093B4A6 /* pause.png */; };
 		C89FC95710F944970093B4A6 /* play.png in Resources */ = {isa = PBXBuildFile; fileRef = C89FC95310F944970093B4A6 /* play.png */; };
 		C89FC95810F944970093B4A6 /* previous.png in Resources */ = {isa = PBXBuildFile; fileRef = C89FC95410F944970093B4A6 /* previous.png */; };
-		C8BF8EC01284A86300BB5CAC /* TrackRatingValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = C8BF8EBF1284A86300BB5CAC /* TrackRatingValueTransformer.m */; };
-		C8BF8EE11284AB9700BB5CAC /* TrackDurationValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = C8BF8EE01284AB9700BB5CAC /* TrackDurationValueTransformer.m */; };
-		C8BF8EE61284AD4500BB5CAC /* TrackArtworksValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = C8BF8EE51284AD4500BB5CAC /* TrackArtworksValueTransformer.m */; };
-		C8BF8F7D1284B9AD00BB5CAC /* RecessedScroller.m in Sources */ = {isa = PBXBuildFile; fileRef = C8BF8F7C1284B9AD00BB5CAC /* RecessedScroller.m */; };
+		C8BF8EC01284A86300BB5CAC /* iTunesTrackRatingValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = C8BF8EBF1284A86300BB5CAC /* iTunesTrackRatingValueTransformer.m */; };
+		C8BF8EE11284AB9700BB5CAC /* iTunesTrackDurationValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = C8BF8EE01284AB9700BB5CAC /* iTunesTrackDurationValueTransformer.m */; };
+		C8BF8EE61284AD4500BB5CAC /* iTunesTrackArtworkValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = C8BF8EE51284AD4500BB5CAC /* iTunesTrackArtworkValueTransformer.m */; };
+		C8CCE8AE14CB67D2008A7FCF /* LyricsBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = C8CCE8AD14CB67D2008A7FCF /* LyricsBackgroundView.m */; };
 		C8D98D9C12032CD200356DC1 /* ImageScaler.m in Sources */ = {isa = PBXBuildFile; fileRef = C8D98D9B12032CD200356DC1 /* ImageScaler.m */; };
 		C8DA653B113999A60069460B /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = C8DA6539113999A60069460B /* dsa_pub.pem */; };
 		C8E933C41200BB0B00F4D6BD /* LayerTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = C8E933C31200BB0B00F4D6BD /* LayerTextField.m */; };
+		C8ECFF4414CA1DDD00703971 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8ECFF4314CA1DDD00703971 /* Sparkle.framework */; };
+		C8ECFF4714CA254700703971 /* StatusBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8ECFF4614CA254600703971 /* StatusBarController.m */; };
+		C8ECFF5314CAC60600703971 /* LyricsWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8ECFF5214CAC60600703971 /* LyricsWindowController.m */; };
+		C8ECFF5614CAC61500703971 /* LyricsWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8ECFF5414CAC61500703971 /* LyricsWindow.xib */; };
 		C8FE898011FF7D6100290DEC /* iTunesController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8FE897F11FF7D6100290DEC /* iTunesController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		C85D371811399372006FEE88 /* CopyFiles */ = {
+		C85D371811399372006FEE88 /* Copy Files */ = {
 			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 12;
 			dstPath = "";
-			dstSubfolderSpec = 10;
+			dstSubfolderSpec = 13;
 			files = (
-				C85D371A11399390006FEE88 /* Sparkle.framework in CopyFiles */,
+				C803EDDC14CC3208001568E3 /* AZLyrcis.bundle in Copy Files */,
+				C803EDDD14CC320B001568E3 /* MetroLyrics.bundle in Copy Files */,
+				C803EDDE14CC320D001568E3 /* PLyrics.bundle in Copy Files */,
 			);
+			name = "Copy Files";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -72,6 +82,14 @@
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		8D1107310486CEB800E47090 /* MyTunesController-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "MyTunesController-Info.plist"; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* MyTunesController.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyTunesController.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C803ED6314CBF985001568E3 /* LyricsFetcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LyricsFetcher.h; sourceTree = "<group>"; };
+		C803ED6414CBF985001568E3 /* LyricsFetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LyricsFetcher.m; sourceTree = "<group>"; };
+		C803ED6514CBF985001568E3 /* LyricsFetching.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LyricsFetching.h; sourceTree = "<group>"; };
+		C803ED6614CBF985001568E3 /* PlugInManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlugInManager.h; sourceTree = "<group>"; };
+		C803ED6714CBF985001568E3 /* PlugInManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlugInManager.m; sourceTree = "<group>"; };
+		C803ED9214CC1256001568E3 /* AZLyrcis.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = AZLyrcis.bundle; path = PlugIns/AZLyrcis.bundle; sourceTree = "<group>"; };
+		C803ED9314CC1256001568E3 /* MetroLyrics.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = MetroLyrics.bundle; path = PlugIns/MetroLyrics.bundle; sourceTree = "<group>"; };
+		C803ED9414CC1256001568E3 /* PLyrics.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = PLyrics.bundle; path = PlugIns/PLyrics.bundle; sourceTree = "<group>"; };
 		C8214EA710E6AB7D008D012C /* StatusView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatusView.h; sourceTree = "<group>"; };
 		C8214EA810E6AB7D008D012C /* StatusView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatusView.m; sourceTree = "<group>"; };
 		C8214EAC10E6ABC8008D012C /* StatusBarButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatusBarButtonCell.h; sourceTree = "<group>"; };
@@ -83,9 +101,7 @@
 		C8214EF210E6B021008D012C /* NotificationWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationWindow.m; sourceTree = "<group>"; };
 		C8214EF510E6B021008D012C /* NotificationWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationWindowController.h; sourceTree = "<group>"; };
 		C8214EF610E6B021008D012C /* NotificationWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationWindowController.m; sourceTree = "<group>"; };
-		C8214EFD10E6B037008D012C /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/Notification.xib; sourceTree = "<group>"; };
-		C8214F0C10E6B0C8008D012C /* UserDefaults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDefaults.h; sourceTree = "<group>"; };
-		C8214F0D10E6B0C8008D012C /* UserDefaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDefaults.m; sourceTree = "<group>"; };
+		C8214EFD10E6B037008D012C /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/NotificationWindow.xib; sourceTree = "<group>"; };
 		C8214F6B10E6B72C008D012C /* PreferencesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreferencesController.h; sourceTree = "<group>"; };
 		C8214F6C10E6B72C008D012C /* PreferencesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreferencesController.m; sourceTree = "<group>"; };
 		C8214F7010E6B743008D012C /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/Preferences.xib; sourceTree = "<group>"; };
@@ -95,27 +111,29 @@
 		C82BB73610EE3F7000B24464 /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = /System/Library/Frameworks/CoreServices.framework; sourceTree = "<absolute>"; };
 		C83BBB7810FBA08000595F2D /* COPYING.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = COPYING.txt; sourceTree = "<group>"; };
 		C83E393C121450C300708ADE /* blank.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blank.png; sourceTree = "<group>"; };
-		C85D36F71139933C006FEE88 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
-		C87406471244D7D0008F0DD4 /* LyricsWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LyricsWindow.xib; sourceTree = "<group>"; };
-		C874064C1244D81F008F0DD4 /* LyricsWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LyricsWindowController.h; sourceTree = "<group>"; };
-		C874064D1244D81F008F0DD4 /* LyricsWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LyricsWindowController.m; sourceTree = "<group>"; };
 		C89FC95110F944970093B4A6 /* next.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = next.png; sourceTree = "<group>"; };
 		C89FC95210F944970093B4A6 /* pause.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pause.png; sourceTree = "<group>"; };
 		C89FC95310F944970093B4A6 /* play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = play.png; sourceTree = "<group>"; };
 		C89FC95410F944970093B4A6 /* previous.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = previous.png; sourceTree = "<group>"; };
-		C8BF8EBE1284A86300BB5CAC /* TrackRatingValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrackRatingValueTransformer.h; sourceTree = "<group>"; };
-		C8BF8EBF1284A86300BB5CAC /* TrackRatingValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrackRatingValueTransformer.m; sourceTree = "<group>"; };
-		C8BF8EDF1284AB9700BB5CAC /* TrackDurationValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrackDurationValueTransformer.h; sourceTree = "<group>"; };
-		C8BF8EE01284AB9700BB5CAC /* TrackDurationValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrackDurationValueTransformer.m; sourceTree = "<group>"; };
-		C8BF8EE41284AD4500BB5CAC /* TrackArtworksValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrackArtworksValueTransformer.h; sourceTree = "<group>"; };
-		C8BF8EE51284AD4500BB5CAC /* TrackArtworksValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrackArtworksValueTransformer.m; sourceTree = "<group>"; };
-		C8BF8F7B1284B9AD00BB5CAC /* RecessedScroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecessedScroller.h; sourceTree = "<group>"; };
-		C8BF8F7C1284B9AD00BB5CAC /* RecessedScroller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecessedScroller.m; sourceTree = "<group>"; };
+		C8BF8EBE1284A86300BB5CAC /* iTunesTrackRatingValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iTunesTrackRatingValueTransformer.h; sourceTree = "<group>"; };
+		C8BF8EBF1284A86300BB5CAC /* iTunesTrackRatingValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iTunesTrackRatingValueTransformer.m; sourceTree = "<group>"; };
+		C8BF8EDF1284AB9700BB5CAC /* iTunesTrackDurationValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iTunesTrackDurationValueTransformer.h; sourceTree = "<group>"; };
+		C8BF8EE01284AB9700BB5CAC /* iTunesTrackDurationValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iTunesTrackDurationValueTransformer.m; sourceTree = "<group>"; };
+		C8BF8EE41284AD4500BB5CAC /* iTunesTrackArtworkValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iTunesTrackArtworkValueTransformer.h; sourceTree = "<group>"; };
+		C8BF8EE51284AD4500BB5CAC /* iTunesTrackArtworkValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iTunesTrackArtworkValueTransformer.m; sourceTree = "<group>"; };
+		C8CCE8AC14CB67D2008A7FCF /* LyricsBackgroundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LyricsBackgroundView.h; sourceTree = "<group>"; };
+		C8CCE8AD14CB67D2008A7FCF /* LyricsBackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LyricsBackgroundView.m; sourceTree = "<group>"; };
 		C8D98D9A12032CD200356DC1 /* ImageScaler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageScaler.h; sourceTree = "<group>"; };
 		C8D98D9B12032CD200356DC1 /* ImageScaler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageScaler.m; sourceTree = "<group>"; };
 		C8DA653A113999A60069460B /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = English; path = English.lproj/dsa_pub.pem; sourceTree = "<group>"; };
 		C8E933C21200BB0B00F4D6BD /* LayerTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LayerTextField.h; sourceTree = "<group>"; };
 		C8E933C31200BB0B00F4D6BD /* LayerTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LayerTextField.m; sourceTree = "<group>"; };
+		C8ECFF4314CA1DDD00703971 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
+		C8ECFF4514CA254600703971 /* StatusBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatusBarController.h; sourceTree = "<group>"; };
+		C8ECFF4614CA254600703971 /* StatusBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatusBarController.m; sourceTree = "<group>"; };
+		C8ECFF5114CAC60600703971 /* LyricsWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LyricsWindowController.h; sourceTree = "<group>"; };
+		C8ECFF5214CAC60600703971 /* LyricsWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LyricsWindowController.m; sourceTree = "<group>"; };
+		C8ECFF5514CAC61500703971 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/LyricsWindow.xib; sourceTree = "<group>"; };
 		C8FE897E11FF7D6100290DEC /* iTunesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iTunesController.h; sourceTree = "<group>"; };
 		C8FE897F11FF7D6100290DEC /* iTunesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iTunesController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -129,7 +147,7 @@
 				C8214EE610E6AE8B008D012C /* ScriptingBridge.framework in Frameworks */,
 				C8214EEA10E6AE97008D012C /* QuartzCore.framework in Frameworks */,
 				C82BB73710EE3F7000B24464 /* CoreServices.framework in Frameworks */,
-				C85D36F81139933C006FEE88 /* Sparkle.framework in Frameworks */,
+				C8ECFF4414CA1DDD00703971 /* Sparkle.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -139,23 +157,23 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				C8BF8F431284B65F00BB5CAC /* ValueTransformers */,
-				C874064B1244D7FE008F0DD4 /* Lyrics */,
-				C8214F6910E6B71F008D012C /* Preferences */,
+				C8ECFF5014CAC5B700703971 /* Lyrics */,
 				C8214EF010E6B010008D012C /* Notification */,
+				C8214F6910E6B71F008D012C /* Preferences */,
+				C8BF8F431284B65F00BB5CAC /* ValueTransformers */,
+				256AC3D80F4B6AC300CF3369 /* MyTunesControllerAppDelegate.h */,
+				256AC3D90F4B6AC300CF3369 /* MyTunesControllerAppDelegate.m */,
+				C8ECFF4514CA254600703971 /* StatusBarController.h */,
+				C8ECFF4614CA254600703971 /* StatusBarController.m */,
 				C8D98D9A12032CD200356DC1 /* ImageScaler.h */,
 				C8D98D9B12032CD200356DC1 /* ImageScaler.m */,
 				C8214EE110E6ADC4008D012C /* iTunes.h */,
 				C8FE897E11FF7D6100290DEC /* iTunesController.h */,
 				C8FE897F11FF7D6100290DEC /* iTunesController.m */,
-				256AC3D80F4B6AC300CF3369 /* MyTunesControllerAppDelegate.h */,
-				256AC3D90F4B6AC300CF3369 /* MyTunesControllerAppDelegate.m */,
 				C8214EAC10E6ABC8008D012C /* StatusBarButtonCell.h */,
 				C8214EAD10E6ABC8008D012C /* StatusBarButtonCell.m */,
 				C8214EA710E6AB7D008D012C /* StatusView.h */,
 				C8214EA810E6AB7D008D012C /* StatusView.m */,
-				C8214F0C10E6B0C8008D012C /* UserDefaults.h */,
-				C8214F0D10E6B0C8008D012C /* UserDefaults.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -163,7 +181,7 @@
 		1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				C85D36F71139933C006FEE88 /* Sparkle.framework */,
+				C8ECFF4314CA1DDD00703971 /* Sparkle.framework */,
 				1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */,
 				C8214EE510E6AE8B008D012C /* ScriptingBridge.framework */,
 				C8214EE910E6AE97008D012C /* QuartzCore.framework */,
@@ -214,6 +232,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				C803ED4D14CBF933001568E3 /* PlugIns */,
 				C8DA6539113999A60069460B /* dsa_pub.pem */,
 				C83BBB7810FBA08000595F2D /* COPYING.txt */,
 				C83E393C121450C300708ADE /* blank.png */,
@@ -240,10 +259,20 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		C803ED4D14CBF933001568E3 /* PlugIns */ = {
+			isa = PBXGroup;
+			children = (
+				C803ED9214CC1256001568E3 /* AZLyrcis.bundle */,
+				C803ED9314CC1256001568E3 /* MetroLyrics.bundle */,
+				C803ED9414CC1256001568E3 /* PLyrics.bundle */,
+			);
+			name = PlugIns;
+			sourceTree = "<group>";
+		};
 		C8214EF010E6B010008D012C /* Notification */ = {
 			isa = PBXGroup;
 			children = (
-				C8214EFC10E6B037008D012C /* Notification.xib */,
+				C8214EFC10E6B037008D012C /* NotificationWindow.xib */,
 				C8214EF110E6B021008D012C /* NotificationWindow.h */,
 				C8214EF210E6B021008D012C /* NotificationWindow.m */,
 				C8214EF510E6B021008D012C /* NotificationWindowController.h */,
@@ -264,29 +293,34 @@
 			name = Preferences;
 			sourceTree = "<group>";
 		};
-		C874064B1244D7FE008F0DD4 /* Lyrics */ = {
-			isa = PBXGroup;
-			children = (
-				C87406471244D7D0008F0DD4 /* LyricsWindow.xib */,
-				C874064C1244D81F008F0DD4 /* LyricsWindowController.h */,
-				C874064D1244D81F008F0DD4 /* LyricsWindowController.m */,
-				C8BF8F7B1284B9AD00BB5CAC /* RecessedScroller.h */,
-				C8BF8F7C1284B9AD00BB5CAC /* RecessedScroller.m */,
-			);
-			name = Lyrics;
-			sourceTree = "<group>";
-		};
 		C8BF8F431284B65F00BB5CAC /* ValueTransformers */ = {
 			isa = PBXGroup;
 			children = (
-				C8BF8EBE1284A86300BB5CAC /* TrackRatingValueTransformer.h */,
-				C8BF8EBF1284A86300BB5CAC /* TrackRatingValueTransformer.m */,
-				C8BF8EDF1284AB9700BB5CAC /* TrackDurationValueTransformer.h */,
-				C8BF8EE01284AB9700BB5CAC /* TrackDurationValueTransformer.m */,
-				C8BF8EE41284AD4500BB5CAC /* TrackArtworksValueTransformer.h */,
-				C8BF8EE51284AD4500BB5CAC /* TrackArtworksValueTransformer.m */,
+				C8BF8EBE1284A86300BB5CAC /* iTunesTrackRatingValueTransformer.h */,
+				C8BF8EBF1284A86300BB5CAC /* iTunesTrackRatingValueTransformer.m */,
+				C8BF8EDF1284AB9700BB5CAC /* iTunesTrackDurationValueTransformer.h */,
+				C8BF8EE01284AB9700BB5CAC /* iTunesTrackDurationValueTransformer.m */,
+				C8BF8EE41284AD4500BB5CAC /* iTunesTrackArtworkValueTransformer.h */,
+				C8BF8EE51284AD4500BB5CAC /* iTunesTrackArtworkValueTransformer.m */,
 			);
 			name = ValueTransformers;
+			sourceTree = "<group>";
+		};
+		C8ECFF5014CAC5B700703971 /* Lyrics */ = {
+			isa = PBXGroup;
+			children = (
+				C8ECFF5114CAC60600703971 /* LyricsWindowController.h */,
+				C8ECFF5214CAC60600703971 /* LyricsWindowController.m */,
+				C8ECFF5414CAC61500703971 /* LyricsWindow.xib */,
+				C8CCE8AC14CB67D2008A7FCF /* LyricsBackgroundView.h */,
+				C8CCE8AD14CB67D2008A7FCF /* LyricsBackgroundView.m */,
+				C803ED6314CBF985001568E3 /* LyricsFetcher.h */,
+				C803ED6414CBF985001568E3 /* LyricsFetcher.m */,
+				C803ED6514CBF985001568E3 /* LyricsFetching.h */,
+				C803ED6614CBF985001568E3 /* PlugInManager.h */,
+				C803ED6714CBF985001568E3 /* PlugInManager.m */,
+			);
+			name = Lyrics;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -299,7 +333,7 @@
 				8D1107290486CEB800E47090 /* Resources */,
 				8D11072C0486CEB800E47090 /* Sources */,
 				8D11072E0486CEB800E47090 /* Frameworks */,
-				C85D371811399372006FEE88 /* CopyFiles */,
+				C85D371811399372006FEE88 /* Copy Files */,
 			);
 			buildRules = (
 			);
@@ -316,8 +350,11 @@
 /* Begin PBXProject section */
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "MyTunesController" */;
-			compatibilityVersion = "Xcode 3.1";
+			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 1;
 			knownRegions = (
@@ -342,7 +379,7 @@
 			files = (
 				8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */,
 				1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */,
-				C8214EFE10E6B037008D012C /* Notification.xib in Resources */,
+				C8214EFE10E6B037008D012C /* NotificationWindow.xib in Resources */,
 				C8214F7110E6B743008D012C /* Preferences.xib in Resources */,
 				C8214F7B10E6B774008D012C /* pref_desktop.jpg in Resources */,
 				C8214FA310E6BAB1008D012C /* status_icon.png in Resources */,
@@ -354,7 +391,10 @@
 				C83BBB7910FBA08000595F2D /* COPYING.txt in Resources */,
 				C8DA653B113999A60069460B /* dsa_pub.pem in Resources */,
 				C83E393D121450C300708ADE /* blank.png in Resources */,
-				C87406481244D7D0008F0DD4 /* LyricsWindow.xib in Resources */,
+				C8ECFF5614CAC61500703971 /* LyricsWindow.xib in Resources */,
+				C803ED9514CC1256001568E3 /* AZLyrcis.bundle in Resources */,
+				C803ED9614CC1256001568E3 /* MetroLyrics.bundle in Resources */,
+				C803ED9714CC1256001568E3 /* PLyrics.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -371,16 +411,18 @@
 				C8214EAE10E6ABC8008D012C /* StatusBarButtonCell.m in Sources */,
 				C8214EF810E6B021008D012C /* NotificationWindow.m in Sources */,
 				C8214EFA10E6B021008D012C /* NotificationWindowController.m in Sources */,
-				C8214F0E10E6B0C8008D012C /* UserDefaults.m in Sources */,
 				C8214F6E10E6B72C008D012C /* PreferencesController.m in Sources */,
 				C8FE898011FF7D6100290DEC /* iTunesController.m in Sources */,
 				C8E933C41200BB0B00F4D6BD /* LayerTextField.m in Sources */,
 				C8D98D9C12032CD200356DC1 /* ImageScaler.m in Sources */,
-				C874064E1244D81F008F0DD4 /* LyricsWindowController.m in Sources */,
-				C8BF8EC01284A86300BB5CAC /* TrackRatingValueTransformer.m in Sources */,
-				C8BF8EE11284AB9700BB5CAC /* TrackDurationValueTransformer.m in Sources */,
-				C8BF8EE61284AD4500BB5CAC /* TrackArtworksValueTransformer.m in Sources */,
-				C8BF8F7D1284B9AD00BB5CAC /* RecessedScroller.m in Sources */,
+				C8BF8EC01284A86300BB5CAC /* iTunesTrackRatingValueTransformer.m in Sources */,
+				C8BF8EE11284AB9700BB5CAC /* iTunesTrackDurationValueTransformer.m in Sources */,
+				C8BF8EE61284AD4500BB5CAC /* iTunesTrackArtworkValueTransformer.m in Sources */,
+				C8ECFF4714CA254700703971 /* StatusBarController.m in Sources */,
+				C8ECFF5314CAC60600703971 /* LyricsWindowController.m in Sources */,
+				C8CCE8AE14CB67D2008A7FCF /* LyricsBackgroundView.m in Sources */,
+				C803ED6814CBF985001568E3 /* LyricsFetcher.m in Sources */,
+				C803ED6914CBF985001568E3 /* PlugInManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -403,12 +445,12 @@
 			name = MainMenu.xib;
 			sourceTree = "<group>";
 		};
-		C8214EFC10E6B037008D012C /* Notification.xib */ = {
+		C8214EFC10E6B037008D012C /* NotificationWindow.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
 				C8214EFD10E6B037008D012C /* English */,
 			);
-			name = Notification.xib;
+			name = NotificationWindow.xib;
 			sourceTree = "<group>";
 		};
 		C8214F6F10E6B743008D012C /* Preferences.xib */ = {
@@ -427,6 +469,14 @@
 			name = dsa_pub.pem;
 			sourceTree = "<group>";
 		};
+		C8ECFF5414CAC61500703971 /* LyricsWindow.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C8ECFF5514CAC61500703971 /* English */,
+			);
+			name = LyricsWindow.xib;
+			sourceTree = "<group>";
+		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -434,22 +484,25 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(NATIVE_ARCH_ACTUAL)";
+				CLANG_ENABLE_OBJC_ARC = YES;
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_ENABLE_OBJC_GC = unsupported;
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = MyTunesController_Prefix.pch;
-				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_VERSION = "";
 				INFOPLIST_FILE = "MyTunesController-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_NAME = MyTunesController;
+				SDKROOT = macosx;
 			};
 			name = Debug;
 		};
@@ -457,6 +510,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -466,11 +521,12 @@
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = MyTunesController_Prefix.pch;
-				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_VERSION = "";
 				INFOPLIST_FILE = "MyTunesController-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
-				MACOSX_DEPLOYMENT_TARGET = 10.5;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_NAME = MyTunesController;
+				SDKROOT = macosx;
 			};
 			name = Release;
 		};
@@ -480,11 +536,12 @@
 				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_VERSION = "";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				ONLY_ACTIVE_ARCH = YES;
-				PREBINDING = NO;
-				SDKROOT = macosx10.6;
+				SDKROOT = macosx;
 			};
 			name = Debug;
 		};
@@ -493,10 +550,11 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = "";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				PREBINDING = NO;
-				SDKROOT = macosx10.6;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				SDKROOT = macosx;
 			};
 			name = Release;
 		};

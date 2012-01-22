@@ -1,8 +1,8 @@
 //
-//  PreferencesController.h
+//  TrackDurationValueTransformer.m
 //  MyTunesController
 //
-//  Created by Toomas Vahter on 25.12.09.
+//  Created by Toomas Vahter on 05.11.10.
 //  Copyright (c) 2010 Toomas Vahter
 //
 //  This content is released under the MIT License (http://www.opensource.org/licenses/mit-license.php).
@@ -25,14 +25,52 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-#import <Cocoa/Cocoa.h>
+#import "iTunesTrackDurationValueTransformer.h"
 
 
-@interface PreferencesController : NSWindowController 
-{
-	IBOutlet NSButton *loginCheckBox;
+@implementation iTunesTrackDurationValueTransformer
+
++ (Class)transformedValueClass 
+{ 
+	return [NSString class]; 
 }
 
-- (IBAction)toggleStartOnLogin:(id)sender;
+
++ (BOOL)allowsReverseTransformation 
+{ 
+	return NO; 
+}
+
+
+- (id)transformedValue:(id)value 
+{
+	if ([value isKindOfClass:[NSNumber class]]) 
+	{
+		CGFloat floatValue = [value floatValue];
+		
+		if (floatValue > 0.0) 
+		{
+			NSUInteger duration = floatValue + 0.5;
+			NSUInteger minutes = 0;
+			
+			while (duration >= 60) 
+			{
+				duration -= 60;
+				minutes++;
+			}
+			
+			if (duration < 10) 
+				value = [NSString stringWithFormat:@"%d:0%d", minutes, duration];
+			else 
+				value = [NSString stringWithFormat:@"%d:%d", minutes, duration];
+		}
+		else 
+		{
+			value = nil;
+		}
+	}
+	
+	return value;
+}
 
 @end

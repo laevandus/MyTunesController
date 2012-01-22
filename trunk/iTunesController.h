@@ -36,13 +36,12 @@
 @interface iTunesController : NSObject 
 {
 	iTunesApplication *iTunesApp;
-	id<iTunesControllerDelegate> delegate;
 }
 
-@property (nonatomic, readwrite, assign) id<iTunesControllerDelegate> delegate;
+@property (nonatomic, weak) id<iTunesControllerDelegate> delegate;
 @property (nonatomic, readonly) iTunesTrack *currentTrack;
 
-+ (id)sharedInstance;
++ (iTunesController *)sharedInstance;
 
 - (BOOL)isPlaying;
 - (void)playPause;

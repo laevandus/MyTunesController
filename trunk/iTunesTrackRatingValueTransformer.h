@@ -1,8 +1,8 @@
 //
-//  PreferencesController.h
+//  TrackRatingValueTransformer.h
 //  MyTunesController
 //
-//  Created by Toomas Vahter on 25.12.09.
+//  Created by Toomas Vahter on 05.11.10.
 //  Copyright (c) 2010 Toomas Vahter
 //
 //  This content is released under the MIT License (http://www.opensource.org/licenses/mit-license.php).
@@ -25,14 +25,8 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-#import <Cocoa/Cocoa.h>
+#import <Foundation/Foundation.h>
 
 
-@interface PreferencesController : NSWindowController 
-{
-	IBOutlet NSButton *loginCheckBox;
-}
-
-- (IBAction)toggleStartOnLogin:(id)sender;
-
+@interface iTunesTrackRatingValueTransformer : NSValueTransformer 
 @end
