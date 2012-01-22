@@ -78,10 +78,24 @@
 			}
 		}
 		
-		if ([[self delegate] respondsToSelector:@selector(lyricsFetcher:didFetchLyrics:forTrack:)]) 
+		if (fetchedLyrics == nil) 
 		{
-			[[self delegate] lyricsFetcher:self didFetchLyrics:fetchedLyrics forTrack:track];
+			fetchedLyrics = @"";
 		}
+		
+		NSDictionary *info = [NSDictionary dictionaryWithObjectsAndKeys:
+							  track, @"track",
+							  fetchedLyrics, @"lyrics", nil];
+		[self performSelectorOnMainThread:@selector(_finalizeFetchingWithInfo:) withObject:info waitUntilDone:YES];
+	}
+}
+
+
+- (void)_finalizeFetchingWithInfo:(NSDictionary *)fetchInfo
+{
+	if ([[self delegate] respondsToSelector:@selector(lyricsFetcher:didFetchLyrics:forTrack:)]) 
+	{
+		[[self delegate] lyricsFetcher:self didFetchLyrics:[fetchInfo objectForKey:@"lyrics"] forTrack:[fetchInfo objectForKey:@"track"]];
 	}
 }
 

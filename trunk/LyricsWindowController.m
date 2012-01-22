@@ -29,7 +29,7 @@
 
 + (NSSet *)keyPathsForValuesAffectingAttributedLyrics 
 {
-    return [NSSet setWithObjects:@"track", nil];
+    return [NSSet setWithObjects:@"track", @"track.lyrics", nil];
 }
 
 
@@ -51,6 +51,12 @@
 - (NSString *)trackDescription
 {
 	return [NSString stringWithFormat:@"%@ - %@", self.track.name, self.track.artist];
+}
+
+
+- (IBAction)clear:(id)sender
+{
+	self.track.lyrics = @"";
 }
 
 

@@ -16,6 +16,7 @@
 @property (nonatomic, readonly) NSAttributedString *attributedLyrics;
 @property (nonatomic, readonly) NSString *trackDescription;
 
+- (IBAction)clear:(id)sender;
 - (IBAction)fetch:(id)sender;
 
 @end
