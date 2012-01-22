@@ -32,14 +32,17 @@
 
 @synthesize delegate;
 
-+ (id)sharedInstance 
++ (iTunesController *)sharedInstance 
 {	
-	static iTunesController *sharedInstance = nil;
+	static iTunesController *sharediTunesControllerInstance = nil;
+	static dispatch_once_t onceToken;
 	
-	if (!sharedInstance)
-		sharedInstance = [[iTunesController alloc] init];
+	dispatch_once(&onceToken, ^
+				  {
+					  sharediTunesControllerInstance = [[[self class] alloc] init];
+				  });
 	
-	return sharedInstance;
+	return sharediTunesControllerInstance;
 }
 
 - (id)init 

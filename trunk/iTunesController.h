@@ -38,10 +38,10 @@
 	iTunesApplication *iTunesApp;
 }
 
-@property (nonatomic, readwrite, assign) id<iTunesControllerDelegate> delegate;
+@property (nonatomic, weak) id<iTunesControllerDelegate> delegate;
 @property (nonatomic, readonly) iTunesTrack *currentTrack;
 
-+ (id)sharedInstance;
++ (iTunesController *)sharedInstance;
 
 - (BOOL)isPlaying;
 - (void)playPause;

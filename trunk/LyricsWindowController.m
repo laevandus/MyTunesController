@@ -7,6 +7,7 @@
 //
 
 #import "LyricsWindowController.h"
+#import "LyricsFetcher.h"
 
 
 @implementation LyricsWindowController
@@ -55,7 +56,7 @@
 
 - (IBAction)fetch:(id)sender
 {
-	
+	[[LyricsFetcher sharedFetcher] fetchLyricsForTrack:self.track];
 }
 
 @end

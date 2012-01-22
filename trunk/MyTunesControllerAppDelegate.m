@@ -30,10 +30,14 @@
 #import "MyTunesControllerAppDelegate.h"
 #import "NotificationWindowController.h"
 #import "PreferencesController.h"
-#import "iTunesController.h"
 #import "StatusView.h"
 #import "StatusBarController.h"
 #import "LyricsWindowController.h"
+
+
+@interface MyTunesControllerAppDelegate()
+- (void)_createDirectories;
+@end
 
 
 @implementation MyTunesControllerAppDelegate
@@ -59,11 +63,41 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification 
 {
+	[self _createDirectories];
+	
 	[[NSUserDefaultsController sharedUserDefaultsController] addObserver:self forKeyPath:@"values.NotificationCorner" options:NSKeyValueObservingOptionInitial context:nil];
 	
 	[[iTunesController sharedInstance] setDelegate:self];
+	[[LyricsFetcher sharedFetcher] setDelegate:self];
 	
 	[self.statusBarController addStatusItems];
+}
+
+
+- (void)_createDirectories
+{
+	NSError *error = nil;
+	NSFileManager *fileManager = [[NSFileManager alloc] init];
+	NSURL *plugInsURL = [fileManager URLForDirectory:NSApplicationSupportDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:YES error:&error];
+	
+	if (plugInsURL == nil) 
+	{
+		NSLog(@"%s error = (%@)", __func__, [error localizedDescription]);
+		return;
+	}
+	
+	NSString *pluginsSubpath = @"/MyTunesController/PlugIns";
+	plugInsURL = [plugInsURL URLByAppendingPathComponent:pluginsSubpath];
+	
+	if (plugInsURL && ![fileManager fileExistsAtPath:[plugInsURL absoluteString]]) 
+	{
+		error = nil;
+		
+		if (![[NSFileManager defaultManager] createDirectoryAtPath:[plugInsURL absoluteString] withIntermediateDirectories:YES attributes:nil error:&error])
+		{
+			NSLog(@"%s %@", __func__, [error localizedDescription]);
+		}
+	}
 }
 
 
@@ -107,6 +141,23 @@
 	[notificationWindowController resize];
 	[notificationWindowController setPositionCorner:notificationCorner];
 	[notificationWindowController showWindow:self];
+}
+
+
+#pragma mark LyricsFetcher Delegate
+
+- (void)lyricsFetcher:(LyricsFetcher *)fetcher didFetchLyrics:(NSString *)lyrics forTrack:(iTunesTrack *)track
+{
+	if ([fetcher isEqual:[LyricsFetcher sharedFetcher]]) 
+	{
+		NSLog(@"%s track = (%@) lyrics length = (%lu)", __func__, track.name, [lyrics length]);
+		// Handles main fetcher's requests
+		track.lyrics = lyrics;
+	}
+	else
+	{
+		NSLog(@"%s ignored LyricsFetcher (%@) in AppDelegate", __func__, fetcher);
+	}
 }
 
 
