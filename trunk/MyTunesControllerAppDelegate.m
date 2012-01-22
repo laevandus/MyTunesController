@@ -215,6 +215,7 @@
 - (void)showAboutPanel
 {
 	[NSApp orderFrontStandardAboutPanel:self];
+	[NSApp activateIgnoringOtherApps:YES];
 }
 
 
@@ -233,7 +234,7 @@
 		[[LyricsFetcher sharedFetcher] fetchLyricsForTrack:[lyricsWindowController track]];
 	}
 	
-	[lyricsWindowController showWindow:self];	
+	[lyricsWindowController showWindow:self];
 }
 
 
