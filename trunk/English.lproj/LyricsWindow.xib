@@ -161,7 +161,7 @@
 												<object class="NSTextView" id="454251263">
 													<reference key="NSNextResponder" ref="130779994"/>
 													<int key="NSvFlags">2322</int>
-													<string key="NSFrameSize">{236, 52}</string>
+													<string key="NSFrame">{{0, 38}, {236, 14}}</string>
 													<reference key="NSSuperview" ref="130779994"/>
 													<reference key="NSWindow"/>
 													<reference key="NSNextKeyView" ref="567121147"/>
@@ -389,13 +389,13 @@
 								<object class="NSMutableArray" key="dict.values">
 									<bool key="EncodedWithXMLCoder">YES</bool>
 									<boolean value="NO"/>
-									<string>TrackArtworksValueTransformer</string>
+									<string>iTunesTrackLargeArtworkValueTransformer</string>
 								</object>
 							</object>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
-					<int key="connectionID">83</int>
+					<int key="connectionID">1270</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
@@ -1064,7 +1064,7 @@
 				<reference key="dict.values" ref="1002"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">1269</int>
+			<int key="maxID">1270</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">

@@ -1,5 +1,5 @@
 //
-//  TrackDurationValueTransformer.h
+//  TrackRatingValueTransformer.h
 //  MyTunesController
 //
 //  Created by Toomas Vahter on 05.11.10.
@@ -28,5 +28,5 @@
 #import <Foundation/Foundation.h>
 
 
-@interface TrackDurationValueTransformer : NSValueTransformer 
+@interface iTunesTrackRatingValueTransformer : NSValueTransformer 
 @end

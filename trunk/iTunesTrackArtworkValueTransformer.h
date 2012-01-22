@@ -1,5 +1,5 @@
 //
-//  TrackRatingValueTransformer.h
+//  TrackArtworksValueTransformer.h
 //  MyTunesController
 //
 //  Created by Toomas Vahter on 05.11.10.
@@ -25,8 +25,13 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-#import <Foundation/Foundation.h>
+#import <Cocoa/Cocoa.h>
 
 
-@interface TrackRatingValueTransformer : NSValueTransformer 
+@interface iTunesTrackArtworkValueTransformer : NSValueTransformer
+@property (nonatomic) NSSize artworkSize;
+@end
+
+
+@interface iTunesTrackLargeArtworkValueTransformer : iTunesTrackArtworkValueTransformer 
 @end

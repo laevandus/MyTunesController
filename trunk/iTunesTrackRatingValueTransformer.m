@@ -25,10 +25,10 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-#import "TrackRatingValueTransformer.h"
+#import "iTunesTrackRatingValueTransformer.h"
 
 
-@implementation TrackRatingValueTransformer
+@implementation iTunesTrackRatingValueTransformer
 
 + (Class)transformedValueClass 
 { 

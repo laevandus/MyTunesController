@@ -1,5 +1,5 @@
 //
-//  TrackDurationValueTransformer.m
+//  TrackDurationValueTransformer.h
 //  MyTunesController
 //
 //  Created by Toomas Vahter on 05.11.10.
@@ -25,52 +25,8 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-#import "TrackDurationValueTransformer.h"
+#import <Foundation/Foundation.h>
 
 
-@implementation TrackDurationValueTransformer
-
-+ (Class)transformedValueClass 
-{ 
-	return [NSString class]; 
-}
-
-
-+ (BOOL)allowsReverseTransformation 
-{ 
-	return NO; 
-}
-
-
-- (id)transformedValue:(id)value 
-{
-	if ([value isKindOfClass:[NSNumber class]]) 
-	{
-		CGFloat floatValue = [value floatValue];
-		
-		if (floatValue > 0.0) 
-		{
-			NSUInteger duration = floatValue + 0.5;
-			NSUInteger minutes = 0;
-			
-			while (duration >= 60) 
-			{
-				duration -= 60;
-				minutes++;
-			}
-			
-			if (duration < 10) 
-				value = [NSString stringWithFormat:@"%d:0%d", minutes, duration];
-			else 
-				value = [NSString stringWithFormat:@"%d:%d", minutes, duration];
-		}
-		else 
-		{
-			value = nil;
-		}
-	}
-	
-	return value;
-}
-
+@interface iTunesTrackDurationValueTransformer : NSValueTransformer 
 @end
