@@ -63,13 +63,23 @@
 	{
 		NSLog(@"%s %@ - %@", __func__, [track name], [track artist]);
 		
-		// TODO: Randomize plugins for distributing the load
-		
+		// Randomize plugins for distributing the load
 		NSString *fetchedLyrics = nil;
+		NSArray *plugIns = [[self pluginManager] plugIns];
+		NSUInteger offset = rand() % ([plugIns count] + 1);
 		id bundleInstance = nil;
 		
-		for (bundleInstance in [[self pluginManager] plugIns]) 
+		for (NSUInteger i = 0; i < [plugIns count]; i++) 
 		{
+			NSUInteger j = i + offset;
+			
+			if (j >= [plugIns count]) 
+			{
+				j = j - [plugIns count];
+			}
+			
+			bundleInstance = [plugIns objectAtIndex:j];
+			
 			fetchedLyrics = [(id<LyricsFetching>)bundleInstance lyricsForTrackName:[track name] artist:[track artist] album:[track album]];
 			
 			if ([fetchedLyrics length] > 0) 

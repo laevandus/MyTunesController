@@ -63,6 +63,8 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification 
 {
+	srand((unsigned int)time(NULL));
+	
 	[self _createDirectories];
 	
 	[[NSUserDefaultsController sharedUserDefaultsController] addObserver:self forKeyPath:@"values.NotificationCorner" options:NSKeyValueObservingOptionInitial context:nil];
