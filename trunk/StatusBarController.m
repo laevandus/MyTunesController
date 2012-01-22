@@ -64,9 +64,9 @@
 		[mainMenu addItem:[NSMenuItem separatorItem]];
 		
 		theItem = [mainMenu addItemWithTitle:@"Lyrics..."
-									  action:@selector(_openLyrics)
+									  action:@selector(showLyricsWindow)
 							   keyEquivalent:@""];
-		[theItem setTarget:self];
+		[theItem setTarget:[NSApp delegate]];
 		
 		[mainMenu addItem:[NSMenuItem separatorItem]];
 		

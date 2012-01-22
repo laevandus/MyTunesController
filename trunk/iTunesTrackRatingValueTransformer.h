@@ -1,5 +1,5 @@
 //
-//  TrackArtworksValueTransformer.m
+//  TrackRatingValueTransformer.h
 //  MyTunesController
 //
 //  Created by Toomas Vahter on 05.11.10.
@@ -25,46 +25,8 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-#import "TrackArtworksValueTransformer.h"
-#import "iTunes.h"
-#import "ImageScaler.h"
+#import <Foundation/Foundation.h>
 
 
-@implementation TrackArtworksValueTransformer
-
-+ (Class)transformedValueClass 
-{ 
-	return [NSImage class]; 
-}
-
-
-+ (BOOL)allowsReverseTransformation 
-{ 
-	return NO; 
-}
-
-
-- (id)transformedValue:(id)value 
-{
-	if ([value isKindOfClass:[NSArray class]]) 
-	{
-		// TODO: try to get the album artwork instead
-		iTunesArtwork *artwork = nil;
-		NSImage *artworkImage = nil;
-		
-		if ([value count]) 
-			artwork = (iTunesArtwork *)[value lastObject];
-		
-		if (artwork) 
-			artworkImage = [[NSImage alloc] initWithData:artwork.rawData];
-		
-		if (artworkImage == nil) 
-			artworkImage = [NSImage imageNamed:@"app_icon.icns"];
-		
-		value = [ImageScaler scaleImage:artworkImage fillSize:NSMakeSize(128.0, 128.0)];
-	}
-	
-	return value;
-}
-
+@interface iTunesTrackRatingValueTransformer : NSValueTransformer 
 @end

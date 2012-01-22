@@ -27,12 +27,16 @@
 
 
 #import <Cocoa/Cocoa.h>
+#import "iTunesController.h"
+#import "LyricsFetcher.h"
 
-@class NotificationWindowController, PreferencesController, StatusBarController, StatusView;
+@class LyricsWindowController, NotificationWindowController, PreferencesController, StatusBarController, StatusView;
 
-@interface MyTunesControllerAppDelegate : NSObject <NSApplicationDelegate, NSWindowDelegate> 
+@interface MyTunesControllerAppDelegate : NSObject <NSApplicationDelegate, NSWindowDelegate, iTunesControllerDelegate, LyricsFetcherDelegate> 
 {	
 	NSUInteger notificationCorner;
+	
+	LyricsWindowController *lyricsWindowController;
 	NotificationWindowController *notificationWindowController;
 	PreferencesController *preferencesWindowController;
 }
@@ -41,6 +45,7 @@
 
 // Managing application windows
 - (void)showAboutPanel;
+- (void)showLyricsWindow;
 - (void)showPreferencesWindow;
 
 @end

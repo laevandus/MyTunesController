@@ -30,9 +30,14 @@
 #import "MyTunesControllerAppDelegate.h"
 #import "NotificationWindowController.h"
 #import "PreferencesController.h"
-#import "iTunesController.h"
 #import "StatusView.h"
 #import "StatusBarController.h"
+#import "LyricsWindowController.h"
+
+
+@interface MyTunesControllerAppDelegate()
+- (void)_createDirectories;
+@end
 
 
 @implementation MyTunesControllerAppDelegate
@@ -58,11 +63,42 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification 
 {
+	srand((unsigned int)time(NULL));
+	
+	[self _createDirectories];
+	
 	[[NSUserDefaultsController sharedUserDefaultsController] addObserver:self forKeyPath:@"values.NotificationCorner" options:NSKeyValueObservingOptionInitial context:nil];
 	
 	[[iTunesController sharedInstance] setDelegate:self];
+	[[LyricsFetcher sharedFetcher] setDelegate:self];
 	
 	[self.statusBarController addStatusItems];
+}
+
+
+- (void)_createDirectories
+{
+	NSError *error = nil;
+	NSFileManager *fileManager = [[NSFileManager alloc] init];
+	NSURL *plugInsURL = [fileManager URLForDirectory:NSApplicationSupportDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:YES error:&error];
+	
+	if (plugInsURL == nil) 
+	{
+		NSLog(@"%s error = (%@)", __func__, [error localizedDescription]);
+		return;
+	}
+	
+	NSString *pluginsSubpath = @"MyTunesController/PlugIns/";
+	plugInsURL = [plugInsURL URLByAppendingPathComponent:pluginsSubpath];
+	error = nil;
+	
+	if (![plugInsURL checkResourceIsReachableAndReturnError:&error]) 
+	{
+		if (![fileManager createDirectoryAtURL:plugInsURL withIntermediateDirectories:YES attributes:nil error:&error])
+		{
+			NSLog(@"%s %@", __func__, [error localizedDescription]);
+		}
+	}
 }
 
 
@@ -78,6 +114,17 @@
 - (void)iTunesTrackDidChange:(iTunesTrack *)newTrack
 {
 	[self.statusBarController updatePlayButtonState];
+	
+	if ([lyricsWindowController.window isVisible])
+	{
+		lyricsWindowController.track = [[iTunesController sharedInstance] currentTrack];
+		
+		if ([[lyricsWindowController.track lyrics] length] == 0) 
+		{
+			// Start fetching
+			[[LyricsFetcher sharedFetcher] fetchLyricsForTrack:[lyricsWindowController track]];
+		}
+	}
 		
 	if (newTrack == nil) 
 		return;
@@ -103,6 +150,23 @@
 	[notificationWindowController resize];
 	[notificationWindowController setPositionCorner:notificationCorner];
 	[notificationWindowController showWindow:self];
+}
+
+
+#pragma mark LyricsFetcher Delegate
+
+- (void)lyricsFetcher:(LyricsFetcher *)fetcher didFetchLyrics:(NSString *)lyrics forTrack:(iTunesTrack *)track
+{
+	if ([fetcher isEqual:[LyricsFetcher sharedFetcher]]) 
+	{
+		NSLog(@"%s track = (%@ - %@) lyrics length = (%lu)", __func__, track.name, track.artist, [lyrics length]);
+		// Handles main fetcher's requests
+		track.lyrics = lyrics;
+	}
+	else
+	{
+		NSLog(@"%s ignored LyricsFetcher (%@) in AppDelegate", __func__, fetcher);
+	}
 }
 
 
@@ -151,7 +215,25 @@
 - (void)showAboutPanel
 {
 	[NSApp orderFrontStandardAboutPanel:self];
-	[NSApp activateIgnoringOtherApps:YES];
+}
+
+
+- (void)showLyricsWindow
+{
+	if (lyricsWindowController == nil) 
+	{
+		lyricsWindowController = [[LyricsWindowController alloc] init];
+	}
+	
+	lyricsWindowController.track = [[iTunesController sharedInstance] currentTrack];
+	
+	if ([[lyricsWindowController.track lyrics] length] == 0) 
+	{
+		// Start fetching
+		[[LyricsFetcher sharedFetcher] fetchLyricsForTrack:[lyricsWindowController track]];
+	}
+	
+	[lyricsWindowController showWindow:self];	
 }
 
 

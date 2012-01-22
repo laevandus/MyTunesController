@@ -41,7 +41,7 @@
 
 - (id)init 
 {
-	return [super initWithWindowNibName:@"Notification"];
+	return [super initWithWindowNibName:@"NotificationWindow"];
 }
 
 

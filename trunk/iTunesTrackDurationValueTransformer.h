@@ -1,5 +1,5 @@
 //
-//  TrackArtworksValueTransformer.h
+//  TrackDurationValueTransformer.h
 //  MyTunesController
 //
 //  Created by Toomas Vahter on 05.11.10.
@@ -25,8 +25,8 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-#import <Cocoa/Cocoa.h>
+#import <Foundation/Foundation.h>
 
 
-@interface TrackArtworksValueTransformer : NSValueTransformer 
+@interface iTunesTrackDurationValueTransformer : NSValueTransformer 
 @end
