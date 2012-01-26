@@ -28,9 +28,11 @@
 #import "iTunesController.h"
 #import "ImageScaler.h"
 
+
 @implementation iTunesController
 
 @synthesize delegate;
+
 
 + (iTunesController *)sharedInstance 
 {	
@@ -45,9 +47,11 @@
 	return sharediTunesControllerInstance;
 }
 
+
 - (id)init 
 {	
-	if ((self = [super init])) {
+	if ((self = [super init])) 
+	{
 		[[NSDistributedNotificationCenter defaultCenter] addObserver:self
 															selector:@selector(_iTunesSongDidChange:)
 																name:@"com.apple.iTunes.playerInfo" 
@@ -55,13 +59,16 @@
 		
 		iTunesApp = (iTunesApplication *)[SBApplication applicationWithBundleIdentifier:@"com.apple.iTunes"];
 	}
+	
 	return self;
 }
+
 
 - (void)dealloc 
 {
 	[[NSDistributedNotificationCenter defaultCenter] removeObserver:self];
 }
+
 
 - (BOOL)isPlaying
 {
@@ -74,11 +81,13 @@
 	return NO;
 }
 
+
 - (void)playPause
 {
 	// starts iTunes if not launched
 	[iTunesApp playpause];
 }
+
 
 - (void)playPrevious
 {
@@ -86,11 +95,13 @@
 		[iTunesApp backTrack];
 }
 
+
 - (void)playNext
 {
 	if (iTunesApp.isRunning) 
 		[iTunesApp nextTrack];
 }
+
 
 - (iTunesTrack *)currentTrack
 {	
@@ -99,6 +110,7 @@
 	
 	return iTunesApp.currentTrack;
 }
+
 
 - (void)_iTunesSongDidChange:(NSNotification *)aNotification 
 {	

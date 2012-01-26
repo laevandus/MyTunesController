@@ -29,19 +29,24 @@
 #import "MyTunesControllerAppDelegate.h"
 #import <QuartzCore/QuartzCore.h>
 
+
 @interface NotificationWindowController()
 - (CABasicAnimation *)appearAnimation;
 - (CABasicAnimation *)disappearAnimation;
 - (void)timerFired:(NSTimer *)timer;
 @end
 
+
 @implementation NotificationWindowController
 
-@synthesize delegate, positionCorner, track;
+@synthesize nameField = _nameField, artistField = _artistField, albumField = _albumField, durationField = _durationField;
+@synthesize subview = _subview;
+@synthesize delegate = _delegate, positionCorner = _positionCorner, track = _track;
+
 
 - (id)init 
 {
-	return [super initWithWindowNibName:@"NotificationWindow"];
+	return [self initWithWindowNibName:@"NotificationWindow"];
 }
 
 
@@ -51,9 +56,11 @@
 }
 
 
-- (void)awakeFromNib 
+- (void)windowDidLoad 
 {
-	// setting main layer to the content view
+	[super windowDidLoad];
+	
+	// Setting main layer to the content view
 	NSView *contentView = [self.window contentView];
 	CALayer *layer = [CALayer layer]; 
 	[contentView setWantsLayer:YES];
@@ -64,12 +71,12 @@
 	otherLayer.delegate = self;
 	otherLayer.masksToBounds = YES;
 	
-	[subview setWantsLayer:YES];
-	[subview setLayer:otherLayer];
+	[self.subview setWantsLayer:YES];
+	[self.subview setLayer:otherLayer];
 	
 	[self.window setAlphaValue:0.0];
 		
-	[[self.window contentView] addSubview:subview];
+	[[self.window contentView] addSubview:self.subview];
 	
 	[otherLayer display];
 	
@@ -117,11 +124,11 @@
 	[super showWindow:sender];
 	
 	// set anchor back to default
-	[subview.layer setAnchorPoint:CGPointMake(0.5, 0.5)];	
-	[subview.layer setFrame:NSRectToCGRect(NSIntegralRect([[self.window contentView] frame]))];
+	[self.subview.layer setAnchorPoint:CGPointMake(0.5, 0.5)];	
+	[self.subview.layer setFrame:NSRectToCGRect(NSIntegralRect([[self.window contentView] frame]))];
 	
-	[subview.layer removeAllAnimations];
-	[subview.layer addAnimation:[self appearAnimation] forKey:@"transform"];
+	[self.subview.layer removeAllAnimations];
+	[self.subview.layer addAnimation:[self appearAnimation] forKey:@"transform"];
 	[[self.window animator] setAlphaValue:0.9];
 	
 	[hideTimer invalidate];
@@ -131,8 +138,8 @@
 
 - (void)timerFired:(NSTimer *)timer 
 {
-	[subview.layer removeAllAnimations];
-	[subview.layer addAnimation:[self disappearAnimation] forKey:@"transform"];
+	[self.subview.layer removeAllAnimations];
+	[self.subview.layer addAnimation:[self disappearAnimation] forKey:@"transform"];
 	[[self.window animator] setAlphaValue:0.0];
 }
 
@@ -150,7 +157,7 @@
 	NSRect newFrame = [self.window frame];
 	NSRect unionRect = NSZeroRect;
 	
-	for (NSTextField *field in [NSArray arrayWithObjects:artistField, nameField, albumField, durationField, nil]) {
+	for (NSTextField *field in [NSArray arrayWithObjects:self.artistField, self.nameField, self.albumField, self.durationField, nil]) {
 		[field sizeToFit];
 		unionRect = NSUnionRect(unionRect, [field frame]);
 	}
@@ -190,7 +197,8 @@
 	}
 	
 	[self.window setFrameOrigin:pointOrigin];
-	positionCorner = pos;
+	
+	_positionCorner = pos;
 }
 
 
@@ -225,15 +233,18 @@
 	[animation setFromValue:[NSValue valueWithCATransform3D:transform]];
 	
 	animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-	animation.duration = 0.5;	
+	animation.duration = 0.5;
+	
 	return animation;
 }
 
 
 - (void)animationDidStop:(CAAnimation *)animation finished:(BOOL)flag 
 {
-	if ([delegate respondsToSelector:@selector(notificationCanBeRemoved)]) 
-		[delegate performSelector:@selector(notificationCanBeRemoved)];
+	if ([self.delegate respondsToSelector:@selector(notificationCanBeRemoved)])
+	{
+		[self.delegate performSelector:@selector(notificationCanBeRemoved)];
+	}
 }
 
 @end

@@ -27,6 +27,6 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface LyricsBackgroundView : NSView
 
+@interface LyricsBackgroundView : NSView
 @end

@@ -30,6 +30,7 @@
 #import "iTunesController.h"
 #import "LyricsFetcher.h"
 
+
 @class LyricsWindowController, NotificationWindowController, PreferencesController, StatusBarController, StatusView;
 
 @interface MyTunesControllerAppDelegate : NSObject <NSApplicationDelegate, NSWindowDelegate, iTunesControllerDelegate, LyricsFetcherDelegate> 

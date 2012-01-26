@@ -44,6 +44,7 @@
 
 @synthesize statusBarController = _statusBarController;
 
+
 + (void)initialize
 {
 	if (self == [MyTunesControllerAppDelegate class]) 

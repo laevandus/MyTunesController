@@ -30,6 +30,7 @@
 
 @implementation LayerTextField
 
+
 - (void)drawRect:(NSRect)dirtyRect
 {
 	[NSGraphicsContext saveGraphicsState];

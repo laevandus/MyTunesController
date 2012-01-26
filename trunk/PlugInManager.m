@@ -28,6 +28,7 @@
 #import "PlugInManager.h"
 #import "LyricsFetching.h"
 
+
 @interface PlugInManager()
 @property (readwrite, retain) NSArray *plugIns;
 
@@ -39,6 +40,7 @@
 @implementation PlugInManager
 
 @synthesize plugIns = _plugIns;
+
 
 - (id)init
 {
@@ -53,16 +55,33 @@
 
 - (NSArray *)_bundlePaths
 {
-	NSString *applicationSupportPluginsSubpath = @"Application Support/MyTunesController/PlugIns";
-	NSArray *librarySearchPaths = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSAllDomainsMask - NSSystemDomainMask, YES); // e.g. /Users/Toomas/Library
-	
-	NSString *librarySearchPath = nil;
 	NSMutableArray *bundleSearchPaths = [[NSMutableArray alloc] init];
 	
-	for (librarySearchPath in librarySearchPaths) 
+	NSError *error = nil;
+	NSFileManager *fileManager = [[NSFileManager alloc] init];
+	NSURL *applicationSupportPlugInsURL = [fileManager URLForDirectory:NSApplicationSupportDirectory inDomain:NSAllDomainsMask - NSSystemDomainMask appropriateForURL:nil create:YES error:&error];
+	
+	if (applicationSupportPlugInsURL) 
 	{
-		[bundleSearchPaths addObject:[librarySearchPath stringByAppendingPathComponent:applicationSupportPluginsSubpath]];
+		error = nil;
+		NSString *pluginsSubpath = @"MyTunesController/PlugIns/";
+		applicationSupportPlugInsURL = [applicationSupportPlugInsURL URLByAppendingPathComponent:pluginsSubpath];
+		
+		if ([applicationSupportPlugInsURL checkResourceIsReachableAndReturnError:&error]) 
+		{
+			[bundleSearchPaths addObject:[applicationSupportPlugInsURL path]];
+		}
+		else 
+		{
+			NSLog(@"%s error = (%@)", __func__, [error localizedDescription]);
+		}
 	}
+	else
+	{
+		NSLog(@"%s error = (%@)", __func__, [error localizedDescription]);
+	}
+	
+	
 	
 	[bundleSearchPaths addObject:[[NSBundle mainBundle] builtInPlugInsPath]]; // Resource folder
 	

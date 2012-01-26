@@ -27,6 +27,9 @@
 
 #import <Foundation/Foundation.h>
 
+
 @interface PlugInManager : NSObject
+
 @property (readonly, retain) NSArray *plugIns; // Array of loaded and validated NSBundle instances. Atomic!
+
 @end

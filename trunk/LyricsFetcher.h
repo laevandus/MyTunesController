@@ -30,6 +30,7 @@
 
 
 @class PlugInManager;
+
 @protocol LyricsFetcherDelegate;
 
 @interface LyricsFetcher : NSObject
