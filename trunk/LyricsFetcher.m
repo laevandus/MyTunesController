@@ -102,33 +102,38 @@
 			return;
 		}
 		
-		// Randomize plugins for distributing the load
+		// Track must have name and artist for fetching
 		NSString *fetchedLyrics = nil;
-		NSArray *plugIns = [[self pluginManager] plugIns];
-		NSUInteger offset = rand() % ([plugIns count] + 1);
-		id bundleInstance = nil;
 		
-		for (NSUInteger i = 0; i < [plugIns count]; i++) 
+		if ([track.name length] && [track.artist length]) 
 		{
-			NSUInteger j = i + offset;
+			// Randomize plugins for distributing the load
+			NSArray *plugIns = [[self pluginManager] plugIns];
+			NSUInteger offset = rand() % ([plugIns count] + 1);
+			id bundleInstance = nil;
 			
-			if (j >= [plugIns count]) 
+			for (NSUInteger i = 0; i < [plugIns count]; i++) 
 			{
-				j = j - [plugIns count];
-			}
-			
-			bundleInstance = [plugIns objectAtIndex:j];
-			
-			fetchedLyrics = [(id<LyricsFetching>)bundleInstance lyricsForTrackName:[track name] artist:[track artist] album:[track album]];
-			
-			if ([fetchedLyrics length] > 0) 
-			{
-				break;
-			}
-			else
-			{
-				// Reduce the interval of querying websites
-				usleep(500000);
+				NSUInteger j = i + offset;
+				
+				if (j >= [plugIns count]) 
+				{
+					j = j - [plugIns count];
+				}
+				
+				bundleInstance = [plugIns objectAtIndex:j];
+				
+				fetchedLyrics = [(id<LyricsFetching>)bundleInstance lyricsForTrackName:[track name] artist:[track artist] album:[track album]];
+				
+				if ([fetchedLyrics length] > 0) 
+				{
+					break;
+				}
+				else
+				{
+					// Reduce the interval of querying websites
+					usleep(500000);
+				}
 			}
 		}
 		

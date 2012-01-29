@@ -130,27 +130,31 @@
 	if (newTrack == nil) 
 		return;
 	
-	if ([[iTunesController sharedInstance] isPlaying] == NO) 
+	if ([[iTunesController sharedInstance] isPlaying]) 
+	{
+		// if I reused the window then text got blurred
+		if (notificationWindowController) 
+		{
+			[notificationWindowController setDelegate:nil];
+			[notificationWindowController close];
+			notificationWindowController = nil;
+		}
+		
+		if ([[newTrack name] length]) 
+		{
+			notificationWindowController = [[NotificationWindowController alloc] init];
+			[notificationWindowController setDelegate:self];
+			[notificationWindowController.window setAlphaValue:0.0];
+			[notificationWindowController setTrack:newTrack];
+			[notificationWindowController resize];
+			[notificationWindowController setPositionCorner:notificationCorner];
+			[notificationWindowController showWindow:self];
+		}
+	}
+	else 
 	{
 		[notificationWindowController disappear];
-		return;
 	}
-	
-	// if I reused the window then text got blurred
-	if (notificationWindowController) 
-	{
-		[notificationWindowController setDelegate:nil];
-		[notificationWindowController close];
-		notificationWindowController = nil;
-	}
-	
-	notificationWindowController = [[NotificationWindowController alloc] init];
-	[notificationWindowController setDelegate:self];
-	[notificationWindowController.window setAlphaValue:0.0];
-	[notificationWindowController setTrack:newTrack];
-	[notificationWindowController resize];
-	[notificationWindowController setPositionCorner:notificationCorner];
-	[notificationWindowController showWindow:self];
 }
 
 
