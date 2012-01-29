@@ -28,11 +28,12 @@
 #import "LyricsFetcher.h"
 #import "PlugInManager.h"
 #import "LyricsFetching.h"
+#import "iTunesController.h"
 
 
 @interface LyricsFetcher()
 @property (nonatomic, readwrite, strong) PlugInManager *pluginManager;
-- (void)_fetchLyricsForTrackInBackground:(iTunesTrack *)track;
+- (void)_fetchLyricsForTrackDatabaseIDInBackground:(NSNumber *)trackDatabaseIDNumber;
 @end
 
 
@@ -71,16 +72,36 @@
 
 - (void)fetchLyricsForTrack:(iTunesTrack *)track
 {
-	NSInvocationOperation *operation = [[NSInvocationOperation alloc] initWithTarget:self selector:@selector(_fetchLyricsForTrackInBackground:) object:track];
-	[fetchingQueue cancelAllOperations];
+	// Get new reference which does not depend on currentTrack. currentTrack reference changes in the lifetime of the application and therefore I might get invalid object I am setting lyrics to in the delegate.
+	NSNumber *trackDatabaseIDNumber = [NSNumber numberWithInteger:[track databaseID]];
+	NSInvocationOperation *operation = [[NSInvocationOperation alloc] initWithTarget:self selector:@selector(_fetchLyricsForTrackDatabaseIDInBackground:) object:trackDatabaseIDNumber];
 	[fetchingQueue addOperation:operation];
 }
 
 
-- (void)_fetchLyricsForTrackInBackground:(iTunesTrack *)track
+- (void)_fetchLyricsForTrackDatabaseIDInBackground:(NSNumber *)trackDatabaseIDNumber
 {
 	@autoreleasepool 
 	{		
+		// Get reference to the track
+		__block iTunesTrack *track = nil;
+		iTunesPlaylist *musicPlaylist = [[iTunesController sharedInstance] playlistWithName:@"Music"];
+		
+		[[musicPlaylist tracks] enumerateObjectsUsingBlock:^(id object, NSUInteger index, BOOL *stop)
+		 {
+			 if ([object databaseID] == [trackDatabaseIDNumber integerValue]) 
+			 {
+				 track = (iTunesTrack *)object;
+				 *stop = YES;
+			 }
+		 }];
+		
+		if (!track) 
+		{
+			NSLog(@"Failed to find track for database ID %ld", [trackDatabaseIDNumber integerValue]);
+			return;
+		}
+		
 		// Randomize plugins for distributing the load
 		NSString *fetchedLyrics = nil;
 		NSArray *plugIns = [[self pluginManager] plugIns];
@@ -100,12 +121,14 @@
 			
 			fetchedLyrics = [(id<LyricsFetching>)bundleInstance lyricsForTrackName:[track name] artist:[track artist] album:[track album]];
 			
-			// Reduce the interval of querying websites
-			usleep(500000);
-			
 			if ([fetchedLyrics length] > 0) 
 			{
 				break;
+			}
+			else
+			{
+				// Reduce the interval of querying websites
+				usleep(500000);
 			}
 		}
 		

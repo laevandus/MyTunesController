@@ -69,6 +69,33 @@
 }
 
 
+- (iTunesPlaylist *)playlistWithName:(NSString *)playlistName
+{
+	__block iTunesSource *librarySource = nil;
+	SBElementArray *sources = [iTunesApp sources];
+	[sources enumerateObjectsUsingBlock:^(id object, NSUInteger index, BOOL *stop)
+	 {
+		 if ([[object name] isEqualToString:@"Library"]) 
+		 {
+			 librarySource = object;
+			 *stop = YES;
+		 }
+	 }];
+	
+	__block iTunesPlaylist *playlist = nil;
+	[[librarySource playlists] enumerateObjectsUsingBlock:^(id object, NSUInteger index, BOOL *stop)
+	 {
+		 if ([[object name] isEqualToString:playlistName]) 
+		 {
+			 playlist = object;
+			 *stop = YES;
+		 }
+	 }];
+	
+	return playlist;
+}
+
+
 - (BOOL)isPlaying
 {
 	if (iTunesApp.isRunning == NO)

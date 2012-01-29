@@ -44,6 +44,9 @@
 
 + (iTunesController *)sharedInstance;
 
+// Searches playlists in the Library source.
+- (iTunesPlaylist *)playlistWithName:(NSString *)playlistName;
+
 - (BOOL)isPlaying;
 - (void)playPause;
 - (void)playPrevious;
