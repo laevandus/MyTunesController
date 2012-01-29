@@ -160,10 +160,8 @@
 {
 	if ([fetcher isEqual:[LyricsFetcher sharedFetcher]]) 
 	{
-		NSLog(@"%s track = (%@ %@ - %@) lyrics length = (%lu)", __func__, track, track.name, track.artist, [lyrics length]);
-		//NSLog(@"%@", lyrics);
 		// Handles main fetcher's requests
-		//track.lyrics = lyrics;
+		track.lyrics = lyrics;
 	}
 	else
 	{
