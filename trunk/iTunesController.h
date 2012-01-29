@@ -28,6 +28,7 @@
 #import <Foundation/Foundation.h>
 #import "iTunes.h"
 
+
 #define STATE_PREVIOUS	@"STATE_PREVIOUS"
 #define STATE_CURRENT	@"STATE_CURRENT"
 
@@ -42,6 +43,9 @@
 @property (nonatomic, readonly) iTunesTrack *currentTrack;
 
 + (iTunesController *)sharedInstance;
+
+// Searches playlists in the Library source.
+- (iTunesPlaylist *)playlistWithName:(NSString *)playlistName;
 
 - (BOOL)isPlaying;
 - (void)playPause;

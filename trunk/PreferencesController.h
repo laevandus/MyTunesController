@@ -29,9 +29,8 @@
 
 
 @interface PreferencesController : NSWindowController 
-{
-	IBOutlet NSButton *loginCheckBox;
-}
+
+@property (nonatomic, weak) IBOutlet NSButton *loginCheckBox;
 
 - (IBAction)toggleStartOnLogin:(id)sender;
 

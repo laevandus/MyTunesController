@@ -30,6 +30,7 @@
 
 @implementation StatusView
 
+
 - (void)drawRect:(NSRect)dirtyRect 
 {
 	NSBezierPath *path = [NSBezierPath bezierPathWithRect:dirtyRect];

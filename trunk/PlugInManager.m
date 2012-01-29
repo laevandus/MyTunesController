@@ -3,11 +3,31 @@
 //  LyricsFetcher
 //
 //  Created by Toomas Vahter on 26.12.11.
-//  Copyright (c) 2011 Toomas Vahter. All rights reserved.
+//  Copyright (c) 2010 Toomas Vahter
 //
+//  This content is released under the MIT License (http://www.opensource.org/licenses/mit-license.php).
+//  
+//  Permission is hereby granted, free of charge, to any person obtaining a copy
+//  of this software and associated documentation files (the "Software"), to deal
+//  in the Software without restriction, including without limitation the rights
+//  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+//  copies of the Software, and to permit persons to whom the Software is
+//  furnished to do so, subject to the following conditions:
+//  
+//  The above copyright notice and this permission notice shall be included in
+//  all copies or substantial portions of the Software.
+//  
+//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+//  THE SOFTWARE.
 
 #import "PlugInManager.h"
 #import "LyricsFetching.h"
+
 
 @interface PlugInManager()
 @property (readwrite, retain) NSArray *plugIns;
@@ -20,6 +40,7 @@
 @implementation PlugInManager
 
 @synthesize plugIns = _plugIns;
+
 
 - (id)init
 {
@@ -34,15 +55,30 @@
 
 - (NSArray *)_bundlePaths
 {
-	NSString *applicationSupportPluginsSubpath = @"Application Support/MyTunesController/PlugIns";
-	NSArray *librarySearchPaths = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSAllDomainsMask - NSSystemDomainMask, YES); // e.g. /Users/Toomas/Library
-	
-	NSString *librarySearchPath = nil;
 	NSMutableArray *bundleSearchPaths = [[NSMutableArray alloc] init];
 	
-	for (librarySearchPath in librarySearchPaths) 
+	NSError *error = nil;
+	NSFileManager *fileManager = [[NSFileManager alloc] init];
+	NSURL *applicationSupportPlugInsURL = [fileManager URLForDirectory:NSApplicationSupportDirectory inDomain:NSAllDomainsMask - NSSystemDomainMask appropriateForURL:nil create:YES error:&error];
+	
+	if (applicationSupportPlugInsURL) 
 	{
-		[bundleSearchPaths addObject:[librarySearchPath stringByAppendingPathComponent:applicationSupportPluginsSubpath]];
+		error = nil;
+		NSString *pluginsSubpath = @"MyTunesController/PlugIns/";
+		applicationSupportPlugInsURL = [applicationSupportPlugInsURL URLByAppendingPathComponent:pluginsSubpath];
+		
+		if ([applicationSupportPlugInsURL checkResourceIsReachableAndReturnError:&error]) 
+		{
+			[bundleSearchPaths addObject:[applicationSupportPlugInsURL path]];
+		}
+		else 
+		{
+			NSLog(@"%s error = (%@)", __func__, [error localizedDescription]);
+		}
+	}
+	else
+	{
+		NSLog(@"%s error = (%@)", __func__, [error localizedDescription]);
 	}
 	
 	[bundleSearchPaths addObject:[[NSBundle mainBundle] builtInPlugInsPath]]; // Resource folder
@@ -54,7 +90,7 @@
 	
 	for (bundleSearchPath in bundleSearchPaths) 
 	{
-		directoryEnumerator = [[NSFileManager defaultManager] enumeratorAtPath:bundleSearchPath];
+		directoryEnumerator = [fileManager enumeratorAtPath:bundleSearchPath];
 		
 		if (directoryEnumerator) 
 		{
@@ -89,8 +125,6 @@
 - (void)_loadAndValidatePlugins
 {
 	NSArray *paths = [self _bundlePaths];
-	NSLog(@"%@", paths);
-	
 	NSMutableArray *instances = [[NSMutableArray alloc] init];
 	NSString *bundlePath = nil;
 	NSBundle *currentBundle = nil;
@@ -122,20 +156,3 @@
 }
 
 @end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

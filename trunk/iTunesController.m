@@ -26,11 +26,12 @@
 //  THE SOFTWARE.
 
 #import "iTunesController.h"
-#import "ImageScaler.h"
+
 
 @implementation iTunesController
 
 @synthesize delegate;
+
 
 + (iTunesController *)sharedInstance 
 {	
@@ -45,23 +46,55 @@
 	return sharediTunesControllerInstance;
 }
 
+
 - (id)init 
 {	
-	if ((self = [super init])) {
+	if ((self = [super init])) 
+	{
 		[[NSDistributedNotificationCenter defaultCenter] addObserver:self
-															selector:@selector(_iTunesSongDidChange:)
+															selector:@selector(_iTunesTrackDidChange:)
 																name:@"com.apple.iTunes.playerInfo" 
 															  object:@"com.apple.iTunes.player"];
 		
 		iTunesApp = (iTunesApplication *)[SBApplication applicationWithBundleIdentifier:@"com.apple.iTunes"];
 	}
+	
 	return self;
 }
+
 
 - (void)dealloc 
 {
 	[[NSDistributedNotificationCenter defaultCenter] removeObserver:self];
 }
+
+
+- (iTunesPlaylist *)playlistWithName:(NSString *)playlistName
+{
+	__block iTunesSource *librarySource = nil;
+	SBElementArray *sources = [iTunesApp sources];
+	[sources enumerateObjectsUsingBlock:^(id object, NSUInteger index, BOOL *stop)
+	 {
+		 if ([[object name] isEqualToString:@"Library"]) 
+		 {
+			 librarySource = object;
+			 *stop = YES;
+		 }
+	 }];
+	
+	__block iTunesPlaylist *playlist = nil;
+	[[librarySource playlists] enumerateObjectsUsingBlock:^(id object, NSUInteger index, BOOL *stop)
+	 {
+		 if ([[object name] isEqualToString:playlistName]) 
+		 {
+			 playlist = object;
+			 *stop = YES;
+		 }
+	 }];
+	
+	return playlist;
+}
+
 
 - (BOOL)isPlaying
 {
@@ -74,11 +107,13 @@
 	return NO;
 }
 
+
 - (void)playPause
 {
 	// starts iTunes if not launched
 	[iTunesApp playpause];
 }
+
 
 - (void)playPrevious
 {
@@ -86,11 +121,13 @@
 		[iTunesApp backTrack];
 }
 
+
 - (void)playNext
 {
 	if (iTunesApp.isRunning) 
 		[iTunesApp nextTrack];
 }
+
 
 - (iTunesTrack *)currentTrack
 {	
@@ -100,7 +137,8 @@
 	return iTunesApp.currentTrack;
 }
 
-- (void)_iTunesSongDidChange:(NSNotification *)aNotification 
+
+- (void)_iTunesTrackDidChange:(NSNotification *)aNotification 
 {	
 	iTunesTrack *track = nil;
 	

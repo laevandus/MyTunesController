@@ -44,6 +44,7 @@
 
 @synthesize statusBarController = _statusBarController;
 
+
 + (void)initialize
 {
 	if (self == [MyTunesControllerAppDelegate class]) 
@@ -117,7 +118,7 @@
 	
 	if ([lyricsWindowController.window isVisible])
 	{
-		lyricsWindowController.track = [[iTunesController sharedInstance] currentTrack];
+		lyricsWindowController.track = newTrack;
 		
 		if ([[lyricsWindowController.track lyrics] length] == 0) 
 		{
@@ -159,9 +160,20 @@
 {
 	if ([fetcher isEqual:[LyricsFetcher sharedFetcher]]) 
 	{
-		NSLog(@"%s track = (%@ - %@) lyrics length = (%lu)", __func__, track.name, track.artist, [lyrics length]);
 		// Handles main fetcher's requests
-		track.lyrics = lyrics;
+		//NSLog(@"%s %@ - %@ lrics length = %ld", __func__, [track name], [track artist], [lyrics length]);
+		
+		if ([lyricsWindowController.track databaseID] == [track databaseID]) 
+		{
+			// References represent the same object. SBObject is a references to the real object.
+			[lyricsWindowController.track willChangeValueForKey:@"lyrics"];
+			track.lyrics = lyrics;
+			[lyricsWindowController.track didChangeValueForKey:@"lyrics"];
+		}
+		else
+		{
+			track.lyrics = lyrics;
+		}
 	}
 	else
 	{
@@ -215,6 +227,7 @@
 - (void)showAboutPanel
 {
 	[NSApp orderFrontStandardAboutPanel:self];
+	[NSApp activateIgnoringOtherApps:YES];
 }
 
 
@@ -233,7 +246,7 @@
 		[[LyricsFetcher sharedFetcher] fetchLyricsForTrack:[lyricsWindowController track]];
 	}
 	
-	[lyricsWindowController showWindow:self];	
+	[lyricsWindowController showWindow:self];
 }
 
 
