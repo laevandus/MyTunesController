@@ -26,7 +26,6 @@
 //  THE SOFTWARE.
 
 #import "iTunesController.h"
-#import "ImageScaler.h"
 
 
 @implementation iTunesController
@@ -53,7 +52,7 @@
 	if ((self = [super init])) 
 	{
 		[[NSDistributedNotificationCenter defaultCenter] addObserver:self
-															selector:@selector(_iTunesSongDidChange:)
+															selector:@selector(_iTunesTrackDidChange:)
 																name:@"com.apple.iTunes.playerInfo" 
 															  object:@"com.apple.iTunes.player"];
 		
@@ -112,7 +111,7 @@
 }
 
 
-- (void)_iTunesSongDidChange:(NSNotification *)aNotification 
+- (void)_iTunesTrackDidChange:(NSNotification *)aNotification 
 {	
 	iTunesTrack *track = nil;
 	

@@ -32,24 +32,16 @@
 
 - (void)drawInteriorWithFrame:(NSRect)cellFrame inView:(NSView *)controlView 
 {
-	NSBezierPath *path = [NSBezierPath bezierPathWithRect:cellFrame];
 	[([self isHighlighted] ? [NSColor blueColor] : [NSColor clearColor]) set];
-	[path fill];
+	[NSBezierPath fillRect:cellFrame];
 	
-	// has image
 	if (self.image) 
 	{
-		[self.image setFlipped:YES];
-		[self.image drawInRect:[self imageRectForBounds:cellFrame] 
-					  fromRect:NSZeroRect 
-					 operation:NSCompositeSourceOver 
-					  fraction:1.0];
+		[self.image drawInRect:[self imageRectForBounds:cellFrame] fromRect:NSZeroRect operation:NSCompositeSourceOver fraction:1.0 respectFlipped:YES hints:nil];
 	}
-	// has title
+
 	if (self.title) 
 	{
-		//NSMutableParagraphStyle* style = [[[NSParagraphStyle defaultParagraphStyle] mutableCopy] autorelease];
-		//[style setAlignment:NSCenterTextAlignment];
 		NSDictionary *styleDictionary = [NSDictionary dictionaryWithObjectsAndKeys: [NSColor blackColor], NSForegroundColorAttributeName, [NSFont fontWithName:@"Helvetica" size:(CGFloat)14.0], NSFontAttributeName, nil];
 		NSRect titleRect = [self titleRectForBounds:cellFrame];
 		

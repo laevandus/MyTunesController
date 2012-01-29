@@ -72,6 +72,7 @@
 - (void)fetchLyricsForTrack:(iTunesTrack *)track
 {
 	NSInvocationOperation *operation = [[NSInvocationOperation alloc] initWithTarget:self selector:@selector(_fetchLyricsForTrackInBackground:) object:track];
+	[fetchingQueue cancelAllOperations];
 	[fetchingQueue addOperation:operation];
 }
 

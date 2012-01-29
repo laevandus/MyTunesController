@@ -81,8 +81,6 @@
 		NSLog(@"%s error = (%@)", __func__, [error localizedDescription]);
 	}
 	
-	
-	
 	[bundleSearchPaths addObject:[[NSBundle mainBundle] builtInPlugInsPath]]; // Resource folder
 	
 	NSString *bundleSearchPath = nil;
@@ -92,7 +90,7 @@
 	
 	for (bundleSearchPath in bundleSearchPaths) 
 	{
-		directoryEnumerator = [[NSFileManager defaultManager] enumeratorAtPath:bundleSearchPath];
+		directoryEnumerator = [fileManager enumeratorAtPath:bundleSearchPath];
 		
 		if (directoryEnumerator) 
 		{
@@ -127,8 +125,6 @@
 - (void)_loadAndValidatePlugins
 {
 	NSArray *paths = [self _bundlePaths];
-	NSLog(@"%@", paths);
-	
 	NSMutableArray *instances = [[NSMutableArray alloc] init];
 	NSString *bundlePath = nil;
 	NSBundle *currentBundle = nil;
@@ -160,20 +156,3 @@
 }
 
 @end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
