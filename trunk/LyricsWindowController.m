@@ -58,7 +58,7 @@
 	NSDictionary *textAttributes = [[NSDictionary alloc] initWithObjectsAndKeys:
 									[NSColor colorWithDeviceWhite:0.9 alpha:1.0], NSForegroundColorAttributeName, 
 									nil];
-	return [[NSAttributedString alloc] initWithString:[self.track lyrics] attributes:textAttributes];
+	return [[self.track lyrics] length] ? [[NSAttributedString alloc] initWithString:[self.track lyrics] attributes:textAttributes] : nil;
 }
 
 
@@ -70,7 +70,18 @@
 
 - (NSString *)trackDescription
 {
-	return [NSString stringWithFormat:@"%@ - %@", self.track.name, self.track.artist];
+	NSString *trackDescription = nil;
+	
+	if ([[self.track name] length] && [[self.track artist] length]) 
+	{
+		trackDescription = [NSString stringWithFormat:@"%@ - %@", self.track.name, self.track.artist];
+	}
+	else if ([[self.track name] length])
+	{
+		trackDescription = [self.track name];
+	}
+	
+	return trackDescription;
 }
 
 
