@@ -118,7 +118,7 @@
 	
 	if ([lyricsWindowController.window isVisible])
 	{
-		lyricsWindowController.track = [[iTunesController sharedInstance] currentTrack];
+		lyricsWindowController.track = newTrack;
 		
 		if ([[lyricsWindowController.track lyrics] length] == 0) 
 		{
@@ -161,7 +161,19 @@
 	if ([fetcher isEqual:[LyricsFetcher sharedFetcher]]) 
 	{
 		// Handles main fetcher's requests
-		track.lyrics = lyrics;
+		//NSLog(@"%s %@ - %@ lrics length = %ld", __func__, [track name], [track artist], [lyrics length]);
+		
+		if ([lyricsWindowController.track databaseID] == [track databaseID]) 
+		{
+			// References represent the same object. SBObject is a references to the real object.
+			[lyricsWindowController.track willChangeValueForKey:@"lyrics"];
+			track.lyrics = lyrics;
+			[lyricsWindowController.track didChangeValueForKey:@"lyrics"];
+		}
+		else
+		{
+			track.lyrics = lyrics;
+		}
 	}
 	else
 	{

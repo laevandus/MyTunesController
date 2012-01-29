@@ -64,7 +64,7 @@
 
 + (NSSet *)keyPathsForValuesAffectingTrackDescription 
 {
-    return [NSSet setWithObjects:@"track", nil];
+    return [NSSet setWithObjects:@"track", @"track.name", @"track.artist", nil];
 }
 
 
