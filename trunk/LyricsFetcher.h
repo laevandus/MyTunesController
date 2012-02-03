@@ -35,7 +35,7 @@
 
 @interface LyricsFetcher : NSObject
 {
-	NSOperationQueue *fetchingQueue;
+	dispatch_queue_t fetchingQueue;
 }
 
 + (LyricsFetcher *)sharedFetcher;
