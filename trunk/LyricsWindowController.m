@@ -47,6 +47,12 @@
 }
 
 
+- (void)dealloc
+{
+	
+}
+
+
 + (NSSet *)keyPathsForValuesAffectingAttributedLyrics 
 {
     return [NSSet setWithObjects:@"track", @"track.lyrics", nil];

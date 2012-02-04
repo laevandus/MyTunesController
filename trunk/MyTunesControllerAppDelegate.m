@@ -191,6 +191,7 @@
 - (void)notificationCanBeRemoved 
 {
 	[notificationWindowController close];
+	[notificationWindowController setDelegate:nil];
 	notificationWindowController = nil;
 }
 
@@ -203,8 +204,14 @@
 	
 	if ([window isEqualTo:[preferencesWindowController window]]) 
 	{
+		[preferencesWindowController.window setDelegate:nil];
 		preferencesWindowController = nil;
-	}	
+	}
+	else if ([window isEqualTo:[lyricsWindowController window]])
+	{
+		[lyricsWindowController.window setDelegate:nil];
+		lyricsWindowController = nil;
+	}
 }
 
 
@@ -240,6 +247,7 @@
 	if (lyricsWindowController == nil) 
 	{
 		lyricsWindowController = [[LyricsWindowController alloc] init];
+		[lyricsWindowController.window setDelegate:self];
 	}
 	
 	lyricsWindowController.track = [[iTunesController sharedInstance] currentTrack];
@@ -259,6 +267,7 @@
 	if (preferencesWindowController == nil) 
 	{
 		preferencesWindowController = [[PreferencesController alloc] init];
+		[preferencesWindowController.window setDelegate:self];
 	}
 	
 	[preferencesWindowController showWindow:self];
