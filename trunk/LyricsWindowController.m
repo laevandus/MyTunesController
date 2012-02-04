@@ -28,9 +28,15 @@
 #import "LyricsWindowController.h"
 
 
+@interface LyricsWindowController()
+@property (nonatomic, readwrite, strong) NSColor *textColor;
+@end
+
+
 @implementation LyricsWindowController
 
-@synthesize albumTextField = _albumTextField;
+@synthesize lyricsScrollView = _lyricsScrollView;
+@synthesize textColor = _textColor;
 @synthesize track = _track;
 
 
@@ -62,33 +68,38 @@
 {
     [super windowDidLoad];
  
-	[self.albumTextField setTextColor:[NSColor lightGrayColor]];
+	self.textColor = [NSColor lightGrayColor];
+	
 	[self.window makeFirstResponder:nil];
 }
 
 
 - (void)windowDidBecomeKey:(NSNotification *)notification
 {
-	[self.albumTextField setTextColor:[NSColor colorWithDeviceWhite:0.9 alpha:1.0]];
+	NSRect visibleRect = [self.lyricsScrollView documentVisibleRect];
+	self.textColor = [NSColor colorWithDeviceWhite:0.9 alpha:1.0];
+	[[self.lyricsScrollView documentView] scrollRectToVisible:visibleRect];
 }
 
 
 - (void)windowDidResignKey:(NSNotification *)notification
 {
-	[self.albumTextField setTextColor:[NSColor lightGrayColor]];
+	NSRect visibleRect = [self.lyricsScrollView documentVisibleRect];
+	self.textColor = [NSColor lightGrayColor];
+	[[self.lyricsScrollView documentView] scrollRectToVisible:visibleRect];
 }
 
 
 + (NSSet *)keyPathsForValuesAffectingAttributedLyrics 
 {
-    return [NSSet setWithObjects:@"track", @"track.lyrics", nil];
+    return [NSSet setWithObjects:@"track", @"track.lyrics", @"textColor", nil];
 }
 
 
 - (NSAttributedString *)attributedLyrics
 {
 	NSDictionary *textAttributes = [[NSDictionary alloc] initWithObjectsAndKeys:
-									[NSColor colorWithDeviceWhite:0.9 alpha:1.0], NSForegroundColorAttributeName, 
+									self.textColor, NSForegroundColorAttributeName, 
 									nil];
 	return [[self.track lyrics] length] ? [[NSAttributedString alloc] initWithString:[self.track lyrics] attributes:textAttributes] : nil;
 }

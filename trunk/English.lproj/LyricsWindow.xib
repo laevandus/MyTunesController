@@ -324,11 +324,11 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
-						<string key="label">albumTextField</string>
+						<string key="label">lyricsScrollView</string>
 						<reference key="source" ref="1001"/>
-						<reference key="destination" ref="420889797"/>
+						<reference key="destination" ref="126824190"/>
 					</object>
-					<int key="connectionID">1560</int>
+					<int key="connectionID">1563</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
@@ -410,6 +410,22 @@
 						</object>
 					</object>
 					<int key="connectionID">1551</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">textColor: textColor</string>
+						<reference key="source" ref="420889797"/>
+						<reference key="destination" ref="1001"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="420889797"/>
+							<reference key="NSDestination" ref="1001"/>
+							<string key="NSLabel">textColor: textColor</string>
+							<string key="NSBinding">textColor</string>
+							<string key="NSKeyPath">textColor</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">1562</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -965,7 +981,7 @@
 				<reference key="dict.values" ref="1002"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">1560</int>
+			<int key="maxID">1563</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -982,14 +998,14 @@
 					<string key="className">LyricsWindowController</string>
 					<string key="superclassName">NSWindowController</string>
 					<object class="NSMutableDictionary" key="outlets">
-						<string key="NS.key.0">albumTextField</string>
-						<string key="NS.object.0">NSTextField</string>
+						<string key="NS.key.0">lyricsScrollView</string>
+						<string key="NS.object.0">NSScrollView</string>
 					</object>
 					<object class="NSMutableDictionary" key="toOneOutletInfosByName">
-						<string key="NS.key.0">albumTextField</string>
+						<string key="NS.key.0">lyricsScrollView</string>
 						<object class="IBToOneOutletInfo" key="NS.object.0">
-							<string key="name">albumTextField</string>
-							<string key="candidateClassName">NSTextField</string>
+							<string key="name">lyricsScrollView</string>
+							<string key="candidateClassName">NSScrollView</string>
 						</object>
 					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
