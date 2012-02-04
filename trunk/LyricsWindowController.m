@@ -30,12 +30,31 @@
 
 @implementation LyricsWindowController
 
+@synthesize albumTextField = _albumTextField;
 @synthesize track = _track;
 
 
 - (id)init
 {
 	return [self initWithWindowNibName:@"LyricsWindow"];
+}
+
+
+- (id)initWithWindow:(NSWindow *)window
+{
+	if ((self = [super initWithWindow:window])) 
+	{
+		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(windowDidBecomeKey:) name:NSWindowDidBecomeKeyNotification object:nil];
+		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(windowDidResignKey:) name:NSWindowDidResignKeyNotification object:nil];
+	}
+	
+	return self;
+}
+
+
+- (void)dealloc
+{
+	[[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 
@@ -47,9 +66,16 @@
 }
 
 
-- (void)dealloc
+- (void)windowDidBecomeKey:(NSNotification *)notification
 {
-	
+
+	[self.albumTextField setTextColor:[NSColor colorWithDeviceWhite:0.9 alpha:1.0]];
+}
+
+
+- (void)windowDidResignKey:(NSNotification *)notification
+{
+	[self.albumTextField setTextColor:[NSColor lightGrayColor]];
 }
 
 

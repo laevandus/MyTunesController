@@ -31,6 +31,8 @@
 
 @interface LyricsWindowController : NSWindowController
 
+@property (nonatomic, weak) IBOutlet NSTextField *albumTextField;
+
 @property (nonatomic, strong) iTunesTrack *track;
 
 @property (nonatomic, readonly) NSAttributedString *attributedLyrics;
