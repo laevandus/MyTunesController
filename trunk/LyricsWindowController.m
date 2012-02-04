@@ -26,12 +26,12 @@
 //  THE SOFTWARE.
 
 #import "LyricsWindowController.h"
-#import "LyricsFetcher.h"
 
 
 @implementation LyricsWindowController
 
 @synthesize track = _track;
+
 
 - (id)init
 {
@@ -84,16 +84,5 @@
 	return trackDescription;
 }
 
-
-- (IBAction)clear:(id)sender
-{
-	[self.track setLyrics:@""];
-}
-
-
-- (IBAction)fetch:(id)sender
-{
-	[[LyricsFetcher sharedFetcher] fetchLyricsForTrack:self.track];
-}
 
 @end
