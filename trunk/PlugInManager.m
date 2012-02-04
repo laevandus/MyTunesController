@@ -152,7 +152,6 @@
 	}
 	
 	self.plugIns = [NSArray arrayWithArray:instances];
-	NSLog(@"Loaded %lu plugins", [self.plugIns count]);
 }
 
 @end

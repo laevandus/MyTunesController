@@ -75,26 +75,41 @@
 
 - (BOOL)isAppStartingOnLogin 
 {
+	BOOL result = NO;
 	LSSharedFileListRef loginListRef = LSSharedFileListCreate(NULL, kLSSharedFileListSessionLoginItems, NULL);
 	
 	if (loginListRef) 
 	{
-		NSArray *loginItemsArray = (__bridge NSArray *)LSSharedFileListCopySnapshot(loginListRef, NULL);
-		CFURLRef itemURLRef;
+		NSURL *mainBundleURL = [[NSBundle mainBundle] bundleURL];
+		CFArrayRef loginItemsArrayRef = LSSharedFileListCopySnapshot(loginListRef, NULL);
+		NSArray *loginItemsArray = [[NSArray alloc] initWithArray:(__bridge NSArray *)loginItemsArrayRef];
 		
 		for (id itemRef in loginItemsArray) 
 		{
+			CFURLRef itemURLRef = NULL;
+			
 			if (LSSharedFileListItemResolve((__bridge LSSharedFileListItemRef)itemRef, 0,&itemURLRef, NULL) == noErr) 
 			{
-				if ([(__bridge NSString *)CFURLGetString(itemURLRef) hasPrefix:[[NSBundle mainBundle] bundlePath]])
-					return YES;
+				if ([(__bridge NSURL *)itemURLRef isEqual:mainBundleURL])
+					result = YES;
+			}
+			
+			if (itemURLRef) 
+			{
+				CFRelease(itemURLRef);
+			}
+			
+			if (result) 
+			{
+				break;
 			}
 		}
 
+		CFRelease(loginItemsArrayRef);
 		CFRelease(loginListRef);
 	}
 	
-	return NO;
+	return result;
 }
 
 
@@ -104,9 +119,9 @@
 	
 	if (loginListRef) 
 	{
-		NSURL *bundleURL = [NSURL fileURLWithPath:[[NSBundle mainBundle] bundlePath] isDirectory:YES];
-		LSSharedFileListItemRef loginItemRef = LSSharedFileListInsertItemURL(loginListRef, kLSSharedFileListItemLast, 
-																			 NULL, NULL, (__bridge CFURLRef)bundleURL, NULL, NULL);             
+		NSURL *mainBundleURL = [[NSBundle mainBundle] bundleURL];
+		LSSharedFileListItemRef loginItemRef = LSSharedFileListInsertItemURL(loginListRef, kLSSharedFileListItemLast, NULL, NULL, (__bridge CFURLRef)mainBundleURL, NULL, NULL);             
+		
 		if (loginItemRef) 
 		{
 			CFRelease(loginItemRef);
@@ -123,18 +138,27 @@
 	
 	if (loginListRef) 
 	{
-		NSArray *loginItemsArray = (__bridge NSArray *)LSSharedFileListCopySnapshot(loginListRef, NULL);
-		CFURLRef itemURLRef;
+		NSURL *mainBundleURL = [[NSBundle mainBundle] bundleURL];
+		CFArrayRef loginItemsArrayRef = LSSharedFileListCopySnapshot(loginListRef, NULL);
+		NSArray *loginItemsArray = [[NSArray alloc] initWithArray:(__bridge NSArray *)loginItemsArrayRef];
 		
 		for (id itemRef in loginItemsArray) 
 		{		
+			CFURLRef itemURLRef = NULL;
+			
 			if (LSSharedFileListItemResolve((__bridge LSSharedFileListItemRef)itemRef, 0, &itemURLRef, NULL) == noErr) 
 			{
-				if ([(__bridge NSString *)CFURLGetString(itemURLRef) hasPrefix:[[NSBundle mainBundle] bundlePath]])
+				if ([(__bridge NSURL *)itemURLRef isEqual:mainBundleURL])
 					LSSharedFileListItemRemove(loginListRef, (__bridge LSSharedFileListItemRef)itemRef);
+			}
+			
+			if (itemURLRef) 
+			{
+				CFRelease(itemURLRef);
 			}
 		}
 
+		CFRelease(loginItemsArrayRef);
 		CFRelease(loginListRef);
 	}
 }

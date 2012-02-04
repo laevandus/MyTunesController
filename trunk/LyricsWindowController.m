@@ -26,12 +26,13 @@
 //  THE SOFTWARE.
 
 #import "LyricsWindowController.h"
-#import "LyricsFetcher.h"
 
 
 @implementation LyricsWindowController
 
+@synthesize albumTextField = _albumTextField;
 @synthesize track = _track;
+
 
 - (id)init
 {
@@ -39,11 +40,42 @@
 }
 
 
+- (id)initWithWindow:(NSWindow *)window
+{
+	if ((self = [super initWithWindow:window])) 
+	{
+		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(windowDidBecomeKey:) name:NSWindowDidBecomeKeyNotification object:nil];
+		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(windowDidResignKey:) name:NSWindowDidResignKeyNotification object:nil];
+	}
+	
+	return self;
+}
+
+
+- (void)dealloc
+{
+	[[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+
 - (void)windowDidLoad
 {
     [super windowDidLoad];
-    
+ 
+	[self.albumTextField setTextColor:[NSColor lightGrayColor]];
 	[self.window makeFirstResponder:nil];
+}
+
+
+- (void)windowDidBecomeKey:(NSNotification *)notification
+{
+	[self.albumTextField setTextColor:[NSColor colorWithDeviceWhite:0.9 alpha:1.0]];
+}
+
+
+- (void)windowDidResignKey:(NSNotification *)notification
+{
+	[self.albumTextField setTextColor:[NSColor lightGrayColor]];
 }
 
 
@@ -84,16 +116,5 @@
 	return trackDescription;
 }
 
-
-- (IBAction)clear:(id)sender
-{
-	[self.track setLyrics:@""];
-}
-
-
-- (IBAction)fetch:(id)sender
-{
-	[[LyricsFetcher sharedFetcher] fetchLyricsForTrack:self.track];
-}
 
 @end
