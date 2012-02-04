@@ -164,9 +164,7 @@
 {
 	if ([fetcher isEqual:[LyricsFetcher sharedFetcher]]) 
 	{
-		// Handles main fetcher's requests
-		//NSLog(@"%s %@ - %@ lrics length = %ld", __func__, [track name], [track artist], [lyrics length]);
-		
+		// Handles main fetcher's requests		
 		if ([lyricsWindowController.track databaseID] == [track databaseID]) 
 		{
 			// References represent the same object. SBObject is a references to the real object.
