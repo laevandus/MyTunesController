@@ -61,14 +61,14 @@
 - (void)windowDidLoad
 {
     [super windowDidLoad];
-    
+ 
+	[self.albumTextField setTextColor:[NSColor lightGrayColor]];
 	[self.window makeFirstResponder:nil];
 }
 
 
 - (void)windowDidBecomeKey:(NSNotification *)notification
 {
-
 	[self.albumTextField setTextColor:[NSColor colorWithDeviceWhite:0.9 alpha:1.0]];
 }
 
