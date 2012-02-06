@@ -1,9 +1,9 @@
 //
-//  PreferencesController.m
-//  MyTunesController
+//  LoginItemManager.h
+//  LoginItemManager
 //
-//  Created by Toomas Vahter on 25.12.09.
-//  Copyright (c) 2010 Toomas Vahter
+//  Created by Toomas Vahter on 05.02.12.
+//  Copyright (c) 2012 Toomas Vahter. All rights reserved.
 //
 //  This content is released under the MIT License (http://www.opensource.org/licenses/mit-license.php).
 //  
@@ -25,49 +25,13 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-
-#import "PreferencesController.h"
-#import <CoreServices/CoreServices.h>
-#import "LoginItemManager.h"
+#import <Foundation/Foundation.h>
 
 
-@implementation PreferencesController
+@interface LoginItemManager : NSObject
 
-@synthesize loginCheckBox = _loginCheckBox;
-
-
-- (id)init 
-{
-	return [self initWithWindowNibName:@"Preferences"];
-}
-
-
-- (void)showWindow:(id)sender 
-{
-	[self.window center];
-	[super showWindow:sender];
-	
-	LoginItemManager *loginItemManager = [[LoginItemManager alloc] init];
-	NSURL *mainBundleURL = [[NSBundle mainBundle] bundleURL];
-	[self.loginCheckBox setState:[loginItemManager itemExistsAtURL:mainBundleURL] ? NSOnState : NSOffState];
-	
-	[self.window makeKeyAndOrderFront:self];
-}
-
-
-- (IBAction)toggleStartOnLogin:(id)sender 
-{
-	LoginItemManager *loginItemManager = [[LoginItemManager alloc] init];
-	NSURL *mainBundleURL = [[NSBundle mainBundle] bundleURL];
-	
-	if ([(NSButton*)sender state] == NSOnState) 
-	{
-		[loginItemManager addItemAtURL:mainBundleURL];
-	} 
-	else 
-	{
-		[loginItemManager removeItemAtURL:mainBundleURL];
-	}
-}
+- (BOOL)addItemAtURL:(NSURL *)bundleURL;
+- (BOOL)removeItemAtURL:(NSURL *)bundleURL;
+- (BOOL)itemExistsAtURL:(NSURL *)bundleURL;
 
 @end

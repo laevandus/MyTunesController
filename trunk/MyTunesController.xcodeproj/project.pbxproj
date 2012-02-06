@@ -35,6 +35,7 @@
 		C82BB73710EE3F7000B24464 /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C82BB73610EE3F7000B24464 /* CoreServices.framework */; };
 		C83BBB7910FBA08000595F2D /* COPYING.txt in Resources */ = {isa = PBXBuildFile; fileRef = C83BBB7810FBA08000595F2D /* COPYING.txt */; };
 		C83E393D121450C300708ADE /* blank.png in Resources */ = {isa = PBXBuildFile; fileRef = C83E393C121450C300708ADE /* blank.png */; };
+		C84CCD4614E028CA000AC7B4 /* LoginItemManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C84CCD4514E028CA000AC7B4 /* LoginItemManager.m */; };
 		C89FC95510F944970093B4A6 /* next.png in Resources */ = {isa = PBXBuildFile; fileRef = C89FC95110F944970093B4A6 /* next.png */; };
 		C89FC95610F944970093B4A6 /* pause.png in Resources */ = {isa = PBXBuildFile; fileRef = C89FC95210F944970093B4A6 /* pause.png */; };
 		C89FC95710F944970093B4A6 /* play.png in Resources */ = {isa = PBXBuildFile; fileRef = C89FC95310F944970093B4A6 /* play.png */; };
@@ -111,6 +112,8 @@
 		C82BB73610EE3F7000B24464 /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = /System/Library/Frameworks/CoreServices.framework; sourceTree = "<absolute>"; };
 		C83BBB7810FBA08000595F2D /* COPYING.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = COPYING.txt; sourceTree = "<group>"; };
 		C83E393C121450C300708ADE /* blank.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blank.png; sourceTree = "<group>"; };
+		C84CCD4414E028C9000AC7B4 /* LoginItemManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginItemManager.h; sourceTree = "<group>"; };
+		C84CCD4514E028CA000AC7B4 /* LoginItemManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginItemManager.m; sourceTree = "<group>"; };
 		C89FC95110F944970093B4A6 /* next.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = next.png; sourceTree = "<group>"; };
 		C89FC95210F944970093B4A6 /* pause.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pause.png; sourceTree = "<group>"; };
 		C89FC95310F944970093B4A6 /* play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = play.png; sourceTree = "<group>"; };
@@ -286,6 +289,8 @@
 		C8214F6910E6B71F008D012C /* Preferences */ = {
 			isa = PBXGroup;
 			children = (
+				C84CCD4414E028C9000AC7B4 /* LoginItemManager.h */,
+				C84CCD4514E028CA000AC7B4 /* LoginItemManager.m */,
 				C8214F6F10E6B743008D012C /* Preferences.xib */,
 				C8214F6B10E6B72C008D012C /* PreferencesController.h */,
 				C8214F6C10E6B72C008D012C /* PreferencesController.m */,
@@ -423,6 +428,7 @@
 				C8CCE8AE14CB67D2008A7FCF /* LyricsBackgroundView.m in Sources */,
 				C803ED6814CBF985001568E3 /* LyricsFetcher.m in Sources */,
 				C803ED6914CBF985001568E3 /* PlugInManager.m in Sources */,
+				C84CCD4614E028CA000AC7B4 /* LoginItemManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
