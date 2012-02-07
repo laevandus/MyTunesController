@@ -60,10 +60,10 @@
 	
 	if (loginListRef) 
 	{
-		CFArrayRef loginItemsArrayRef = LSSharedFileListCopySnapshot(loginListRef, NULL);
-		NSArray *loginItemsArray = [[NSArray alloc] initWithArray:(__bridge NSArray *)loginItemsArrayRef];
+		CFArrayRef loginItemArrayRef = LSSharedFileListCopySnapshot(loginListRef, NULL);
+		NSArray *loginItemArray = [[NSArray alloc] initWithArray:(__bridge NSArray *)loginItemArrayRef];
 		
-		for (id itemRef in loginItemsArray) 
+		for (id itemRef in loginItemArray) 
 		{		
 			CFURLRef itemURLRef = NULL;
 			
@@ -81,7 +81,7 @@
 			}
 		}
 		
-		CFRelease(loginItemsArrayRef);
+		CFRelease(loginItemArrayRef);
 		CFRelease(loginListRef);
 	}
 	
@@ -96,10 +96,10 @@
 	
 	if (loginListRef) 
 	{
-		CFArrayRef loginItemsArrayRef = LSSharedFileListCopySnapshot(loginListRef, NULL);
-		NSArray *loginItemsArray = [[NSArray alloc] initWithArray:(__bridge NSArray *)loginItemsArrayRef];
+		CFArrayRef loginItemArrayRef = LSSharedFileListCopySnapshot(loginListRef, NULL);
+		NSArray *loginItemArray = [[NSArray alloc] initWithArray:(__bridge NSArray *)loginItemArrayRef];
 		
-		for (id itemRef in loginItemsArray) 
+		for (id itemRef in loginItemArray) 
 		{
 			CFURLRef itemURLRef = NULL;
 			
@@ -122,7 +122,7 @@
 			}
 		}
 		
-		CFRelease(loginItemsArrayRef);
+		CFRelease(loginItemArrayRef);
 		CFRelease(loginListRef);
 	}
 	

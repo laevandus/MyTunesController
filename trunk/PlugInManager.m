@@ -34,7 +34,7 @@
 
 - (NSArray *)_bundlePaths;
 - (BOOL)_plugInClassIsValid:(Class)plugInClass;
-- (void)_loadAndValidatePlugins;
+- (void)_loadAndValidatePlugIns;
 @end
 
 @implementation PlugInManager
@@ -46,7 +46,7 @@
 {
 	if ((self = [super init])) 
 	{
-		[self _loadAndValidatePlugins];
+		[self _loadAndValidatePlugIns];
 	}
 	
 	return self;
@@ -122,7 +122,7 @@
 }
 
 
-- (void)_loadAndValidatePlugins
+- (void)_loadAndValidatePlugIns
 {
 	NSArray *paths = [self _bundlePaths];
 	NSMutableArray *instances = [[NSMutableArray alloc] init];
