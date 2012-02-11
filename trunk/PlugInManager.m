@@ -34,7 +34,7 @@
 
 - (NSArray *)_bundlePaths;
 - (BOOL)_plugInClassIsValid:(Class)plugInClass;
-- (void)_loadAndValidatePlugins;
+- (void)_loadAndValidatePlugIns;
 @end
 
 @implementation PlugInManager
@@ -42,11 +42,25 @@
 @synthesize plugIns = _plugIns;
 
 
++ (PlugInManager *)defaultManager
+{
+	static PlugInManager *sharedPlugInManagerInstance = nil;
+	static dispatch_once_t sharedPlugInManagerPredicate;
+	
+	dispatch_once(&sharedPlugInManagerPredicate, ^
+				  {
+					  sharedPlugInManagerInstance = [[[self class] alloc] init];
+				  });
+	
+	return sharedPlugInManagerInstance;
+}
+
+
 - (id)init
 {
 	if ((self = [super init])) 
 	{
-		[self _loadAndValidatePlugins];
+		[self _loadAndValidatePlugIns];
 	}
 	
 	return self;
@@ -122,7 +136,7 @@
 }
 
 
-- (void)_loadAndValidatePlugins
+- (void)_loadAndValidatePlugIns
 {
 	NSArray *paths = [self _bundlePaths];
 	NSMutableArray *instances = [[NSMutableArray alloc] init];

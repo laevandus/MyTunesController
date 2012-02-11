@@ -1,9 +1,9 @@
 //
-//  LyricsFetcher.h
-//  LyricsFetcher
+//  LoginItemManager.h
+//  LoginItemManager
 //
-//  Created by Toomas Vahter on 22.12.11.
-//  Copyright (c) 2010 Toomas Vahter
+//  Created by Toomas Vahter on 05.02.12.
+//  Copyright (c) 2012 Toomas Vahter. All rights reserved.
 //
 //  This content is released under the MIT License (http://www.opensource.org/licenses/mit-license.php).
 //  
@@ -26,28 +26,12 @@
 //  THE SOFTWARE.
 
 #import <Foundation/Foundation.h>
-#import "iTunes.h"
 
 
-@class PlugInManager;
+@interface LoginItemManager : NSObject
 
-@protocol LyricsFetcherDelegate;
+- (BOOL)addItemAtURL:(NSURL *)bundleURL;
+- (BOOL)removeItemAtURL:(NSURL *)bundleURL;
+- (BOOL)itemExistsAtURL:(NSURL *)bundleURL;
 
-@interface LyricsFetcher : NSObject
-{
-	NSOperationQueue *fetchingQueue;
-}
-
-+ (LyricsFetcher *)defaultFetcher;
-
-@property (nonatomic, weak) id delegate;
-
-- (void)fetchLyricsForTrack:(iTunesTrack *)track;
-- (void)cancelAllFetches;
-
-@end
-
-
-@protocol LyricsFetcherDelegate <NSObject>
-- (void)lyricsFetcher:(LyricsFetcher *)fetcher didFetchLyrics:(NSString *)lyrics forTrack:(iTunesTrack *)track;
 @end

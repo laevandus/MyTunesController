@@ -28,12 +28,7 @@
 
 #import "PreferencesController.h"
 #import <CoreServices/CoreServices.h>
-
-@interface PreferencesController()
-- (BOOL)isAppStartingOnLogin;
-- (void)insertAppToLoginItems;
-- (void)removeAppFromLoginItems;
-@end
+#import "LoginItemManager.h"
 
 
 @implementation PreferencesController
@@ -52,7 +47,9 @@
 	[self.window center];
 	[super showWindow:sender];
 	
-	[self.loginCheckBox setState:[self isAppStartingOnLogin] ? NSOnState : NSOffState];
+	LoginItemManager *loginItemManager = [[LoginItemManager alloc] init];
+	NSURL *mainBundleURL = [[NSBundle mainBundle] bundleURL];
+	[self.loginCheckBox setState:[loginItemManager itemExistsAtURL:mainBundleURL] ? NSOnState : NSOffState];
 	
 	[self.window makeKeyAndOrderFront:self];
 }
@@ -60,106 +57,16 @@
 
 - (IBAction)toggleStartOnLogin:(id)sender 
 {
+	LoginItemManager *loginItemManager = [[LoginItemManager alloc] init];
+	NSURL *mainBundleURL = [[NSBundle mainBundle] bundleURL];
+	
 	if ([(NSButton*)sender state] == NSOnState) 
 	{
-		[self insertAppToLoginItems];
+		[loginItemManager addItemAtURL:mainBundleURL];
 	} 
 	else 
 	{
-		[self removeAppFromLoginItems];
-	}
-}
-
-
-#pragma mark -
-
-- (BOOL)isAppStartingOnLogin 
-{
-	BOOL result = NO;
-	LSSharedFileListRef loginListRef = LSSharedFileListCreate(NULL, kLSSharedFileListSessionLoginItems, NULL);
-	
-	if (loginListRef) 
-	{
-		NSURL *mainBundleURL = [[NSBundle mainBundle] bundleURL];
-		CFArrayRef loginItemsArrayRef = LSSharedFileListCopySnapshot(loginListRef, NULL);
-		NSArray *loginItemsArray = [[NSArray alloc] initWithArray:(__bridge NSArray *)loginItemsArrayRef];
-		
-		for (id itemRef in loginItemsArray) 
-		{
-			CFURLRef itemURLRef = NULL;
-			
-			if (LSSharedFileListItemResolve((__bridge LSSharedFileListItemRef)itemRef, 0,&itemURLRef, NULL) == noErr) 
-			{
-				if ([(__bridge NSURL *)itemURLRef isEqual:mainBundleURL])
-					result = YES;
-			}
-			
-			if (itemURLRef) 
-			{
-				CFRelease(itemURLRef);
-			}
-			
-			if (result) 
-			{
-				break;
-			}
-		}
-
-		CFRelease(loginItemsArrayRef);
-		CFRelease(loginListRef);
-	}
-	
-	return result;
-}
-
-
-- (void)insertAppToLoginItems 
-{
-	LSSharedFileListRef loginListRef = LSSharedFileListCreate(NULL, kLSSharedFileListSessionLoginItems, NULL);
-	
-	if (loginListRef) 
-	{
-		NSURL *mainBundleURL = [[NSBundle mainBundle] bundleURL];
-		LSSharedFileListItemRef loginItemRef = LSSharedFileListInsertItemURL(loginListRef, kLSSharedFileListItemLast, NULL, NULL, (__bridge CFURLRef)mainBundleURL, NULL, NULL);             
-		
-		if (loginItemRef) 
-		{
-			CFRelease(loginItemRef);
-		}
-		
-		CFRelease(loginListRef);
-	}
-}
-
-
-- (void)removeAppFromLoginItems 
-{
-	LSSharedFileListRef loginListRef = LSSharedFileListCreate(NULL, kLSSharedFileListSessionLoginItems, NULL);
-	
-	if (loginListRef) 
-	{
-		NSURL *mainBundleURL = [[NSBundle mainBundle] bundleURL];
-		CFArrayRef loginItemsArrayRef = LSSharedFileListCopySnapshot(loginListRef, NULL);
-		NSArray *loginItemsArray = [[NSArray alloc] initWithArray:(__bridge NSArray *)loginItemsArrayRef];
-		
-		for (id itemRef in loginItemsArray) 
-		{		
-			CFURLRef itemURLRef = NULL;
-			
-			if (LSSharedFileListItemResolve((__bridge LSSharedFileListItemRef)itemRef, 0, &itemURLRef, NULL) == noErr) 
-			{
-				if ([(__bridge NSURL *)itemURLRef isEqual:mainBundleURL])
-					LSSharedFileListItemRemove(loginListRef, (__bridge LSSharedFileListItemRef)itemRef);
-			}
-			
-			if (itemURLRef) 
-			{
-				CFRelease(itemURLRef);
-			}
-		}
-
-		CFRelease(loginItemsArrayRef);
-		CFRelease(loginListRef);
+		[loginItemManager removeItemAtURL:mainBundleURL];
 	}
 }
 

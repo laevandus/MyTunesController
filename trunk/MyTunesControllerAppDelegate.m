@@ -71,7 +71,7 @@
 	[[NSUserDefaultsController sharedUserDefaultsController] addObserver:self forKeyPath:@"values.NotificationCorner" options:NSKeyValueObservingOptionInitial context:nil];
 	
 	[[iTunesController sharedInstance] setDelegate:self];
-	[[LyricsFetcher sharedFetcher] setDelegate:self];
+	[[LyricsFetcher defaultFetcher] setDelegate:self];
 	
 	[self.statusBarController addStatusItems];
 }
@@ -123,7 +123,7 @@
 		if ([[lyricsWindowController.track lyrics] length] == 0) 
 		{
 			// Start fetching
-			[[LyricsFetcher sharedFetcher] fetchLyricsForTrack:[lyricsWindowController track]];
+			[[LyricsFetcher defaultFetcher] fetchLyricsForTrack:[lyricsWindowController track]];
 		}
 	}
 		
@@ -162,7 +162,7 @@
 
 - (void)lyricsFetcher:(LyricsFetcher *)fetcher didFetchLyrics:(NSString *)lyrics forTrack:(iTunesTrack *)track
 {
-	if ([fetcher isEqual:[LyricsFetcher sharedFetcher]]) 
+	if ([fetcher isEqual:[LyricsFetcher defaultFetcher]]) 
 	{
 		// Handles main fetcher's requests		
 		if ([lyricsWindowController.track databaseID] == [track databaseID]) 
@@ -253,7 +253,7 @@
 	if ([[lyricsWindowController.track lyrics] length] == 0) 
 	{
 		// Start fetching
-		[[LyricsFetcher sharedFetcher] fetchLyricsForTrack:[lyricsWindowController track]];
+		[[LyricsFetcher defaultFetcher] fetchLyricsForTrack:[lyricsWindowController track]];
 	}
 	
 	[lyricsWindowController showWindow:self];
