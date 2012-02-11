@@ -198,7 +198,6 @@ static void *FetchingAllLyricsContext = "FetchingAllLyricsContext";
 												  }
 												  else
 												  {
-													  NSLog(@"%s %@ - %@", __func__, [obj name], [obj artist]);
 													  self.processedTracksCount++;
 												  }
 											  });
@@ -218,7 +217,6 @@ static void *FetchingAllLyricsContext = "FetchingAllLyricsContext";
 
 - (void)lyricsFetcher:(LyricsFetcher *)fetcher didFetchLyrics:(NSString *)lyrics forTrack:(iTunesTrack *)track
 {
-	NSLog(@"%s length = %ld track = %@ - %@", __func__, [lyrics length],track.name, track.artist);
 	track.lyrics = lyrics;
 	
 	self.processedTracksCount++;

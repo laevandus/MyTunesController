@@ -97,6 +97,7 @@ NSString *FetchLyricsForTrack(iTunesTrack *track, NSArray *plugIns);
 	
 	[fetchingQueue addOperationWithBlock:^
 	 {
+		 
 		 CFAbsoluteTime startTime = CFAbsoluteTimeGetCurrent();
 		 
 		 if (fetchTrack == nil) 
@@ -124,7 +125,7 @@ NSString *FetchLyricsForTrack(iTunesTrack *track, NSArray *plugIns);
 		 else
 		 {
 			 NSLog(@"Failed to find track for database ID %ld", trackDatabaseID);
-		 } 
+		 }
 	 }];
 }
 
