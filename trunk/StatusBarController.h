@@ -27,11 +27,17 @@
 
 #import <Foundation/Foundation.h>
 
-@class StatusView;
+@class LyricsFetcher, StatusView;
 
-@interface StatusBarController : NSObject
+@interface StatusBarController : NSObject <NSMenuDelegate>
 {
 	NSStatusItem *mainItem, *controllerItem;
+	NSMenuItem *progressMenuItem, *toggleFetchingMenuItem;
+	LyricsFetcher *lyricsFetcher;
+	
+	NSUInteger _processedTracksCount, _totalTracksCount;
+	BOOL _isFetchingAllLyrics;
+	BOOL _isObservingStatusBarController;
 }
 
 @property (nonatomic, weak) IBOutlet NSButton *playButton;

@@ -30,6 +30,8 @@
 
 @interface PlugInManager : NSObject
 
++ (PlugInManager *)defaultManager;
+
 @property (readonly, retain) NSArray *plugIns; // Array of loaded and validated NSBundle instances. Atomic!
 
 @end
