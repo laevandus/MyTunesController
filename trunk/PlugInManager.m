@@ -42,6 +42,20 @@
 @synthesize plugIns = _plugIns;
 
 
++ (PlugInManager *)defaultManager
+{
+	static PlugInManager *sharedPlugInManagerInstance = nil;
+	static dispatch_once_t sharedPlugInManagerPredicate;
+	
+	dispatch_once(&sharedPlugInManagerPredicate, ^
+				  {
+					  sharedPlugInManagerInstance = [[[self class] alloc] init];
+				  });
+	
+	return sharedPlugInManagerInstance;
+}
+
+
 - (id)init
 {
 	if ((self = [super init])) 

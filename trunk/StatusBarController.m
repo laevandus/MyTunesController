@@ -28,12 +28,54 @@
 #import "StatusBarController.h"
 #import "StatusView.h"
 #import "iTunesController.h"
+#import "LyricsFetcher.h"
+
+
+@interface StatusBarController()
+
+@property (nonatomic) NSUInteger processedTracksCount;
+@property (nonatomic) NSUInteger totalTracksCount;
+@property (nonatomic) BOOL isFetchingAllLyrics;
+
+- (void)addStatusBarControllerObservers;
+- (void)removeStatusBarControllerObservers;
+
+- (void)updateProgressMenuItem;
+
+- (void)toggleFetchingAllLyrics;
+- (void)startFetchingAllLyrics;
+- (void)stopFetchingAllLyrics;
+@end
 
 @implementation StatusBarController
+
+@synthesize processedTracksCount = _processedTracksCount;
+@synthesize totalTracksCount = _totalTracksCount;
+@synthesize isFetchingAllLyrics = _isFetchingAllLyrics;
 
 @synthesize playButton = _playButton;
 @synthesize statusView = _statusView;
 @synthesize sparkleController = _sparkleController;
+
+
+- (id)init 
+{
+    if ((self = [super init])) 
+	{
+        [self addStatusBarControllerObservers];
+    }
+	
+    return self;
+}
+
+
+- (void)dealloc 
+{
+    [self removeStatusBarControllerObservers];
+}
+
+
+#pragma mark Actions
 
 - (IBAction)playPrevious:(id)sender 
 {
@@ -53,17 +95,150 @@
 }
 
 
+#pragma mark KVO
+
+static void *FetchingAllLyricsContext = "FetchingAllLyricsContext";
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context 
+{
+    if (context == FetchingAllLyricsContext) 
+	{
+		if ([keyPath isEqualToString:@"processedTracksCount"]) 
+		{
+			if (self.totalTracksCount > 0 && self.processedTracksCount == self.totalTracksCount) 
+			{
+				self.isFetchingAllLyrics = NO;
+			}
+		}
+		
+		NSArray *modes = [[NSArray alloc] initWithObjects:NSRunLoopCommonModes, nil];
+		[[NSRunLoop currentRunLoop] performSelector:@selector(updateProgressMenuItem) target:self argument:nil order:1 modes:modes];
+    } 
+	else 
+	{
+        [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
+    }
+}
+
+
+- (void)addStatusBarControllerObservers
+{
+	if (!_isObservingStatusBarController) 
+	{
+		[self addObserver:self forKeyPath:@"processedTracksCount" options:NSKeyValueObservingOptionInitial context:FetchingAllLyricsContext];
+		[self addObserver:self forKeyPath:@"totalTracksCount" options:NSKeyValueObservingOptionInitial context:FetchingAllLyricsContext];
+		[self addObserver:self forKeyPath:@"isFetchingAllLyrics" options:NSKeyValueObservingOptionInitial context:FetchingAllLyricsContext];
+		
+		_isObservingStatusBarController = YES;
+	}
+}
+
+
+- (void)removeStatusBarControllerObservers
+{
+	if (_isObservingStatusBarController) 
+	{
+		[self removeObserver:self forKeyPath:@"processedTracksCount"];
+		[self removeObserver:self forKeyPath:@"totalTracksCount"];
+		[self removeObserver:self forKeyPath:@"isFetchingAllLyrics"];
+		
+		_isObservingStatusBarController = NO;
+	}
+}
+
+
+#pragma mark -
+
+- (void)toggleFetchingAllLyrics
+{
+	if (self.isFetchingAllLyrics) 
+	{
+		[self stopFetchingAllLyrics];
+	}
+	else
+	{
+		[self startFetchingAllLyrics];
+	}
+	
+	self.isFetchingAllLyrics = !self.isFetchingAllLyrics;
+}
+
+
+- (void)startFetchingAllLyrics
+{	
+	// Initialize lyrics fetcher
+	if (!lyricsFetcher) 
+	{
+		lyricsFetcher = [[LyricsFetcher alloc] init];
+		[lyricsFetcher setDelegate:self];
+	}
+	
+	dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+	dispatch_async(queue, ^
+				   {
+					   iTunesPlaylist *musicPlaylist = [[iTunesController sharedInstance] playlistWithName:@"Music"];
+					   
+					   if (musicPlaylist) 
+					   {			
+						   dispatch_sync(dispatch_get_main_queue(), ^
+										 {
+											 self.processedTracksCount = 0;
+											 self.totalTracksCount = [[musicPlaylist tracks] count];
+										 });
+						  
+						   
+						   [[musicPlaylist tracks] enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop)
+							{
+								BOOL hasLyrics = [[obj lyrics] length] > 0;
+								dispatch_sync(dispatch_get_main_queue(), ^
+											  {
+												  if (!hasLyrics) 
+												  {
+													  [lyricsFetcher fetchLyricsForTrack:obj];
+												  }
+												  else
+												  {
+													  NSLog(@"%s %@ - %@", __func__, [obj name], [obj artist]);
+													  self.processedTracksCount++;
+												  }
+											  });
+							}];
+					   }
+				   });
+}
+
+
+- (void)stopFetchingAllLyrics
+{
+	[lyricsFetcher cancelAllFetches];
+}
+
+
+#pragma mark LyricsFetcher Delegate
+
+- (void)lyricsFetcher:(LyricsFetcher *)fetcher didFetchLyrics:(NSString *)lyrics forTrack:(iTunesTrack *)track
+{
+	NSLog(@"%s length = %ld track = %@ - %@", __func__, [lyrics length],track.name, track.artist);
+	track.lyrics = lyrics;
+	
+	self.processedTracksCount++;
+}
+
+
+#pragma mark Updating UI
+
 - (void)addStatusItems
 {
-	if (controllerItem == nil) 
+	if (mainItem == nil) 
 	{
 		NSImage *statusIcon = [NSImage imageNamed:@"status_icon.png"];
-		controllerItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
-		[controllerItem setImage:statusIcon];
-		[controllerItem setHighlightMode:YES];
+		mainItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
+		[mainItem setImage:statusIcon];
+		[mainItem setHighlightMode:YES];
 		
 		NSMenu *mainMenu = [[NSMenu alloc] init];
 		[mainMenu setAutoenablesItems:NO];
+		[mainMenu setDelegate:self];
 		
 		NSMenuItem *theItem = [mainMenu addItemWithTitle:@"About"
 												  action:@selector(showAboutPanel)
@@ -82,7 +257,18 @@
 		
 		[mainMenu addItem:[NSMenuItem separatorItem]];
 		
-		theItem = [mainMenu addItemWithTitle:@"Lyrics..."
+		progressMenuItem = [mainMenu addItemWithTitle:@"Progress" action:nil keyEquivalent:@""];
+		[progressMenuItem setEnabled:NO];
+		[progressMenuItem setHidden:YES];
+		
+		toggleFetchingMenuItem = [mainMenu addItemWithTitle:@"Fetch All Lyrics" 
+													 action:@selector(toggleFetchingAllLyrics) 
+											  keyEquivalent:@""];
+		[toggleFetchingMenuItem setTarget:self];
+		
+		[mainMenu addItem:[NSMenuItem separatorItem]];
+		
+		theItem = [mainMenu addItemWithTitle:@"Show Lyrics..."
 									  action:@selector(showLyricsWindow)
 							   keyEquivalent:@""];
 		[theItem setTarget:[NSApp delegate]];
@@ -95,14 +281,14 @@
 							   keyEquivalent:@"Q"];
 		[theItem setTarget:NSApp];
 		
-		[controllerItem setMenu:mainMenu];
+		[mainItem setMenu:mainMenu];
 	}
 	
-	if (mainItem == nil) 
+	if (controllerItem == nil) 
 	{
-		mainItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
-		[mainItem setImage:[NSImage imageNamed:@"blank.png"]];
-		[mainItem setView:self.statusView];
+		controllerItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
+		[controllerItem setImage:[NSImage imageNamed:@"blank.png"]];
+		[controllerItem setView:self.statusView];
 		[self updatePlayButtonState];
 	}
 }
@@ -113,5 +299,33 @@
 	NSImage *playButtonImage = [NSImage imageNamed:[[iTunesController sharedInstance] isPlaying] ? @"pause" : @"play"];
 	[self.playButton setImage:playButtonImage];
 }
+
+
+- (void)updateProgressMenuItem
+{
+	// Update title
+	NSString *title = [NSString stringWithFormat:@"Processed: %ld of %ld", self.processedTracksCount, self.totalTracksCount];
+	[progressMenuItem setTitle:title];
+	
+	// Show/hide menu item
+	if (self.isFetchingAllLyrics && [progressMenuItem isHidden] && self.totalTracksCount > 0) 
+	{
+		// Show progress menu item
+		[progressMenuItem setHidden:NO];
+		
+		// Update title of the toggle menu item
+		[toggleFetchingMenuItem setTitle:@"Stop Fetching All Lyrics"];
+		
+	}
+	else if (!self.isFetchingAllLyrics && ![progressMenuItem isHidden])
+	{
+		// Hide progress menu item
+		[progressMenuItem setHidden:YES];
+		
+		// Update title of the toggle menu item
+		[toggleFetchingMenuItem setTitle:@"Fetch All Lyrics"];
+	}
+}
+
 
 @end

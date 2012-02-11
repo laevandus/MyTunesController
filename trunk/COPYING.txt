@@ -1,4 +1,4 @@
-//  Copyright (c) 2010 Toomas Vahter
+//  Copyright (c) 2012 Toomas Vahter
 //
 //  This content is released under the MIT License (http://www.opensource.org/licenses/mit-license.php).
 //  

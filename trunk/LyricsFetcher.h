@@ -35,15 +35,15 @@
 
 @interface LyricsFetcher : NSObject
 {
-	dispatch_queue_t fetchingQueue;
+	NSOperationQueue *fetchingQueue;
 }
 
-+ (LyricsFetcher *)sharedFetcher;
++ (LyricsFetcher *)defaultFetcher;
 
-@property (nonatomic, readonly, strong) PlugInManager *pluginManager;
 @property (nonatomic, weak) id delegate;
 
 - (void)fetchLyricsForTrack:(iTunesTrack *)track;
+- (void)cancelAllFetches;
 
 @end
 
