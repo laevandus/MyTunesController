@@ -29,8 +29,6 @@
 #import "iTunes.h"
 
 
-@class PlugInManager;
-
 @protocol LyricsFetcherDelegate;
 
 @interface LyricsFetcher : NSObject
@@ -42,6 +40,7 @@
 
 @property (nonatomic, weak) id delegate;
 
+- (void)fetchLyricsForTracks:(NSArray *)tracks;
 - (void)fetchLyricsForTrack:(iTunesTrack *)track;
 - (void)cancelAllFetches;
 
