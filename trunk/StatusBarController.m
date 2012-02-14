@@ -176,32 +176,31 @@ static void *FetchingAllLyricsContext = "FetchingAllLyricsContext";
 	dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
 	dispatch_async(queue, ^
 				   {
-					   iTunesPlaylist *musicPlaylist = [[iTunesController sharedInstance] playlistWithName:@"Music"];
+					   iTunesPlaylist *musicPlaylist = [[iTunesController sharedInstance] playlistWithName:@"FetchTest"];
 					   
 					   if (musicPlaylist) 
 					   {			
 						   dispatch_sync(dispatch_get_main_queue(), ^
 										 {
 											 self.processedTracksCount = 0;
-											 self.totalTracksCount = [[musicPlaylist tracks] count];
+											 self.totalTracksCount = 0;
 										 });
-						  
-						   
-						   [[musicPlaylist tracks] enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop)
-							{
-								BOOL hasLyrics = [[obj lyrics] length] > 0;
-								dispatch_sync(dispatch_get_main_queue(), ^
-											  {
-												  if (!hasLyrics) 
-												  {
-													  [lyricsFetcher fetchLyricsForTrack:obj];
-												  }
-												  else
-												  {
-													  self.processedTracksCount++;
-												  }
-											  });
-							}];
+
+						   // Find tracks without lyrics
+						   NSMutableArray *tracksWithoutLyrics = [[NSMutableArray alloc] init];
+						   [[musicPlaylist tracks] enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) 
+						   {
+							   if ([[obj lyrics] length] > 0) 
+							   {
+								   [tracksWithoutLyrics addObject:obj];
+							   }
+						   }];
+
+						   dispatch_sync(dispatch_get_main_queue(), ^
+										 {
+											 self.totalTracksCount = [tracksWithoutLyrics count];
+											 [lyricsFetcher fetchLyricsForTracks:tracksWithoutLyrics];
+										 });
 					   }
 				   });
 }

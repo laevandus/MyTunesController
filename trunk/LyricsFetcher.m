@@ -29,15 +29,7 @@
 #import "PlugInManager.h"
 #import "LyricsFetching.h"
 #import "iTunesController.h"
-
-
-@interface LyricsFetcher()
-- (void)finalizeFetchingWithInfo:(NSDictionary *)fetchInfo;
-
-void FetchLyricsForTrackDatabaseIDUsingPlugIns(NSInteger trackDatabaseID, NSArray *plugIns);
-iTunesTrack *SearchTrackWithDatabaseID(NSInteger trackDatabaseID);
-NSString *FetchLyricsForTrack(iTunesTrack *track, NSArray *plugIns);
-@end
+#import "FetchOperation.h"
 
 
 @implementation LyricsFetcher
@@ -75,6 +67,7 @@ NSString *FetchLyricsForTrack(iTunesTrack *track, NSArray *plugIns);
 - (void)dealloc
 {
 	[self cancelAllFetches];
+	[fetchingQueue waitUntilAllOperationsAreFinished];
 }
 
 
@@ -86,109 +79,24 @@ NSString *FetchLyricsForTrack(iTunesTrack *track, NSArray *plugIns);
 
 - (void)fetchLyricsForTrack:(iTunesTrack *)track
 {
-	// Get new reference which does not depend on currentTrack. currentTrack reference changes in the lifetime of the application and therefore I might get invalid object I am setting lyrics to in the delegate.
-	BOOL isCurrentTrack = ([track databaseID] == [[[iTunesController sharedInstance] currentTrack] databaseID]);
-	__block iTunesTrack *fetchTrack = isCurrentTrack ? nil : track;
-	
-	__block NSInteger trackDatabaseID = [track databaseID];
-	__block NSArray *plugIns = [[PlugInManager defaultManager] plugIns];
-	__block CGFloat minimumOperationTimeInSeconds = 0.250;
-	__block id selfReference = self;
-	
-	[fetchingQueue addOperationWithBlock:^
-	 {
-		 
-		 CFAbsoluteTime startTime = CFAbsoluteTimeGetCurrent();
-		 
-		 if (fetchTrack == nil) 
-		 {
-			 fetchTrack = SearchTrackWithDatabaseID(trackDatabaseID);
-		 }
-		 
-		 if (fetchTrack)
-		 {
-			 NSString *lyrics = FetchLyricsForTrack(fetchTrack, plugIns);
-			 
-			 // Tell delegate about the result on the main thread
-			 NSArray *modes = [NSArray arrayWithObject:NSRunLoopCommonModes];
-			 NSDictionary *fetchInfo = [NSDictionary dictionaryWithObjectsAndKeys:lyrics, @"lyrics", fetchTrack, @"track", nil];
-			 [selfReference performSelectorOnMainThread:@selector(finalizeFetchingWithInfo:) withObject:fetchInfo waitUntilDone:YES modes:modes];
-			 
-			 // Reduce the interval of querying websites
-			 CFAbsoluteTime spentTimeInSeconds = CFAbsoluteTimeGetCurrent() - startTime;
-			 
-			 if (spentTimeInSeconds < minimumOperationTimeInSeconds) 
-			 {
-				 usleep((minimumOperationTimeInSeconds - spentTimeInSeconds) * 1000000.0);
-			 }
-		 }
-		 else
-		 {
-			 NSLog(@"Failed to find track for database ID %ld", trackDatabaseID);
-		 }
-	 }];
+	[self fetchLyricsForTracks:[NSArray arrayWithObject:track]];
 }
 
 
-- (void)finalizeFetchingWithInfo:(NSDictionary *)fetchInfo
+- (void)fetchLyricsForTracks:(NSArray *)tracks
+{
+	FetchOperation *operation = [[FetchOperation alloc] initWithTracks:tracks];
+	[operation setDelegate:self];
+	[fetchingQueue addOperation:operation];
+}
+
+
+- (void)fetchOperation:(FetchOperation *)operation didFetchLyrics:(NSString *)lyrics forTrack:(iTunesTrack *)track
 {
 	if ([[self delegate] respondsToSelector:@selector(lyricsFetcher:didFetchLyrics:forTrack:)]) 
 	{
-		[[self delegate] lyricsFetcher:self didFetchLyrics:[fetchInfo objectForKey:@"lyrics"] forTrack:[fetchInfo objectForKey:@"track"]];
+		[[self delegate] lyricsFetcher:self didFetchLyrics:lyrics forTrack:track];
 	}
-}
-
-
-iTunesTrack *SearchTrackWithDatabaseID(NSInteger trackDatabaseID)
-{
-	__block iTunesTrack *track = nil;
-	iTunesPlaylist *musicPlaylist = [[iTunesController sharedInstance] playlistWithName:@"Music"];
-	
-	[[musicPlaylist tracks] enumerateObjectsUsingBlock:^(id object, NSUInteger index, BOOL *stop)
-	 {
-		 if ([object databaseID] == trackDatabaseID) 
-		 {
-			 track = (iTunesTrack *)object;
-			 *stop = YES;
-		 }
-	 }];
-	
-	return track;
-}
-
-
-NSString *FetchLyricsForTrack(iTunesTrack *track, NSArray *plugIns)
-{
-	// Track must have name and artist for fetching
-	NSString *fetchedLyrics = nil;
-	
-	if ([track.name length] && [track.artist length]) 
-	{
-		// Randomize plugins for distributing the load
-		NSUInteger offset = rand() % ([plugIns count] + 1);
-		id bundleInstance = nil;
-		
-		for (NSUInteger i = 0; i < [plugIns count]; i++) 
-		{
-			NSUInteger j = i + offset;
-			
-			if (j >= [plugIns count]) 
-			{
-				j = j - [plugIns count];
-			}
-			
-			bundleInstance = [plugIns objectAtIndex:j];
-			
-			fetchedLyrics = [(id<LyricsFetching>)bundleInstance lyricsForTrackName:[track name] artist:[track artist] album:[track album]];
-			
-			if ([fetchedLyrics length] > 0) 
-			{
-				break;
-			}
-		}
-	}
-	
-	return fetchedLyrics ? fetchedLyrics : @"";
 }
 
 
