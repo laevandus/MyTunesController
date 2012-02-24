@@ -62,7 +62,8 @@
 	{
 		BOOL isCurrentTrack = NO;
 		CFAbsoluteTime startTime;
-		CGFloat minimumOperationTimeInSeconds = 0.250;
+		CGFloat minimumOperationTimeInSeconds = 0.5;
+		NSUInteger currentTrackDatabaseID = 0;
 		iTunesTrack *track = nil;
 		
 		for (track in self.tracks) 
@@ -70,12 +71,13 @@
 			// Get new reference which does not depend on currentTrack. currentTrack reference changes in the lifetime of the application and therefore I might get invalid object I am setting lyrics to in the delegate.
 			startTime = CFAbsoluteTimeGetCurrent();
 			
-			isCurrentTrack = ([track databaseID] == [[[iTunesController sharedInstance] currentTrack] databaseID]);
+			currentTrackDatabaseID = [[[iTunesController sharedInstance] currentTrack] databaseID];
+			isCurrentTrack = ([track databaseID] == currentTrackDatabaseID);
 			track = isCurrentTrack ? nil : track;
 			
 			if (track == nil) 
 			{
-				track = [self _searchTrackWithDatabaseID:[[[iTunesController sharedInstance] currentTrack] databaseID]];
+				track = [self _searchTrackWithDatabaseID:currentTrackDatabaseID];
 			}
 			
 			if (track)
