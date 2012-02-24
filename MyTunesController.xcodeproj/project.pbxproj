@@ -37,6 +37,7 @@
 		C83E393D121450C300708ADE /* blank.png in Resources */ = {isa = PBXBuildFile; fileRef = C83E393C121450C300708ADE /* blank.png */; };
 		C84CCD4614E028CA000AC7B4 /* LoginItemManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C84CCD4514E028CA000AC7B4 /* LoginItemManager.m */; };
 		C87678D014E984020068E994 /* FetchOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = C87678CF14E984020068E994 /* FetchOperation.m */; };
+		C88E3DD114F8231F00C848D6 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C88E3DD014F8231F00C848D6 /* Localizable.strings */; };
 		C89FC95510F944970093B4A6 /* next.png in Resources */ = {isa = PBXBuildFile; fileRef = C89FC95110F944970093B4A6 /* next.png */; };
 		C89FC95610F944970093B4A6 /* pause.png in Resources */ = {isa = PBXBuildFile; fileRef = C89FC95210F944970093B4A6 /* pause.png */; };
 		C89FC95710F944970093B4A6 /* play.png in Resources */ = {isa = PBXBuildFile; fileRef = C89FC95310F944970093B4A6 /* play.png */; };
@@ -128,6 +129,7 @@
 		C84CCD4514E028CA000AC7B4 /* LoginItemManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginItemManager.m; sourceTree = "<group>"; };
 		C87678CE14E984020068E994 /* FetchOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FetchOperation.h; sourceTree = "<group>"; };
 		C87678CF14E984020068E994 /* FetchOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FetchOperation.m; sourceTree = "<group>"; };
+		C88E3DD014F8231F00C848D6 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		C89FC95110F944970093B4A6 /* next.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = next.png; sourceTree = "<group>"; };
 		C89FC95210F944970093B4A6 /* pause.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pause.png; sourceTree = "<group>"; };
 		C89FC95310F944970093B4A6 /* play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = play.png; sourceTree = "<group>"; };
@@ -263,6 +265,7 @@
 				8D1107310486CEB800E47090 /* MyTunesController-Info.plist */,
 				089C165CFE840E0CC02AAC07 /* InfoPlist.strings */,
 				1DDD58140DA1D0A300B32029 /* MainMenu.xib */,
+				C88E3DD014F8231F00C848D6 /* Localizable.strings */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -417,6 +420,7 @@
 				C803ED9514CC1256001568E3 /* AZLyrcis.bundle in Resources */,
 				C803ED9614CC1256001568E3 /* MetroLyrics.bundle in Resources */,
 				C803ED9714CC1256001568E3 /* PLyrics.bundle in Resources */,
+				C88E3DD114F8231F00C848D6 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
