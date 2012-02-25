@@ -196,8 +196,15 @@ static void *FetchingAllLyricsContext = "FetchingAllLyricsContext";
 			NSMutableArray *tracksWithoutLyrics = [[NSMutableArray alloc] init];
 			iTunesTrack *track = nil;
 			
+			NSArray *modes = [NSArray arrayWithObject:NSRunLoopCommonModes];
+			NSString *title = nil;
+			NSUInteger totalCount = [[musicPlaylist tracks] count];
+			NSUInteger currentIndex = 0;
+			
 			for (track in [musicPlaylist tracks]) 
 			{
+				currentIndex++;
+				
 				if ([track.lyrics length] == 0) 
 				{
 					[tracksWithoutLyrics addObject:track];
@@ -207,11 +214,14 @@ static void *FetchingAllLyricsContext = "FetchingAllLyricsContext";
 				{
 					break;
 				}
+				
+				// Update analyzing status
+				title = [NSString stringWithFormat:NSLocalizedString(@"Menu-item-analyzing-tracks-detailed", nil), currentIndex, totalCount];
+				[progressMenuItem performSelectorOnMainThread:@selector(setTitle:) withObject:title waitUntilDone:YES modes:modes];
 			}
 			
 			self.totalTracksCount = [tracksWithoutLyrics count];
 			
-			NSArray *modes = [NSArray arrayWithObject:NSRunLoopCommonModes];
 			[lyricsFetcher performSelectorOnMainThread:@selector(fetchLyricsForTracks:) withObject:tracksWithoutLyrics waitUntilDone:YES modes:modes];
 		}
 		else

@@ -38,7 +38,9 @@
 
 "Menu-item-analyzing-tracks" = "Analyzing tracks…";
 
-"Menu-item-processing-tracks-format" = "Processed: %1$ld of %2$ld";
+"Menu-item-analyzing-tracks-detailed" = "Analyzing %1$ld of %2$ld";
+
+"Menu-item-processing-tracks-format" = "Fetching %1$ld of %2$ld";
 
 "Menu-item-show-lyrics" = "Show Lyrics…";
 
