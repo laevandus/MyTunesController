@@ -33,6 +33,7 @@
 #import "StatusView.h"
 #import "StatusBarController.h"
 #import "LyricsWindowController.h"
+#import "NetworkReachability.h"
 
 
 @interface MyTunesControllerAppDelegate()
@@ -120,7 +121,7 @@
 	{
 		lyricsWindowController.track = newTrack;
 		
-		if ([[lyricsWindowController.track lyrics] length] == 0) 
+		if ([[lyricsWindowController.track lyrics] length] == 0 && [NetworkReachability hasInternetConnection]) 
 		{
 			// Start fetching
 			[[LyricsFetcher defaultFetcher] fetchLyricsForTrack:[lyricsWindowController track]];

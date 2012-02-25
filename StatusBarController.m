@@ -29,6 +29,7 @@
 #import "StatusView.h"
 #import "iTunesController.h"
 #import "LyricsFetcher.h"
+#import "NetworkReachability.h"
 
 
 @interface StatusBarController()
@@ -233,6 +234,7 @@ static void *FetchingAllLyricsContext = "FetchingAllLyricsContext";
 
 - (void)lyricsFetcher:(LyricsFetcher *)fetcher didFetchLyrics:(NSString *)lyrics forTrack:(iTunesTrack *)track
 {
+	// Lyrics are only fetched to the tracks without lyrics
 	track.lyrics = lyrics;
 	
 	self.processedTracksCount++;
