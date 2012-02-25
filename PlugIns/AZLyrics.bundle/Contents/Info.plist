@@ -3,17 +3,17 @@
 <plist version="1.0">
 <dict>
 	<key>BuildMachineOSBuild</key>
-	<string>11C74</string>
+	<string>11D50</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>English</string>
 	<key>CFBundleExecutable</key>
-	<string>AZLyrcis</string>
+	<string>AZLyrics</string>
 	<key>CFBundleIdentifier</key>
-	<string>toomasvahter.AZLyrcis</string>
+	<string>toomasvahter.AZLyrics</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>AZLyrcis</string>
+	<string>AZLyrics</string>
 	<key>CFBundlePackageType</key>
 	<string>BNDL</string>
 	<key>CFBundleShortVersionString</key>
@@ -43,18 +43,18 @@
 	<key>DTCompiler</key>
 	<string>com.apple.compilers.llvm.clang.1_0</string>
 	<key>DTPlatformBuild</key>
-	<string>4D502</string>
+	<string>4E109</string>
 	<key>DTPlatformVersion</key>
 	<string>GM</string>
 	<key>DTSDKBuild</key>
-	<string>11C63</string>
+	<string>11D50a</string>
 	<key>DTSDKName</key>
 	<string>macosx10.7</string>
 	<key>DTXcode</key>
-	<string>0421</string>
+	<string>0430</string>
 	<key>DTXcodeBuild</key>
-	<string>4D502</string>
+	<string>4E109</string>
 	<key>NSHumanReadableCopyright</key>
-	<string>Copyright © 2011 Toomas Vahter. All rights reserved.</string>
+	<string>Copyright © 2012 Toomas Vahter. All rights reserved. AZLyrics is a trademark of AZLyrics.com.</string>
 </dict>
 </plist>
