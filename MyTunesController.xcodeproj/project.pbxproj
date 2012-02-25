@@ -17,9 +17,9 @@
 		C803ED9514CC1256001568E3 /* AZLyrcis.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C803ED9214CC1256001568E3 /* AZLyrcis.bundle */; };
 		C803ED9614CC1256001568E3 /* MetroLyrics.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C803ED9314CC1256001568E3 /* MetroLyrics.bundle */; };
 		C803ED9714CC1256001568E3 /* PLyrics.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C803ED9414CC1256001568E3 /* PLyrics.bundle */; };
-		C803EDDC14CC3208001568E3 /* AZLyrcis.bundle in Copy Files */ = {isa = PBXBuildFile; fileRef = C803ED9214CC1256001568E3 /* AZLyrcis.bundle */; };
-		C803EDDD14CC320B001568E3 /* MetroLyrics.bundle in Copy Files */ = {isa = PBXBuildFile; fileRef = C803ED9314CC1256001568E3 /* MetroLyrics.bundle */; };
-		C803EDDE14CC320D001568E3 /* PLyrics.bundle in Copy Files */ = {isa = PBXBuildFile; fileRef = C803ED9414CC1256001568E3 /* PLyrics.bundle */; };
+		C803EDDC14CC3208001568E3 /* AZLyrcis.bundle in Copy PlugIns */ = {isa = PBXBuildFile; fileRef = C803ED9214CC1256001568E3 /* AZLyrcis.bundle */; };
+		C803EDDD14CC320B001568E3 /* MetroLyrics.bundle in Copy PlugIns */ = {isa = PBXBuildFile; fileRef = C803ED9314CC1256001568E3 /* MetroLyrics.bundle */; };
+		C803EDDE14CC320D001568E3 /* PLyrics.bundle in Copy PlugIns */ = {isa = PBXBuildFile; fileRef = C803ED9414CC1256001568E3 /* PLyrics.bundle */; };
 		C8214EA910E6AB7D008D012C /* StatusView.m in Sources */ = {isa = PBXBuildFile; fileRef = C8214EA810E6AB7D008D012C /* StatusView.m */; };
 		C8214EAE10E6ABC8008D012C /* StatusBarButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C8214EAD10E6ABC8008D012C /* StatusBarButtonCell.m */; };
 		C8214EE610E6AE8B008D012C /* ScriptingBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8214EE510E6AE8B008D012C /* ScriptingBridge.framework */; };
@@ -46,7 +46,7 @@
 		C8BF8EE11284AB9700BB5CAC /* iTunesTrackDurationValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = C8BF8EE01284AB9700BB5CAC /* iTunesTrackDurationValueTransformer.m */; };
 		C8BF8EE61284AD4500BB5CAC /* iTunesTrackArtworkValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = C8BF8EE51284AD4500BB5CAC /* iTunesTrackArtworkValueTransformer.m */; };
 		C8CCE8AE14CB67D2008A7FCF /* LyricsBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = C8CCE8AD14CB67D2008A7FCF /* LyricsBackgroundView.m */; };
-		C8D0C08614F7BDB40098B433 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = C8ECFF4314CA1DDD00703971 /* Sparkle.framework */; };
+		C8D0C08614F7BDB40098B433 /* Sparkle.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = C8ECFF4314CA1DDD00703971 /* Sparkle.framework */; };
 		C8D98D9C12032CD200356DC1 /* ImageScaler.m in Sources */ = {isa = PBXBuildFile; fileRef = C8D98D9B12032CD200356DC1 /* ImageScaler.m */; };
 		C8DA653B113999A60069460B /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = C8DA6539113999A60069460B /* dsa_pub.pem */; };
 		C8E933C41200BB0B00F4D6BD /* LayerTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = C8E933C31200BB0B00F4D6BD /* LayerTextField.m */; };
@@ -58,27 +58,28 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		C85D371811399372006FEE88 /* Copy Files */ = {
+		C85D371811399372006FEE88 /* Copy PlugIns */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 12;
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				C803EDDC14CC3208001568E3 /* AZLyrcis.bundle in Copy Files */,
-				C803EDDD14CC320B001568E3 /* MetroLyrics.bundle in Copy Files */,
-				C803EDDE14CC320D001568E3 /* PLyrics.bundle in Copy Files */,
+				C803EDDC14CC3208001568E3 /* AZLyrcis.bundle in Copy PlugIns */,
+				C803EDDD14CC320B001568E3 /* MetroLyrics.bundle in Copy PlugIns */,
+				C803EDDE14CC320D001568E3 /* PLyrics.bundle in Copy PlugIns */,
 			);
-			name = "Copy Files";
+			name = "Copy PlugIns";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C8D0C08514F7BDAA0098B433 /* CopyFiles */ = {
+		C8D0C08514F7BDAA0098B433 /* Copy Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				C8D0C08614F7BDB40098B433 /* Sparkle.framework in CopyFiles */,
+				C8D0C08614F7BDB40098B433 /* Sparkle.framework in Copy Frameworks */,
 			);
+			name = "Copy Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -357,8 +358,8 @@
 				8D1107290486CEB800E47090 /* Resources */,
 				8D11072C0486CEB800E47090 /* Sources */,
 				8D11072E0486CEB800E47090 /* Frameworks */,
-				C85D371811399372006FEE88 /* Copy Files */,
-				C8D0C08514F7BDAA0098B433 /* CopyFiles */,
+				C85D371811399372006FEE88 /* Copy PlugIns */,
+				C8D0C08514F7BDAA0098B433 /* Copy Frameworks */,
 			);
 			buildRules = (
 			);
