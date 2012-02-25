@@ -76,31 +76,26 @@
 
 - (void)windowDidBecomeKey:(NSNotification *)notification
 {
-	NSRect visibleRect = [self.lyricsScrollView documentVisibleRect];
 	self.textColor = [NSColor colorWithDeviceWhite:0.9 alpha:1.0];
-	[[self.lyricsScrollView documentView] scrollRectToVisible:visibleRect];
 }
 
 
 - (void)windowDidResignKey:(NSNotification *)notification
 {
-	NSRect visibleRect = [self.lyricsScrollView documentVisibleRect];
 	self.textColor = [NSColor lightGrayColor];
-	[[self.lyricsScrollView documentView] scrollRectToVisible:visibleRect];
 }
 
 
 + (NSSet *)keyPathsForValuesAffectingAttributedLyrics 
 {
-    return [NSSet setWithObjects:@"track", @"track.lyrics", @"textColor", nil];
+    return [NSSet setWithObjects:@"track", @"track.lyrics", nil];
 }
 
 
 - (NSAttributedString *)attributedLyrics
 {
-	NSDictionary *textAttributes = [[NSDictionary alloc] initWithObjectsAndKeys:
-									self.textColor, NSForegroundColorAttributeName, 
-									nil];
+	NSColor *lyricsColor = [NSColor colorWithDeviceWhite:0.9 alpha:1.0];
+	NSDictionary *textAttributes = [[NSDictionary alloc] initWithObjectsAndKeys:lyricsColor, NSForegroundColorAttributeName, nil];
 	return [[self.track lyrics] length] ? [[NSAttributedString alloc] initWithString:[self.track lyrics] attributes:textAttributes] : nil;
 }
 
