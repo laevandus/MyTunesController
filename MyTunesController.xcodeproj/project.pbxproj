@@ -17,9 +17,9 @@
 		C803ED9514CC1256001568E3 /* AZLyrcis.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C803ED9214CC1256001568E3 /* AZLyrcis.bundle */; };
 		C803ED9614CC1256001568E3 /* MetroLyrics.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C803ED9314CC1256001568E3 /* MetroLyrics.bundle */; };
 		C803ED9714CC1256001568E3 /* PLyrics.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C803ED9414CC1256001568E3 /* PLyrics.bundle */; };
-		C803EDDC14CC3208001568E3 /* AZLyrcis.bundle in Copy Files */ = {isa = PBXBuildFile; fileRef = C803ED9214CC1256001568E3 /* AZLyrcis.bundle */; };
-		C803EDDD14CC320B001568E3 /* MetroLyrics.bundle in Copy Files */ = {isa = PBXBuildFile; fileRef = C803ED9314CC1256001568E3 /* MetroLyrics.bundle */; };
-		C803EDDE14CC320D001568E3 /* PLyrics.bundle in Copy Files */ = {isa = PBXBuildFile; fileRef = C803ED9414CC1256001568E3 /* PLyrics.bundle */; };
+		C803EDDC14CC3208001568E3 /* AZLyrcis.bundle in Copy PlugIns */ = {isa = PBXBuildFile; fileRef = C803ED9214CC1256001568E3 /* AZLyrcis.bundle */; };
+		C803EDDD14CC320B001568E3 /* MetroLyrics.bundle in Copy PlugIns */ = {isa = PBXBuildFile; fileRef = C803ED9314CC1256001568E3 /* MetroLyrics.bundle */; };
+		C803EDDE14CC320D001568E3 /* PLyrics.bundle in Copy PlugIns */ = {isa = PBXBuildFile; fileRef = C803ED9414CC1256001568E3 /* PLyrics.bundle */; };
 		C8214EA910E6AB7D008D012C /* StatusView.m in Sources */ = {isa = PBXBuildFile; fileRef = C8214EA810E6AB7D008D012C /* StatusView.m */; };
 		C8214EAE10E6ABC8008D012C /* StatusBarButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C8214EAD10E6ABC8008D012C /* StatusBarButtonCell.m */; };
 		C8214EE610E6AE8B008D012C /* ScriptingBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8214EE510E6AE8B008D012C /* ScriptingBridge.framework */; };
@@ -37,15 +37,18 @@
 		C83E393D121450C300708ADE /* blank.png in Resources */ = {isa = PBXBuildFile; fileRef = C83E393C121450C300708ADE /* blank.png */; };
 		C84CCD4614E028CA000AC7B4 /* LoginItemManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C84CCD4514E028CA000AC7B4 /* LoginItemManager.m */; };
 		C87678D014E984020068E994 /* FetchOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = C87678CF14E984020068E994 /* FetchOperation.m */; };
+		C88E3DD114F8231F00C848D6 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C88E3DD014F8231F00C848D6 /* Localizable.strings */; };
 		C89FC95510F944970093B4A6 /* next.png in Resources */ = {isa = PBXBuildFile; fileRef = C89FC95110F944970093B4A6 /* next.png */; };
 		C89FC95610F944970093B4A6 /* pause.png in Resources */ = {isa = PBXBuildFile; fileRef = C89FC95210F944970093B4A6 /* pause.png */; };
 		C89FC95710F944970093B4A6 /* play.png in Resources */ = {isa = PBXBuildFile; fileRef = C89FC95310F944970093B4A6 /* play.png */; };
 		C89FC95810F944970093B4A6 /* previous.png in Resources */ = {isa = PBXBuildFile; fileRef = C89FC95410F944970093B4A6 /* previous.png */; };
+		C8B14EB414F8FD2D00C6FDC2 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8B14EB314F8FD2D00C6FDC2 /* SystemConfiguration.framework */; };
+		C8B14EB714F8FD4F00C6FDC2 /* NetworkReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = C8B14EB614F8FD4F00C6FDC2 /* NetworkReachability.m */; };
 		C8BF8EC01284A86300BB5CAC /* iTunesTrackRatingValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = C8BF8EBF1284A86300BB5CAC /* iTunesTrackRatingValueTransformer.m */; };
 		C8BF8EE11284AB9700BB5CAC /* iTunesTrackDurationValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = C8BF8EE01284AB9700BB5CAC /* iTunesTrackDurationValueTransformer.m */; };
 		C8BF8EE61284AD4500BB5CAC /* iTunesTrackArtworkValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = C8BF8EE51284AD4500BB5CAC /* iTunesTrackArtworkValueTransformer.m */; };
 		C8CCE8AE14CB67D2008A7FCF /* LyricsBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = C8CCE8AD14CB67D2008A7FCF /* LyricsBackgroundView.m */; };
-		C8D0C08614F7BDB40098B433 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = C8ECFF4314CA1DDD00703971 /* Sparkle.framework */; };
+		C8D0C08614F7BDB40098B433 /* Sparkle.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = C8ECFF4314CA1DDD00703971 /* Sparkle.framework */; };
 		C8D98D9C12032CD200356DC1 /* ImageScaler.m in Sources */ = {isa = PBXBuildFile; fileRef = C8D98D9B12032CD200356DC1 /* ImageScaler.m */; };
 		C8DA653B113999A60069460B /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = C8DA6539113999A60069460B /* dsa_pub.pem */; };
 		C8E933C41200BB0B00F4D6BD /* LayerTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = C8E933C31200BB0B00F4D6BD /* LayerTextField.m */; };
@@ -57,27 +60,28 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		C85D371811399372006FEE88 /* Copy Files */ = {
+		C85D371811399372006FEE88 /* Copy PlugIns */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 12;
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				C803EDDC14CC3208001568E3 /* AZLyrcis.bundle in Copy Files */,
-				C803EDDD14CC320B001568E3 /* MetroLyrics.bundle in Copy Files */,
-				C803EDDE14CC320D001568E3 /* PLyrics.bundle in Copy Files */,
+				C803EDDC14CC3208001568E3 /* AZLyrcis.bundle in Copy PlugIns */,
+				C803EDDD14CC320B001568E3 /* MetroLyrics.bundle in Copy PlugIns */,
+				C803EDDE14CC320D001568E3 /* PLyrics.bundle in Copy PlugIns */,
 			);
-			name = "Copy Files";
+			name = "Copy PlugIns";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C8D0C08514F7BDAA0098B433 /* CopyFiles */ = {
+		C8D0C08514F7BDAA0098B433 /* Copy Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				C8D0C08614F7BDB40098B433 /* Sparkle.framework in CopyFiles */,
+				C8D0C08614F7BDB40098B433 /* Sparkle.framework in Copy Frameworks */,
 			);
+			name = "Copy Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -128,10 +132,14 @@
 		C84CCD4514E028CA000AC7B4 /* LoginItemManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginItemManager.m; sourceTree = "<group>"; };
 		C87678CE14E984020068E994 /* FetchOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FetchOperation.h; sourceTree = "<group>"; };
 		C87678CF14E984020068E994 /* FetchOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FetchOperation.m; sourceTree = "<group>"; };
+		C88E3DD014F8231F00C848D6 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		C89FC95110F944970093B4A6 /* next.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = next.png; sourceTree = "<group>"; };
 		C89FC95210F944970093B4A6 /* pause.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pause.png; sourceTree = "<group>"; };
 		C89FC95310F944970093B4A6 /* play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = play.png; sourceTree = "<group>"; };
 		C89FC95410F944970093B4A6 /* previous.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = previous.png; sourceTree = "<group>"; };
+		C8B14EB314F8FD2D00C6FDC2 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		C8B14EB514F8FD4F00C6FDC2 /* NetworkReachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkReachability.h; sourceTree = "<group>"; };
+		C8B14EB614F8FD4F00C6FDC2 /* NetworkReachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkReachability.m; sourceTree = "<group>"; };
 		C8BF8EBE1284A86300BB5CAC /* iTunesTrackRatingValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iTunesTrackRatingValueTransformer.h; sourceTree = "<group>"; };
 		C8BF8EBF1284A86300BB5CAC /* iTunesTrackRatingValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iTunesTrackRatingValueTransformer.m; sourceTree = "<group>"; };
 		C8BF8EDF1284AB9700BB5CAC /* iTunesTrackDurationValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iTunesTrackDurationValueTransformer.h; sourceTree = "<group>"; };
@@ -165,6 +173,7 @@
 				C8214EEA10E6AE97008D012C /* QuartzCore.framework in Frameworks */,
 				C82BB73710EE3F7000B24464 /* CoreServices.framework in Frameworks */,
 				C8ECFF4414CA1DDD00703971 /* Sparkle.framework in Frameworks */,
+				C8B14EB414F8FD2D00C6FDC2 /* SystemConfiguration.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -198,6 +207,7 @@
 		1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C8B14EB314F8FD2D00C6FDC2 /* SystemConfiguration.framework */,
 				C8ECFF4314CA1DDD00703971 /* Sparkle.framework */,
 				1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */,
 				C8214EE510E6AE8B008D012C /* ScriptingBridge.framework */,
@@ -263,6 +273,7 @@
 				8D1107310486CEB800E47090 /* MyTunesController-Info.plist */,
 				089C165CFE840E0CC02AAC07 /* InfoPlist.strings */,
 				1DDD58140DA1D0A300B32029 /* MainMenu.xib */,
+				C88E3DD014F8231F00C848D6 /* Localizable.strings */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -338,6 +349,8 @@
 				C803ED6514CBF985001568E3 /* LyricsFetching.h */,
 				C87678CE14E984020068E994 /* FetchOperation.h */,
 				C87678CF14E984020068E994 /* FetchOperation.m */,
+				C8B14EB514F8FD4F00C6FDC2 /* NetworkReachability.h */,
+				C8B14EB614F8FD4F00C6FDC2 /* NetworkReachability.m */,
 				C803ED6614CBF985001568E3 /* PlugInManager.h */,
 				C803ED6714CBF985001568E3 /* PlugInManager.m */,
 			);
@@ -354,8 +367,8 @@
 				8D1107290486CEB800E47090 /* Resources */,
 				8D11072C0486CEB800E47090 /* Sources */,
 				8D11072E0486CEB800E47090 /* Frameworks */,
-				C85D371811399372006FEE88 /* Copy Files */,
-				C8D0C08514F7BDAA0098B433 /* CopyFiles */,
+				C85D371811399372006FEE88 /* Copy PlugIns */,
+				C8D0C08514F7BDAA0098B433 /* Copy Frameworks */,
 			);
 			buildRules = (
 			);
@@ -417,6 +430,7 @@
 				C803ED9514CC1256001568E3 /* AZLyrcis.bundle in Resources */,
 				C803ED9614CC1256001568E3 /* MetroLyrics.bundle in Resources */,
 				C803ED9714CC1256001568E3 /* PLyrics.bundle in Resources */,
+				C88E3DD114F8231F00C848D6 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -447,6 +461,7 @@
 				C803ED6914CBF985001568E3 /* PlugInManager.m in Sources */,
 				C84CCD4614E028CA000AC7B4 /* LoginItemManager.m in Sources */,
 				C87678D014E984020068E994 /* FetchOperation.m in Sources */,
+				C8B14EB714F8FD4F00C6FDC2 /* NetworkReachability.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

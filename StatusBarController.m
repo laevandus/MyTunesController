@@ -29,6 +29,7 @@
 #import "StatusView.h"
 #import "iTunesController.h"
 #import "LyricsFetcher.h"
+#import "NetworkReachability.h"
 
 
 @interface StatusBarController()
@@ -195,8 +196,15 @@ static void *FetchingAllLyricsContext = "FetchingAllLyricsContext";
 			NSMutableArray *tracksWithoutLyrics = [[NSMutableArray alloc] init];
 			iTunesTrack *track = nil;
 			
+			NSArray *modes = [NSArray arrayWithObject:NSRunLoopCommonModes];
+			NSString *title = nil;
+			NSUInteger totalCount = [[musicPlaylist tracks] count];
+			NSUInteger currentIndex = 0;
+			
 			for (track in [musicPlaylist tracks]) 
 			{
+				currentIndex++;
+				
 				if ([track.lyrics length] == 0) 
 				{
 					[tracksWithoutLyrics addObject:track];
@@ -206,11 +214,14 @@ static void *FetchingAllLyricsContext = "FetchingAllLyricsContext";
 				{
 					break;
 				}
+				
+				// Update analyzing status
+				title = [NSString stringWithFormat:NSLocalizedString(@"Menu-item-analyzing-tracks-detailed", nil), currentIndex, totalCount];
+				[progressMenuItem performSelectorOnMainThread:@selector(setTitle:) withObject:title waitUntilDone:YES modes:modes];
 			}
 			
 			self.totalTracksCount = [tracksWithoutLyrics count];
 			
-			NSArray *modes = [NSArray arrayWithObject:NSRunLoopCommonModes];
 			[lyricsFetcher performSelectorOnMainThread:@selector(fetchLyricsForTracks:) withObject:tracksWithoutLyrics waitUntilDone:YES modes:modes];
 		}
 		else
@@ -233,6 +244,7 @@ static void *FetchingAllLyricsContext = "FetchingAllLyricsContext";
 
 - (void)lyricsFetcher:(LyricsFetcher *)fetcher didFetchLyrics:(NSString *)lyrics forTrack:(iTunesTrack *)track
 {
+	// Lyrics are only fetched to the tracks without lyrics
 	track.lyrics = lyrics;
 	
 	self.processedTracksCount++;
@@ -254,17 +266,17 @@ static void *FetchingAllLyricsContext = "FetchingAllLyricsContext";
 		[mainMenu setAutoenablesItems:NO];
 		[mainMenu setDelegate:self];
 		
-		NSMenuItem *theItem = [mainMenu addItemWithTitle:@"About"
+		NSMenuItem *theItem = [mainMenu addItemWithTitle:NSLocalizedString(@"Menu-item-about", nil)
 												  action:@selector(showAboutPanel)
 										   keyEquivalent:@""];
 		[theItem setTarget:[NSApp delegate]];
 		
-		theItem = [mainMenu addItemWithTitle:@"Check for Updates..."
+		theItem = [mainMenu addItemWithTitle:NSLocalizedString(@"Menu-item-check-for-updates", nil)
 									  action:@selector(checkForUpdates:)
 							   keyEquivalent:@""];
 		[theItem setTarget:self.sparkleController];
 		
-		theItem = [mainMenu addItemWithTitle:@"Preferences..."
+		theItem = [mainMenu addItemWithTitle:NSLocalizedString(@"Menu-item-preferences", nil)
 									  action:@selector(showPreferencesWindow)
 							   keyEquivalent:@""];
 		[theItem setTarget:[NSApp delegate]];
@@ -275,14 +287,14 @@ static void *FetchingAllLyricsContext = "FetchingAllLyricsContext";
 		[progressMenuItem setEnabled:NO];
 		[progressMenuItem setHidden:YES];
 		
-		toggleFetchingMenuItem = [mainMenu addItemWithTitle:@"Fetch All Lyrics" 
+		toggleFetchingMenuItem = [mainMenu addItemWithTitle:NSLocalizedString(@"Menu-item-fetch-all-lyrics", nil)
 													 action:@selector(toggleFetchingAllLyrics) 
 											  keyEquivalent:@""];
 		[toggleFetchingMenuItem setTarget:self];
 		
 		[mainMenu addItem:[NSMenuItem separatorItem]];
 		
-		theItem = [mainMenu addItemWithTitle:@"Show Lyrics..."
+		theItem = [mainMenu addItemWithTitle:NSLocalizedString(@"Menu-item-show-lyrics", nil)
 									  action:@selector(showLyricsWindow)
 							   keyEquivalent:@""];
 		[theItem setTarget:[NSApp delegate]];
@@ -290,7 +302,7 @@ static void *FetchingAllLyricsContext = "FetchingAllLyricsContext";
 		[mainMenu addItem:[NSMenuItem separatorItem]];
 		
 		
-		theItem = [mainMenu addItemWithTitle:@"Quit"
+		theItem = [mainMenu addItemWithTitle:NSLocalizedString(@"Menu-item-quit", nil)
 									  action:@selector(terminate:)
 							   keyEquivalent:@"Q"];
 		[theItem setTarget:NSApp];
@@ -321,25 +333,26 @@ static void *FetchingAllLyricsContext = "FetchingAllLyricsContext";
 	{
 		if (self.totalTracksCount > 0) 
 		{
-			NSString *title = [NSString stringWithFormat:@"Processed: %ld of %ld", self.processedTracksCount, self.totalTracksCount];
+			NSString *format = NSLocalizedString(@"Menu-item-processing-tracks-format", nil);
+			NSString *title = [NSString stringWithFormat:format, self.processedTracksCount, self.totalTracksCount];
 			[progressMenuItem setTitle:title];
 		}
 		else
 		{
 			// Still processing tracks
-			[progressMenuItem setTitle:@"Analyzing tracks…"];
+			[progressMenuItem setTitle:NSLocalizedString(@"Menu-item-analyzing-tracks", nil)];
 		}
 		
 		if ([progressMenuItem isHidden]) 
 		{
 			[progressMenuItem setHidden:NO];
-			[toggleFetchingMenuItem setTitle:@"Stop Fetching All Lyrics"];
+			[toggleFetchingMenuItem setTitle:NSLocalizedString(@"Menu-item-stop-fetching-lyrics", nil)];
 		}
 	}
 	else
 	{
 		[progressMenuItem setHidden:YES];
-		[toggleFetchingMenuItem setTitle:@"Fetch All Lyrics"];
+		[toggleFetchingMenuItem setTitle:NSLocalizedString(@"Menu-item-fetch-all-lyrics", nil)];
 	}
 }
 

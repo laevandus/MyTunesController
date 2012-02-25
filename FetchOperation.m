@@ -30,6 +30,7 @@
 #import "PlugInManager.h"
 #import "iTunesController.h"
 #import "LyricsFetching.h"
+#import "NetworkReachability.h"
 
 
 @interface FetchOperation()
@@ -62,53 +63,72 @@
 	{
 		BOOL isCurrentTrack = NO;
 		CFAbsoluteTime startTime;
-		CGFloat minimumOperationTimeInSeconds = 0.250;
+		CGFloat minimumOperationTimeInSeconds = 0.5;
+		NSUInteger currentTrackDatabaseID = 0;
+		NSUInteger trackCounter = 0;
 		iTunesTrack *track = nil;
+		
+		NSArray *modes = [NSArray arrayWithObject:NSRunLoopCommonModes];
+		NSDictionary *fetchInfo = nil;
 		
 		for (track in self.tracks) 
 		{
-			// Get new reference which does not depend on currentTrack. currentTrack reference changes in the lifetime of the application and therefore I might get invalid object I am setting lyrics to in the delegate.
-			startTime = CFAbsoluteTimeGetCurrent();
-			
-			isCurrentTrack = ([track databaseID] == [[[iTunesController sharedInstance] currentTrack] databaseID]);
-			track = isCurrentTrack ? nil : track;
-			
-			if (track == nil) 
+			if ([NetworkReachability hasInternetConnection]) 
 			{
-				track = [self _searchTrackWithDatabaseID:[[[iTunesController sharedInstance] currentTrack] databaseID]];
-			}
-			
-			if (track)
-			{
-				NSString *lyrics = [self _fetchLyricsForTrack:track];
+				// Get new reference which does not depend on currentTrack. currentTrack reference changes in the lifetime of the application and therefore I might get invalid object I am setting lyrics to in the delegate.
+				startTime = CFAbsoluteTimeGetCurrent();
 				
-				if ([self isCancelled]) 
+				currentTrackDatabaseID = [[[iTunesController sharedInstance] currentTrack] databaseID];
+				isCurrentTrack = ([track databaseID] == currentTrackDatabaseID);
+				track = isCurrentTrack ? nil : track;
+				
+				if (track == nil) 
 				{
-					break;
+					track = [self _searchTrackWithDatabaseID:currentTrackDatabaseID];
 				}
 				
-				// Tell delegate about the result on the main thread
-				NSArray *modes = [NSArray arrayWithObject:NSRunLoopCommonModes];
-				NSDictionary *fetchInfo = [NSDictionary dictionaryWithObjectsAndKeys:lyrics, @"lyrics", track, @"track", nil];
+				if (track)
+				{
+					NSString *lyrics = [self _fetchLyricsForTrack:track];
+					
+					if ([self isCancelled]) 
+					{
+						break;
+					}
+					
+					// Tell delegate about the result on the main thread
+					fetchInfo = [NSDictionary dictionaryWithObjectsAndKeys:lyrics, @"lyrics", track, @"track", nil];
+					[self performSelectorOnMainThread:@selector(finalizeFetchingWithInfo:) withObject:fetchInfo waitUntilDone:YES modes:modes];
+					
+					// Reduce the interval of querying websites
+					CFAbsoluteTime spentTimeInSeconds = CFAbsoluteTimeGetCurrent() - startTime;
+					
+					if (spentTimeInSeconds < minimumOperationTimeInSeconds) 
+					{
+						usleep((minimumOperationTimeInSeconds - spentTimeInSeconds) * 1000000.0);
+					}
+				}
+				else
+				{
+					NSLog(@"Failed to find track for database ID %ld", [track databaseID]);
+				}
+			}
+			else 
+			{
+				// Internet connection is down, tell delegate we did not get any lyrics
+				fetchInfo = [NSDictionary dictionaryWithObjectsAndKeys:@"", @"lyrics", track, @"track", nil];
 				[self performSelectorOnMainThread:@selector(finalizeFetchingWithInfo:) withObject:fetchInfo waitUntilDone:YES modes:modes];
 				
-				// Reduce the interval of querying websites
-				CFAbsoluteTime spentTimeInSeconds = CFAbsoluteTimeGetCurrent() - startTime;
-				
-				if (spentTimeInSeconds < minimumOperationTimeInSeconds) 
-				{
-					usleep((minimumOperationTimeInSeconds - spentTimeInSeconds) * 1000000.0);
-				}
-			}
-			else
-			{
-				NSLog(@"Failed to find track for database ID %ld", [track databaseID]);
+				// Wait a little bit before checking internet connection again
+				usleep(20000);
 			}
 			
 			if ([self isCancelled]) 
 			{
 				break;
 			}
+			
+			trackCounter++;
 		}
 	}
 }
