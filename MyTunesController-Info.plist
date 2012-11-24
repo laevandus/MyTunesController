@@ -7,7 +7,7 @@
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
 	<key>CFBundleIconFile</key>
-	<string>app_icon.icns</string>
+	<string>mytunescontroller.icns</string>
 	<key>CFBundleIdentifier</key>
 	<string>com.toomasvahter.${PRODUCT_NAME:rfc1034identifier}</string>
 	<key>CFBundleInfoDictionaryVersion</key>

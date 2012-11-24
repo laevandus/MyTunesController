@@ -60,9 +60,9 @@
 			}
 			
 			if (duration < 10) 
-				value = [NSString stringWithFormat:@"%d:0%d", minutes, duration];
+				value = [NSString stringWithFormat:@"%ld:0%ld", minutes, duration];
 			else 
-				value = [NSString stringWithFormat:@"%d:%d", minutes, duration];
+				value = [NSString stringWithFormat:@"%ld:%ld", minutes, duration];
 		}
 		else 
 		{

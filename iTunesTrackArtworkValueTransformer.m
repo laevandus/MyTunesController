@@ -72,7 +72,7 @@
 			artworkImage = [[NSImage alloc] initWithData:artwork.rawData];
 		
 		if (artworkImage == nil) 
-			artworkImage = [NSImage imageNamed:@"app_icon.icns"];
+			artworkImage = [NSImage imageNamed:@"mytunescontroller"];
 		
 		value = [ImageScaler scaleImage:artworkImage fillSize:self.artworkSize];
 	}
