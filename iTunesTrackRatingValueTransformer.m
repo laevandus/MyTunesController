@@ -27,7 +27,6 @@
 
 #import "iTunesTrackRatingValueTransformer.h"
 
-
 @implementation iTunesTrackRatingValueTransformer
 
 + (Class)transformedValueClass 
@@ -46,8 +45,8 @@
 {
 	if ([value isKindOfClass:[NSNumber class]]) 
 	{
-		CGFloat floatValue = [value floatValue];
-		value = [NSNumber numberWithFloat:floatValue/20.f];
+		double doubleValue = [value doubleValue];
+		value = @(doubleValue / 20.f);
 	}
 	
 	return value;
@@ -57,8 +56,8 @@
 {
 	if ([value isKindOfClass:[NSNumber class]]) 
 	{
-		CGFloat floatValue = [value floatValue];
-		value = [NSNumber numberWithFloat:floatValue * 20.f];
+		double doubleValue = [value doubleValue];
+		value = @(doubleValue * 20.f);
 	}
 	
 	return value;

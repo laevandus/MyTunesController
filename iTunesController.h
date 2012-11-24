@@ -28,7 +28,6 @@
 #import <Foundation/Foundation.h>
 #import "iTunes.h"
 
-
 #define STATE_PREVIOUS	@"STATE_PREVIOUS"
 #define STATE_CURRENT	@"STATE_CURRENT"
 
@@ -39,7 +38,7 @@
 	iTunesApplication *iTunesApp;
 }
 
-@property (nonatomic, weak) id<iTunesControllerDelegate> delegate;
+@property (nonatomic, unsafe_unretained) id<iTunesControllerDelegate> delegate;
 @property (nonatomic, readonly) iTunesTrack *currentTrack;
 
 + (iTunesController *)sharedInstance;

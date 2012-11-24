@@ -50,7 +50,7 @@
 		{
 			if ((flags & kSCNetworkReachabilityFlagsReachable) && !(flags & kSCNetworkFlagsConnectionRequired)) 
 			{
-				result = YES;
+                result = YES;
 			}
 		}
 		

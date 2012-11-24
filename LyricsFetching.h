@@ -29,8 +29,6 @@
 
 @protocol LyricsFetching <NSObject>
 
-// TODO: versioning
-
 - (NSString *)name;
 
 // Return nil if nothing found.

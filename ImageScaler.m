@@ -27,7 +27,6 @@
 
 #import "ImageScaler.h"
 
-
 @implementation ImageScaler
 
 + (NSImage *)scaleImage:(NSImage *)sourceImage fillSize:(NSSize)targetSize

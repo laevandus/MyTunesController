@@ -27,6 +27,5 @@
 
 #import <Cocoa/Cocoa.h>
 
-
 @interface StatusView : NSView 
 @end

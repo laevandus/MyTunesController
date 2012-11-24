@@ -28,7 +28,6 @@
 #import <Foundation/Foundation.h>
 #import "iTunes.h"
 
-
 @protocol LyricsFetcherDelegate;
 
 @interface LyricsFetcher : NSObject
@@ -38,7 +37,7 @@
 
 + (LyricsFetcher *)defaultFetcher;
 
-@property (nonatomic, weak) id delegate;
+@property (nonatomic, unsafe_unretained) id delegate;
 
 - (void)fetchLyricsForTracks:(NSArray *)tracks;
 - (void)fetchLyricsForTrack:(iTunesTrack *)track;

@@ -27,18 +27,11 @@
 
 #import "LyricsWindowController.h"
 
-
 @interface LyricsWindowController()
 @property (nonatomic, readwrite, strong) NSColor *textColor;
 @end
 
-
 @implementation LyricsWindowController
-
-@synthesize lyricsScrollView = _lyricsScrollView;
-@synthesize textColor = _textColor;
-@synthesize track = _track;
-
 
 - (id)init
 {
@@ -95,7 +88,7 @@
 - (NSAttributedString *)attributedLyrics
 {
 	NSColor *lyricsColor = [NSColor colorWithDeviceWhite:0.9 alpha:1.0];
-	NSDictionary *textAttributes = [[NSDictionary alloc] initWithObjectsAndKeys:lyricsColor, NSForegroundColorAttributeName, nil];
+	NSDictionary *textAttributes = @{NSForegroundColorAttributeName: lyricsColor};
 	return [[self.track lyrics] length] ? [[NSAttributedString alloc] initWithString:[self.track lyrics] attributes:textAttributes] : nil;
 }
 

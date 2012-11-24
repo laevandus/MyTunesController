@@ -29,20 +29,13 @@
 #import "MyTunesControllerAppDelegate.h"
 #import <QuartzCore/QuartzCore.h>
 
-
 @interface NotificationWindowController()
 - (CABasicAnimation *)appearAnimation;
 - (CABasicAnimation *)disappearAnimation;
 - (void)timerFired:(NSTimer *)timer;
 @end
 
-
 @implementation NotificationWindowController
-
-@synthesize nameField = _nameField, artistField = _artistField, albumField = _albumField, durationField = _durationField;
-@synthesize subview = _subview;
-@synthesize delegate = _delegate, positionCorner = _positionCorner, track = _track;
-
 
 - (id)init 
 {
@@ -157,7 +150,7 @@
 	NSRect newFrame = [self.window frame];
 	NSRect unionRect = NSZeroRect;
 	
-	for (NSTextField *field in [NSArray arrayWithObjects:self.artistField, self.nameField, self.albumField, self.durationField, nil]) {
+	for (NSTextField *field in @[self.artistField, self.nameField, self.albumField, self.durationField]) {
 		[field sizeToFit];
 		unionRect = NSUnionRect(unionRect, [field frame]);
 	}

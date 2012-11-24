@@ -27,7 +27,6 @@
 
 #import <Foundation/Foundation.h>
 
-
 @interface LoginItemManager : NSObject
 
 - (BOOL)addItemAtURL:(NSURL *)bundleURL;

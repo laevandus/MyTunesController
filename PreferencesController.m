@@ -25,16 +25,11 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-
 #import "PreferencesController.h"
 #import <CoreServices/CoreServices.h>
 #import "LoginItemManager.h"
 
-
 @implementation PreferencesController
-
-@synthesize loginCheckBox = _loginCheckBox;
-
 
 - (id)init 
 {

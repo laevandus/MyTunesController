@@ -27,7 +27,6 @@
 
 #import "StatusBarButtonCell.h"
 
-
 @implementation StatusBarButtonCell
 
 - (void)drawInteriorWithFrame:(NSRect)cellFrame inView:(NSView *)controlView 
@@ -42,12 +41,13 @@
 
 	if (self.title) 
 	{
-		NSDictionary *styleDictionary = [NSDictionary dictionaryWithObjectsAndKeys: [NSColor blackColor], NSForegroundColorAttributeName, [NSFont fontWithName:@"Helvetica" size:(CGFloat)14.0], NSFontAttributeName, nil];
+		NSDictionary *styleDictionary = @{NSForegroundColorAttributeName: [NSColor blackColor], NSFontAttributeName: [NSFont fontWithName:@"Helvetica" size:(CGFloat)14.0]};
 		NSRect titleRect = [self titleRectForBounds:cellFrame];
 		
 		[self.title drawInRect:titleRect withAttributes:styleDictionary];
 	}
 }
+
 
 - (void)drawWithFrame:(NSRect)cellFrame inView:(NSView *)controlView 
 {

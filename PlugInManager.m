@@ -28,9 +28,8 @@
 #import "PlugInManager.h"
 #import "LyricsFetching.h"
 
-
 @interface PlugInManager()
-@property (readwrite, retain) NSArray *plugIns;
+@property (readwrite, strong) NSArray *plugIns;
 
 - (NSArray *)_bundlePaths;
 - (BOOL)_plugInClassIsValid:(Class)plugInClass;
@@ -38,9 +37,6 @@
 @end
 
 @implementation PlugInManager
-
-@synthesize plugIns = _plugIns;
-
 
 + (PlugInManager *)defaultManager
 {
@@ -110,10 +106,10 @@
 		{
 			for (bundlePathComponent in directoryEnumerator) 
 			{
-				if ([[bundlePathComponent pathExtension] isEqualToString:@"bundle"])
-				{
-					[bundlePaths addObject:[bundleSearchPath stringByAppendingPathComponent:bundlePathComponent]];
-				}
+                if ([[bundlePathComponent pathExtension] isEqualToString:@"bundle"])
+                {
+                    [bundlePaths addObject:[bundleSearchPath stringByAppendingPathComponent:bundlePathComponent]];
+                }
 			}
 		}
 	}
@@ -155,12 +151,12 @@
 			
 			if (currentPrincipalClass && [self _plugInClassIsValid:currentPrincipalClass]) 
 			{
-				currentInstance = [[currentPrincipalClass alloc] init];
+                currentInstance = [[currentPrincipalClass alloc] init];
 				
-				if (currentInstance) 
-				{
-					[instances addObject:currentInstance];
-				}
+                if (currentInstance)
+                {
+                    [instances addObject:currentInstance];
+                }
 			}
 		}
 	}

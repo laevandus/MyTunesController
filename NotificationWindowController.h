@@ -28,7 +28,6 @@
 #import <Cocoa/Cocoa.h>
 #import "iTunes.h"
 
-
 @interface NotificationWindowController : NSWindowController 
 {
 	NSTimer *hideTimer;
@@ -40,8 +39,8 @@
 @property (nonatomic, weak) IBOutlet NSTextField *durationField;
 @property (nonatomic, weak) IBOutlet NSView *subview;
 
-@property (nonatomic, retain) iTunesTrack *track;
-@property (nonatomic, weak) id delegate;
+@property (nonatomic, strong) iTunesTrack *track;
+@property (nonatomic, unsafe_unretained) id delegate;
 @property (nonatomic, assign) NSUInteger positionCorner;
 
 - (void)disappear;

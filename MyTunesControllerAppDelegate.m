@@ -25,8 +25,6 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-
-
 #import "MyTunesControllerAppDelegate.h"
 #import "NotificationWindowController.h"
 #import "PreferencesController.h"
@@ -35,22 +33,17 @@
 #import "LyricsWindowController.h"
 #import "NetworkReachability.h"
 
-
 @interface MyTunesControllerAppDelegate()
 - (void)_createDirectories;
 @end
 
-
 @implementation MyTunesControllerAppDelegate
-
-@synthesize statusBarController = _statusBarController;
-
 
 + (void)initialize
 {
 	if (self == [MyTunesControllerAppDelegate class]) 
 	{
-		[[NSUserDefaults standardUserDefaults] registerDefaults:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithUnsignedInteger:3], CONotificationCorner, nil]];
+		[[NSUserDefaults standardUserDefaults] registerDefaults:@{CONotificationCorner: @3U}];
 	}
 }
 

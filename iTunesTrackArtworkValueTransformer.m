@@ -29,10 +29,7 @@
 #import "iTunes.h"
 #import "ImageScaler.h"
 
-
 @implementation iTunesTrackArtworkValueTransformer
-
-@synthesize artworkSize = _artworkSize;
 
 - (id)init 
 {

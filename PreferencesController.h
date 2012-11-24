@@ -27,7 +27,6 @@
 
 #import <Cocoa/Cocoa.h>
 
-
 @interface PreferencesController : NSWindowController 
 
 @property (nonatomic, weak) IBOutlet NSButton *loginCheckBox;

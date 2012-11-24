@@ -41,7 +41,7 @@
 }
 
 @property (nonatomic, weak) IBOutlet NSButton *playButton;
-@property (nonatomic, weak) IBOutlet id sparkleController;
+@property (nonatomic, unsafe_unretained) IBOutlet id sparkleController;
 @property (nonatomic, weak) IBOutlet StatusView *statusView;
 
 - (IBAction)playPrevious:(id)sender;

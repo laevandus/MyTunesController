@@ -27,9 +27,7 @@
 
 #import "StatusView.h"
 
-
 @implementation StatusView
-
 
 - (void)drawRect:(NSRect)dirtyRect 
 {

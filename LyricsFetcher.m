@@ -31,11 +31,7 @@
 #import "iTunesController.h"
 #import "FetchOperation.h"
 
-
 @implementation LyricsFetcher
-
-@synthesize delegate = _delegate;
-
 
 + (LyricsFetcher *)defaultFetcher
 {
@@ -79,7 +75,7 @@
 
 - (void)fetchLyricsForTrack:(iTunesTrack *)track
 {
-	[self fetchLyricsForTracks:[NSArray arrayWithObject:track]];
+	[self fetchLyricsForTracks:@[track]];
 }
 
 

@@ -27,9 +27,7 @@
 
 #import "LoginItemManager.h"
 
-
 @implementation LoginItemManager
-
 
 - (BOOL)addItemAtURL:(NSURL *)bundleURL
 {
@@ -69,15 +67,15 @@
 			
 			if (LSSharedFileListItemResolve((__bridge LSSharedFileListItemRef)itemRef, 0, &itemURLRef, NULL) == noErr) 
 			{
-				if ([(__bridge NSURL *)itemURLRef isEqual:bundleURL])
-				{
-					result = (LSSharedFileListItemRemove(loginListRef, (__bridge LSSharedFileListItemRef)itemRef) == noErr);
-				}
+                if ([(__bridge NSURL *)itemURLRef isEqual:bundleURL])
+                {
+                    result = (LSSharedFileListItemRemove(loginListRef, (__bridge LSSharedFileListItemRef)itemRef) == noErr);
+                }
 			}
 			
 			if (itemURLRef) 
 			{
-				CFRelease(itemURLRef);
+                CFRelease(itemURLRef);
 			}
 		}
 		
@@ -105,20 +103,20 @@
 			
 			if (LSSharedFileListItemResolve((__bridge LSSharedFileListItemRef)itemRef, 0,&itemURLRef, NULL) == noErr) 
 			{
-				if ([(__bridge NSURL *)itemURLRef isEqual:bundleURL])
-				{
-					result = YES;
-				}
+                if ([(__bridge NSURL *)itemURLRef isEqual:bundleURL])
+                {
+                    result = YES;
+                }
 			}
 			
 			if (itemURLRef) 
 			{
-				CFRelease(itemURLRef);
+                CFRelease(itemURLRef);
 			}
 			
 			if (result) 
 			{
-				break;
+                break;
 			}
 		}
 		

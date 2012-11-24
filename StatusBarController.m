@@ -31,12 +31,11 @@
 #import "LyricsFetcher.h"
 #import "NetworkReachability.h"
 
-
 @interface StatusBarController()
 
-@property (atomic) NSUInteger processedTracksCount;
-@property (atomic) NSUInteger totalTracksCount;
-@property (atomic) BOOL isFetchingAllLyrics;
+@property NSUInteger processedTracksCount;
+@property NSUInteger totalTracksCount;
+@property BOOL isFetchingAllLyrics;
 
 - (void)addStatusBarControllerObservers;
 - (void)removeStatusBarControllerObservers;
@@ -51,15 +50,6 @@
 @end
 
 @implementation StatusBarController
-
-@synthesize processedTracksCount = _processedTracksCount;
-@synthesize totalTracksCount = _totalTracksCount;
-@synthesize isFetchingAllLyrics = _isFetchingAllLyrics;
-
-@synthesize playButton = _playButton;
-@synthesize statusView = _statusView;
-@synthesize sparkleController = _sparkleController;
-
 
 - (id)init 
 {
@@ -114,7 +104,7 @@ static void *FetchingAllLyricsContext = "FetchingAllLyricsContext";
 			}
 		}
 		
-		NSArray *modes = [[NSArray alloc] initWithObjects:NSRunLoopCommonModes, nil];
+		NSArray *modes = @[NSRunLoopCommonModes];
 		[[NSRunLoop currentRunLoop] performSelector:@selector(updateProgressMenuItem) target:self argument:nil order:1 modes:modes];
     } 
 	else 
@@ -196,28 +186,28 @@ static void *FetchingAllLyricsContext = "FetchingAllLyricsContext";
 			NSMutableArray *tracksWithoutLyrics = [[NSMutableArray alloc] init];
 			iTunesTrack *track = nil;
 			
-			NSArray *modes = [NSArray arrayWithObject:NSRunLoopCommonModes];
+			NSArray *modes = @[NSRunLoopCommonModes];
 			NSString *title = nil;
 			NSUInteger totalCount = [[musicPlaylist tracks] count];
 			NSUInteger currentIndex = 0;
 			
 			for (track in [musicPlaylist tracks]) 
 			{
-				currentIndex++;
+                currentIndex++;
 				
-				if ([track.lyrics length] == 0) 
-				{
-					[tracksWithoutLyrics addObject:track];
-				}
+                if ([track.lyrics length] == 0)
+                {
+                    [tracksWithoutLyrics addObject:track];
+                }
 				
-				if (!self.isFetchingAllLyrics) 
-				{
-					break;
-				}
+                if (!self.isFetchingAllLyrics)
+                {
+                    break;
+                }
 				
-				// Update analyzing status
-				title = [NSString stringWithFormat:NSLocalizedString(@"Menu-item-analyzing-tracks-detailed", nil), currentIndex, totalCount];
-				[progressMenuItem performSelectorOnMainThread:@selector(setTitle:) withObject:title waitUntilDone:YES modes:modes];
+                // Update analyzing status
+                title = [NSString stringWithFormat:NSLocalizedString(@"Menu-item-analyzing-tracks-detailed", nil), currentIndex, totalCount];
+                [progressMenuItem performSelectorOnMainThread:@selector(setTitle:) withObject:title waitUntilDone:YES modes:modes];
 			}
 			
 			self.totalTracksCount = [tracksWithoutLyrics count];

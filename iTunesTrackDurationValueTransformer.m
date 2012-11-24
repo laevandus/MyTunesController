@@ -27,7 +27,6 @@
 
 #import "iTunesTrackDurationValueTransformer.h"
 
-
 @implementation iTunesTrackDurationValueTransformer
 
 + (Class)transformedValueClass 
@@ -46,23 +45,23 @@
 {
 	if ([value isKindOfClass:[NSNumber class]]) 
 	{
-		CGFloat floatValue = [value floatValue];
+		double doubleValue = [value doubleValue];
 		
-		if (floatValue > 0.0) 
+		if (doubleValue > 0.0) 
 		{
-			NSUInteger duration = floatValue + 0.5;
+			NSUInteger duration = (NSUInteger)(doubleValue + 0.5);
 			NSUInteger minutes = 0;
 			
 			while (duration >= 60) 
 			{
-				duration -= 60;
-				minutes++;
+                duration -= 60;
+                minutes++;
 			}
 			
 			if (duration < 10) 
-				value = [NSString stringWithFormat:@"%ld:0%ld", minutes, duration];
+                value = [NSString stringWithFormat:@"%ld:0%ld", minutes, duration];
 			else 
-				value = [NSString stringWithFormat:@"%ld:%ld", minutes, duration];
+                value = [NSString stringWithFormat:@"%ld:%ld", minutes, duration];
 		}
 		else 
 		{

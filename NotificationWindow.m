@@ -27,7 +27,6 @@
 
 #import "NotificationWindow.h"
 
-
 @implementation NotificationWindow
 
 - (id)initWithContentRect:(NSRect)contentRect styleMask:(NSUInteger)aStyle backing:(NSBackingStoreType)bufferingType defer:(BOOL)flag 

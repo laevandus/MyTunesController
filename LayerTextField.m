@@ -27,9 +27,7 @@
 
 #import "LayerTextField.h"
 
-
 @implementation LayerTextField
-
 
 - (void)drawRect:(NSRect)dirtyRect
 {

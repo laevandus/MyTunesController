@@ -28,7 +28,6 @@
 #import <Foundation/Foundation.h>
 #import "iTunes.h"
 
-
 @protocol FetchOperationDelegate;
 
 @interface FetchOperation : NSOperation
@@ -36,7 +35,7 @@
 // Designated initializer
 - (id)initWithTracks:(NSArray *)tracks;
 
-@property (weak) id delegate;
+@property (unsafe_unretained) id delegate;
 @property (readonly, strong) NSArray *tracks;
 
 @end

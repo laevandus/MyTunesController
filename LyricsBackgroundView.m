@@ -27,7 +27,6 @@
 
 #import "LyricsBackgroundView.h"
 
-
 @implementation LyricsBackgroundView
 
 - (void)drawRect:(NSRect)dirtyRect

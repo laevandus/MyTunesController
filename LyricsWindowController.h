@@ -28,7 +28,6 @@
 #import <Cocoa/Cocoa.h>
 #import "iTunes.h"
 
-
 @interface LyricsWindowController : NSWindowController
 
 @property (nonatomic, weak) IBOutlet NSScrollView *lyricsScrollView;

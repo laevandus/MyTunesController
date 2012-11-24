@@ -27,11 +27,7 @@
 
 #import "iTunesController.h"
 
-
 @implementation iTunesController
-
-@synthesize delegate;
-
 
 + (iTunesController *)sharedInstance 
 {	
@@ -39,9 +35,9 @@
 	static dispatch_once_t onceToken;
 	
 	dispatch_once(&onceToken, ^
-				  {
-					  sharediTunesControllerInstance = [[[self class] alloc] init];
-				  });
+    {
+        sharediTunesControllerInstance = [[[self class] alloc] init];
+    });
 	
 	return sharediTunesControllerInstance;
 }
@@ -52,9 +48,9 @@
 	if ((self = [super init])) 
 	{
 		[[NSDistributedNotificationCenter defaultCenter] addObserver:self
-															selector:@selector(_iTunesTrackDidChange:)
-																name:@"com.apple.iTunes.playerInfo" 
-															  object:@"com.apple.iTunes.player"];
+                                                            selector:@selector(_iTunesTrackDidChange:)
+                                                                name:@"com.apple.iTunes.playerInfo"
+                                                              object:@"com.apple.iTunes.player"];
 		
 		iTunesApp = (iTunesApplication *)[SBApplication applicationWithBundleIdentifier:@"com.apple.iTunes"];
 	}
@@ -74,23 +70,23 @@
 	__block iTunesSource *librarySource = nil;
 	SBElementArray *sources = [iTunesApp sources];
 	[sources enumerateObjectsUsingBlock:^(id object, NSUInteger index, BOOL *stop)
-	 {
-		 if ([[object name] isEqualToString:@"Library"]) 
-		 {
-			 librarySource = object;
-			 *stop = YES;
-		 }
-	 }];
+    {
+        if ([[object name] isEqualToString:@"Library"])
+        {
+            librarySource = object;
+            *stop = YES;
+        }
+    }];
 	
 	__block iTunesPlaylist *playlist = nil;
 	[[librarySource playlists] enumerateObjectsUsingBlock:^(id object, NSUInteger index, BOOL *stop)
-	 {
-		 if ([[object name] isEqualToString:playlistName]) 
-		 {
-			 playlist = object;
-			 *stop = YES;
-		 }
-	 }];
+    {
+        if ([[object name] isEqualToString:playlistName])
+        {
+            playlist = object;
+            *stop = YES;
+        }
+    }];
 	
 	return playlist;
 }
@@ -142,7 +138,7 @@
 {	
 	iTunesTrack *track = nil;
 	
-	if ([[[aNotification userInfo] objectForKey:@"Player State"] isEqualToString:@"Stopped"] == NO) 
+	if ([[aNotification userInfo][@"Player State"] isEqualToString:@"Stopped"] == NO) 
 		track = self.currentTrack;
 	
 	if ([self.delegate respondsToSelector:@selector(iTunesTrackDidChange:)])
