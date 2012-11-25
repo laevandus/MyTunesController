@@ -16,7 +16,7 @@
 		C803ED9714CC1256001568E3 /* PLyrics.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C803ED9414CC1256001568E3 /* PLyrics.bundle */; };
 		C803EDDD14CC320B001568E3 /* MetroLyrics.bundle in Copy PlugIns */ = {isa = PBXBuildFile; fileRef = C803ED9314CC1256001568E3 /* MetroLyrics.bundle */; };
 		C803EDDE14CC320D001568E3 /* PLyrics.bundle in Copy PlugIns */ = {isa = PBXBuildFile; fileRef = C803ED9414CC1256001568E3 /* PLyrics.bundle */; };
-		C80CC06A166134A600191D9A /* menuitem.png in Resources */ = {isa = PBXBuildFile; fileRef = C80CC064166134A600191D9A /* menuitem.png */; };
+		C80CC06A166134A600191D9A /* status_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = C80CC064166134A600191D9A /* status_icon.png */; };
 		C80CC06B166134A600191D9A /* mytunescontroller.icns in Resources */ = {isa = PBXBuildFile; fileRef = C80CC065166134A600191D9A /* mytunescontroller.icns */; };
 		C80CC06C166134A600191D9A /* next.png in Resources */ = {isa = PBXBuildFile; fileRef = C80CC066166134A600191D9A /* next.png */; };
 		C80CC06D166134A600191D9A /* pause.png in Resources */ = {isa = PBXBuildFile; fileRef = C80CC067166134A600191D9A /* pause.png */; };
@@ -101,7 +101,7 @@
 		C803ED6714CBF985001568E3 /* PlugInManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlugInManager.m; sourceTree = "<group>"; };
 		C803ED9314CC1256001568E3 /* MetroLyrics.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = MetroLyrics.bundle; path = PlugIns/MetroLyrics.bundle; sourceTree = "<group>"; };
 		C803ED9414CC1256001568E3 /* PLyrics.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = PLyrics.bundle; path = PlugIns/PLyrics.bundle; sourceTree = "<group>"; };
-		C80CC064166134A600191D9A /* menuitem.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = menuitem.png; path = Graphics/menuitem.png; sourceTree = "<group>"; };
+		C80CC064166134A600191D9A /* status_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = status_icon.png; path = Graphics/status_icon.png; sourceTree = "<group>"; };
 		C80CC065166134A600191D9A /* mytunescontroller.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = mytunescontroller.icns; path = Graphics/mytunescontroller.icns; sourceTree = "<group>"; };
 		C80CC066166134A600191D9A /* next.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = next.png; path = Graphics/next.png; sourceTree = "<group>"; };
 		C80CC067166134A600191D9A /* pause.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pause.png; path = Graphics/pause.png; sourceTree = "<group>"; };
@@ -245,7 +245,7 @@
 				C803ED4D14CBF933001568E3 /* PlugIns */,
 				C83BBB7810FBA08000595F2D /* COPYING.txt */,
 				8D1107310486CEB800E47090 /* MyTunesController-Info.plist */,
-				C80CC064166134A600191D9A /* menuitem.png */,
+				C80CC064166134A600191D9A /* status_icon.png */,
 				C80CC065166134A600191D9A /* mytunescontroller.icns */,
 				C80CC066166134A600191D9A /* next.png */,
 				C80CC067166134A600191D9A /* pause.png */,
@@ -486,7 +486,7 @@
 				C803ED9614CC1256001568E3 /* MetroLyrics.bundle in Resources */,
 				C803ED9714CC1256001568E3 /* PLyrics.bundle in Resources */,
 				C8B14F0214F90FBF00C6FDC2 /* AZLyrics.bundle in Resources */,
-				C80CC06A166134A600191D9A /* menuitem.png in Resources */,
+				C80CC06A166134A600191D9A /* status_icon.png in Resources */,
 				C80CC06B166134A600191D9A /* mytunescontroller.icns in Resources */,
 				C80CC06C166134A600191D9A /* next.png in Resources */,
 				C80CC06D166134A600191D9A /* pause.png in Resources */,

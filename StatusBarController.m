@@ -245,9 +245,9 @@ static void *FetchingAllLyricsContext = "FetchingAllLyricsContext";
 
 - (void)addStatusItems
 {
-	if (mainItem == nil) 
+	if (!mainItem)
 	{
-		NSImage *statusIcon = [NSImage imageNamed:@"status_icon.png"];
+		NSImage *statusIcon = [NSImage imageNamed:@"status_icon"];
 		mainItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
 		[mainItem setImage:statusIcon];
 		[mainItem setHighlightMode:YES];
@@ -257,18 +257,18 @@ static void *FetchingAllLyricsContext = "FetchingAllLyricsContext";
 		[mainMenu setDelegate:self];
 		
 		NSMenuItem *theItem = [mainMenu addItemWithTitle:NSLocalizedString(@"Menu-item-about", nil)
-												  action:@selector(showAboutPanel)
-										   keyEquivalent:@""];
+                                                  action:@selector(showAboutPanel)
+                                           keyEquivalent:@""];
 		[theItem setTarget:[NSApp delegate]];
 		
 		theItem = [mainMenu addItemWithTitle:NSLocalizedString(@"Menu-item-check-for-updates", nil)
-									  action:@selector(checkForUpdates:)
-							   keyEquivalent:@""];
+                                      action:@selector(checkForUpdates:)
+                               keyEquivalent:@""];
 		[theItem setTarget:self.sparkleController];
 		
 		theItem = [mainMenu addItemWithTitle:NSLocalizedString(@"Menu-item-preferences", nil)
-									  action:@selector(showPreferencesWindow)
-							   keyEquivalent:@""];
+                                      action:@selector(showPreferencesWindow)
+                               keyEquivalent:@""];
 		[theItem setTarget:[NSApp delegate]];
 		
 		[mainMenu addItem:[NSMenuItem separatorItem]];
@@ -278,32 +278,31 @@ static void *FetchingAllLyricsContext = "FetchingAllLyricsContext";
 		[progressMenuItem setHidden:YES];
 		
 		toggleFetchingMenuItem = [mainMenu addItemWithTitle:NSLocalizedString(@"Menu-item-fetch-all-lyrics", nil)
-													 action:@selector(toggleFetchingAllLyrics) 
-											  keyEquivalent:@""];
+                                                     action:@selector(toggleFetchingAllLyrics)
+                                              keyEquivalent:@""];
 		[toggleFetchingMenuItem setTarget:self];
 		
 		[mainMenu addItem:[NSMenuItem separatorItem]];
 		
 		theItem = [mainMenu addItemWithTitle:NSLocalizedString(@"Menu-item-show-lyrics", nil)
-									  action:@selector(showLyricsWindow)
-							   keyEquivalent:@""];
+                                      action:@selector(showLyricsWindow)
+                               keyEquivalent:@""];
 		[theItem setTarget:[NSApp delegate]];
 		
 		[mainMenu addItem:[NSMenuItem separatorItem]];
 		
-		
 		theItem = [mainMenu addItemWithTitle:NSLocalizedString(@"Menu-item-quit", nil)
-									  action:@selector(terminate:)
-							   keyEquivalent:@"Q"];
+                                      action:@selector(terminate:)
+                               keyEquivalent:@"Q"];
 		[theItem setTarget:NSApp];
 		
 		[mainItem setMenu:mainMenu];
 	}
 	
-	if (controllerItem == nil) 
+	if (!controllerItem)
 	{
 		controllerItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
-		[controllerItem setImage:[NSImage imageNamed:@"blank.png"]];
+        [controllerItem setImage:nil];
 		[controllerItem setView:self.statusView];
 		[self updatePlayButtonState];
 	}
@@ -345,6 +344,5 @@ static void *FetchingAllLyricsContext = "FetchingAllLyricsContext";
 		[toggleFetchingMenuItem setTitle:NSLocalizedString(@"Menu-item-fetch-all-lyrics", nil)];
 	}
 }
-
 
 @end
