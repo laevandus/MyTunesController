@@ -26,7 +26,6 @@
 //  THE SOFTWARE.
 
 #import "LyricsFetcher.h"
-#import "PlugInManager.h"
 #import "LyricsFetching.h"
 #import "FetchOperation.h"
 
@@ -59,6 +58,7 @@
 - (void)cancelAllFetches
 {	
 	[fetchingQueue cancelAllOperations];
+    self.fetching = NO;
 }
 
 
