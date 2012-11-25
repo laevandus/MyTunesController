@@ -49,7 +49,6 @@
 		C8BF8EE61284AD4500BB5CAC /* iTunesTrackArtworkValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = C8BF8EE51284AD4500BB5CAC /* iTunesTrackArtworkValueTransformer.m */; };
 		C8CCE8AE14CB67D2008A7FCF /* LyricsBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = C8CCE8AD14CB67D2008A7FCF /* LyricsBackgroundView.m */; };
 		C8D0C08614F7BDB40098B433 /* Sparkle.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = C8ECFF4314CA1DDD00703971 /* Sparkle.framework */; };
-		C8D98D9C12032CD200356DC1 /* ImageScaler.m in Sources */ = {isa = PBXBuildFile; fileRef = C8D98D9B12032CD200356DC1 /* ImageScaler.m */; };
 		C8E933C41200BB0B00F4D6BD /* LayerTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = C8E933C31200BB0B00F4D6BD /* LayerTextField.m */; };
 		C8ECFF4414CA1DDD00703971 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8ECFF4314CA1DDD00703971 /* Sparkle.framework */; };
 		C8ECFF4714CA254700703971 /* StatusBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8ECFF4614CA254600703971 /* StatusBarController.m */; };
@@ -146,8 +145,6 @@
 		C8BF8EE51284AD4500BB5CAC /* iTunesTrackArtworkValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iTunesTrackArtworkValueTransformer.m; sourceTree = "<group>"; };
 		C8CCE8AC14CB67D2008A7FCF /* LyricsBackgroundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LyricsBackgroundView.h; sourceTree = "<group>"; };
 		C8CCE8AD14CB67D2008A7FCF /* LyricsBackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LyricsBackgroundView.m; sourceTree = "<group>"; };
-		C8D98D9A12032CD200356DC1 /* ImageScaler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageScaler.h; sourceTree = "<group>"; };
-		C8D98D9B12032CD200356DC1 /* ImageScaler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageScaler.m; sourceTree = "<group>"; };
 		C8E933C21200BB0B00F4D6BD /* LayerTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LayerTextField.h; sourceTree = "<group>"; };
 		C8E933C31200BB0B00F4D6BD /* LayerTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LayerTextField.m; sourceTree = "<group>"; };
 		C8ECFF4314CA1DDD00703971 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
@@ -392,8 +389,6 @@
 		C80CC08F166136AA00191D9A /* General */ = {
 			isa = PBXGroup;
 			children = (
-				C8D98D9A12032CD200356DC1 /* ImageScaler.h */,
-				C8D98D9B12032CD200356DC1 /* ImageScaler.m */,
 				C8214EE110E6ADC4008D012C /* iTunes.h */,
 				C8FE897E11FF7D6100290DEC /* iTunesController.h */,
 				C8FE897F11FF7D6100290DEC /* iTunesController.m */,
@@ -523,7 +518,6 @@
 				C8214F6E10E6B72C008D012C /* PreferencesWindowController.m in Sources */,
 				C8FE898011FF7D6100290DEC /* iTunesController.m in Sources */,
 				C8E933C41200BB0B00F4D6BD /* LayerTextField.m in Sources */,
-				C8D98D9C12032CD200356DC1 /* ImageScaler.m in Sources */,
 				C8BF8EC01284A86300BB5CAC /* iTunesTrackRatingValueTransformer.m in Sources */,
 				C8BF8EE11284AB9700BB5CAC /* iTunesTrackDurationValueTransformer.m in Sources */,
 				C8BF8EE61284AD4500BB5CAC /* iTunesTrackArtworkValueTransformer.m in Sources */,

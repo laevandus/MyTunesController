@@ -27,20 +27,8 @@
 
 #import "iTunesTrackArtworkValueTransformer.h"
 #import "iTunes.h"
-#import "ImageScaler.h"
 
 @implementation iTunesTrackArtworkValueTransformer
-
-- (id)init 
-{
-    if ((self = [super init])) 
-	{
-        _artworkSize = NSMakeSize(128.0, 128.0);
-    }
-	
-    return self;
-}
-
 
 + (Class)transformedValueClass 
 { 
@@ -71,27 +59,10 @@
 		if (artworkImage == nil) 
 			artworkImage = [NSImage imageNamed:@"mytunescontroller"];
 		
-		value = [ImageScaler scaleImage:artworkImage fillSize:self.artworkSize];
+        return artworkImage;
 	}
 	
 	return value;
 }
 
 @end
-
-
-@implementation iTunesTrackLargeArtworkValueTransformer
-
-- (id)init 
-{
-    if ((self = [super init])) 
-	{
-        self.artworkSize = NSMakeSize(256.0, 256.0);
-    }
-	
-    return self;
-}
-
-@end
-
-

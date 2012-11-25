@@ -28,8 +28,4 @@
 #import <Cocoa/Cocoa.h>
 
 @interface iTunesTrackArtworkValueTransformer : NSValueTransformer
-@property (nonatomic) NSSize artworkSize;
-@end
-
-@interface iTunesTrackLargeArtworkValueTransformer : iTunesTrackArtworkValueTransformer 
 @end

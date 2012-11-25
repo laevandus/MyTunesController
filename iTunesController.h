@@ -54,6 +54,6 @@
 @end
 
 @protocol iTunesControllerDelegate <NSObject>
-- (void)iTunesController:(iTunesController *)iTunesController trackDidChange:(iTunesTrack *)newTrack;
+- (void)iTunesController:(iTunesController *)tunesController trackDidChange:(iTunesTrack *)newTrack;
 @end
 
