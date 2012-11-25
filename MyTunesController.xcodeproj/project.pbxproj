@@ -12,9 +12,7 @@
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 		C803ED6814CBF985001568E3 /* LyricsFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = C803ED6414CBF985001568E3 /* LyricsFetcher.m */; };
 		C803ED6914CBF985001568E3 /* PlugInManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C803ED6714CBF985001568E3 /* PlugInManager.m */; };
-		C803ED9614CC1256001568E3 /* MetroLyrics.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C803ED9314CC1256001568E3 /* MetroLyrics.bundle */; };
 		C803ED9714CC1256001568E3 /* PLyrics.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C803ED9414CC1256001568E3 /* PLyrics.bundle */; };
-		C803EDDD14CC320B001568E3 /* MetroLyrics.bundle in Copy PlugIns */ = {isa = PBXBuildFile; fileRef = C803ED9314CC1256001568E3 /* MetroLyrics.bundle */; };
 		C803EDDE14CC320D001568E3 /* PLyrics.bundle in Copy PlugIns */ = {isa = PBXBuildFile; fileRef = C803ED9414CC1256001568E3 /* PLyrics.bundle */; };
 		C80CC06A166134A600191D9A /* status_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = C80CC064166134A600191D9A /* status_icon.png */; };
 		C80CC06B166134A600191D9A /* mytunescontroller.icns in Resources */ = {isa = PBXBuildFile; fileRef = C80CC065166134A600191D9A /* mytunescontroller.icns */; };
@@ -64,7 +62,6 @@
 			dstSubfolderSpec = 13;
 			files = (
 				C8B14F0714F91F2D00C6FDC2 /* AZLyrics.bundle in Copy PlugIns */,
-				C803EDDD14CC320B001568E3 /* MetroLyrics.bundle in Copy PlugIns */,
 				C803EDDE14CC320D001568E3 /* PLyrics.bundle in Copy PlugIns */,
 			);
 			name = "Copy PlugIns";
@@ -99,7 +96,6 @@
 		C803ED6514CBF985001568E3 /* LyricsFetching.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LyricsFetching.h; sourceTree = "<group>"; };
 		C803ED6614CBF985001568E3 /* PlugInManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlugInManager.h; sourceTree = "<group>"; };
 		C803ED6714CBF985001568E3 /* PlugInManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlugInManager.m; sourceTree = "<group>"; };
-		C803ED9314CC1256001568E3 /* MetroLyrics.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = MetroLyrics.bundle; path = PlugIns/MetroLyrics.bundle; sourceTree = "<group>"; };
 		C803ED9414CC1256001568E3 /* PLyrics.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = PLyrics.bundle; path = PlugIns/PLyrics.bundle; sourceTree = "<group>"; };
 		C80CC064166134A600191D9A /* status_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = status_icon.png; path = Graphics/status_icon.png; sourceTree = "<group>"; };
 		C80CC065166134A600191D9A /* mytunescontroller.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = mytunescontroller.icns; path = Graphics/mytunescontroller.icns; sourceTree = "<group>"; };
@@ -272,7 +268,6 @@
 			isa = PBXGroup;
 			children = (
 				C8B14F0114F90FBF00C6FDC2 /* AZLyrics.bundle */,
-				C803ED9314CC1256001568E3 /* MetroLyrics.bundle */,
 				C803ED9414CC1256001568E3 /* PLyrics.bundle */,
 			);
 			name = PlugIns;
@@ -483,7 +478,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				C83BBB7910FBA08000595F2D /* COPYING.txt in Resources */,
-				C803ED9614CC1256001568E3 /* MetroLyrics.bundle in Resources */,
 				C803ED9714CC1256001568E3 /* PLyrics.bundle in Resources */,
 				C8B14F0214F90FBF00C6FDC2 /* AZLyrics.bundle in Resources */,
 				C80CC06A166134A600191D9A /* status_icon.png in Resources */,
