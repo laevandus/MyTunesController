@@ -28,10 +28,9 @@
 #import <Cocoa/Cocoa.h>
 #import "iTunes.h"
 
-@interface NotificationWindowController : NSWindowController 
-{
-	NSTimer *hideTimer;
-}
+@protocol NotificationWindowControllerDelegate;
+
+@interface NotificationWindowController : NSWindowController
 
 @property (nonatomic, weak) IBOutlet NSTextField *nameField;
 @property (nonatomic, weak) IBOutlet NSTextField *artistField;
@@ -41,9 +40,12 @@
 
 @property (nonatomic, strong) iTunesTrack *track;
 @property (nonatomic, unsafe_unretained) id delegate;
-@property (nonatomic, assign) NSUInteger positionCorner;
 
+- (void)fitToContent;
 - (void)disappear;
-- (void)resize;
 
+@end
+
+@protocol NotificationWindowControllerDelegate <NSObject>
+- (void)notificationDidDisappear:(NotificationWindowController *)notification;
 @end

@@ -28,10 +28,11 @@
 #import <Cocoa/Cocoa.h>
 #import "iTunesController.h"
 #import "LyricsFetcher.h"
+#import "NotificationWindowController.h"
 
-@class LyricsWindowController, NotificationWindowController, PreferencesWindowController, StatusBarController, StatusView;
+@class LyricsWindowController, PreferencesWindowController, StatusBarController, StatusView;
 
-@interface MyTunesControllerAppDelegate : NSObject <NSApplicationDelegate, NSWindowDelegate, iTunesControllerDelegate, LyricsFetcherDelegate> 
+@interface MyTunesControllerAppDelegate : NSObject <NSApplicationDelegate, NSWindowDelegate, iTunesControllerDelegate, LyricsFetcherDelegate, NotificationWindowControllerDelegate>
 {	
 	NSUInteger notificationCorner;
 

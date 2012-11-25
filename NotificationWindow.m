@@ -32,11 +32,11 @@
 - (id)initWithContentRect:(NSRect)contentRect styleMask:(NSUInteger)aStyle backing:(NSBackingStoreType)bufferingType defer:(BOOL)flag 
 {
     NSWindow *result = [super initWithContentRect:contentRect styleMask:NSBorderlessWindowMask backing:NSBackingStoreBuffered defer:NO];
-    [result setBackgroundColor: [NSColor clearColor]];
-    [result setLevel: NSStatusWindowLevel];
-    [result setAlphaValue:0.9];
+    [result setBackgroundColor:[NSColor clearColor]];
+    [result setLevel:NSStatusWindowLevel];
+    [result setAlphaValue:0.0];
     [result setOpaque:NO];
-    [result setHasShadow: YES];
+    [result setHasShadow:YES];
 	
     return (NotificationWindow *)result;
 }

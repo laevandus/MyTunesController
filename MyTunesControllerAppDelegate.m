@@ -36,6 +36,7 @@
 @interface MyTunesControllerAppDelegate()
 @property (nonatomic, strong) LyricsFetcher *mainLyricsFetcher;
 - (void)_createDirectories;
+- (NSPoint)notificationWindowOriginForWindowSize:(NSSize)windowSize;
 @end
 
 @implementation MyTunesControllerAppDelegate
@@ -132,30 +133,62 @@
 	
 	if ([[iTunesController sharedInstance] isPlaying]) 
 	{
-		// if I reused the window then text got blurred
 		if (notificationWindowController) 
 		{
-			[notificationWindowController setDelegate:nil];
+            [NSObject cancelPreviousPerformRequestsWithTarget:notificationWindowController];
 			[notificationWindowController close];
+            notificationWindowController.delegate = nil;
 			notificationWindowController = nil;
 		}
 		
 		if ([[newTrack name] length]) 
 		{
+            [NSApp activateIgnoringOtherApps:YES];
+            
 			notificationWindowController = [[NotificationWindowController alloc] init];
 			[notificationWindowController setDelegate:self];
-			[notificationWindowController.window setAlphaValue:0.0];
 			[notificationWindowController setTrack:newTrack];
-			[notificationWindowController resize];
-			[notificationWindowController setPositionCorner:notificationCorner];
+			[notificationWindowController fitToContent];
+            
+            NSRect windowFrame = notificationWindowController.window.frame;
+            windowFrame.origin = [self notificationWindowOriginForWindowSize:windowFrame.size];
+            [notificationWindowController.window setFrame:windowFrame display:NO];
+            
 			[notificationWindowController showWindow:self];
-            [NSApp activateIgnoringOtherApps:YES];
+            [notificationWindowController performSelector:@selector(disappear) withObject:nil afterDelay:5.0];
 		}
 	}
 	else 
 	{
 		[notificationWindowController disappear];
 	}
+}
+
+
+- (NSPoint)notificationWindowOriginForWindowSize:(NSSize)windowSize
+{
+    NSRect visibleFrame = [[NSScreen mainScreen] visibleFrame];
+	NSPoint origin = NSZeroPoint;
+	
+	switch (notificationCorner)
+	{
+		case 0:	// left up
+			origin = NSMakePoint(NSMinX(visibleFrame) + 20.f, NSMaxY(visibleFrame) - windowSize.height - 20.f);
+			break;
+		case 1:	// left down
+			origin = NSMakePoint(NSMinX(visibleFrame) + 20.f, NSMinY(visibleFrame) + 20.f);
+			break;
+		case 2: // right up
+			origin = NSMakePoint(NSMaxX(visibleFrame) - windowSize.width - 20.f, NSMaxY(visibleFrame) - windowSize.height - 20.f);
+			break;
+		case 3: // right down
+			origin = NSMakePoint(NSMaxX(visibleFrame) - windowSize.width - 20.f, NSMinY(visibleFrame) + 20.f);
+			break;
+		default:
+			break;
+	}
+    
+    return origin;
 }
 
 
@@ -192,10 +225,11 @@
 
 #pragma mark NotificationWindowController Delegate
 
-- (void)notificationCanBeRemoved 
+- (void)notificationDidDisappear:(NotificationWindowController *)notification
 {
+    [NSObject cancelPreviousPerformRequestsWithTarget:notificationWindowController];
 	[notificationWindowController close];
-	[notificationWindowController setDelegate:nil];
+	notificationWindowController.delegate = nil;
 	notificationWindowController = nil;
 }
 
@@ -226,9 +260,6 @@
 	if ([keyPath isEqualToString:@"values.NotificationCorner"]) 
 	{
 		notificationCorner = [[[NSUserDefaults standardUserDefaults] objectForKey:CONotificationCorner] unsignedIntValue];
-		
-		if (notificationWindowController)
-			[notificationWindowController setPositionCorner:notificationCorner];
 	} 
 	else 
 	{

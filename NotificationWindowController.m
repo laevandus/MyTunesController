@@ -32,7 +32,6 @@
 @interface NotificationWindowController()
 - (CABasicAnimation *)appearAnimation;
 - (CABasicAnimation *)disappearAnimation;
-- (void)timerFired:(NSTimer *)timer;
 @end
 
 @implementation NotificationWindowController
@@ -43,29 +42,23 @@
 }
 
 
-- (void)dealloc 
-{
-	[hideTimer invalidate];
-}
-
-
 - (void)windowDidLoad 
 {
 	[super windowDidLoad];
 	
 	// Setting main layer to the content view
 	NSView *contentView = [self.window contentView];
-	CALayer *layer = [CALayer layer]; 
-	[contentView setWantsLayer:YES];
+	CALayer *layer = [CALayer layer];
 	[contentView setLayer:layer];
+    [contentView setWantsLayer:YES];
 	
 	CALayer *otherLayer = [CALayer layer];
 	otherLayer.cornerRadius = 10.0;
 	otherLayer.delegate = self;
 	otherLayer.masksToBounds = YES;
-	
-	[self.subview setWantsLayer:YES];
+	otherLayer.needsDisplayOnBoundsChange = YES;
 	[self.subview setLayer:otherLayer];
+    [self.subview setWantsLayer:YES];
 	
 	[self.window setAlphaValue:0.0];
 		
@@ -104,14 +97,6 @@
 }
 
 
-- (void)close
-{
-	[hideTimer invalidate];
-	hideTimer = nil;
-	[super close];
-}
-
-
 - (IBAction)showWindow:(id)sender 
 {
 	[super showWindow:sender];
@@ -123,13 +108,10 @@
 	[self.subview.layer removeAllAnimations];
 	[self.subview.layer addAnimation:[self appearAnimation] forKey:@"transform"];
 	[[self.window animator] setAlphaValue:0.9];
-	
-	[hideTimer invalidate];
-	hideTimer = [NSTimer scheduledTimerWithTimeInterval:5.0 target:self selector:@selector(timerFired:) userInfo:nil repeats:NO];    
 }
 
 
-- (void)timerFired:(NSTimer *)timer 
+- (void)disappear
 {
 	[self.subview.layer removeAllAnimations];
 	[self.subview.layer addAnimation:[self disappearAnimation] forKey:@"transform"];
@@ -137,20 +119,15 @@
 }
 
 
-- (void)disappear
-{
-	[self timerFired:nil];
-}
-
-
 #define kWindowMinimumWidth 236
 
-- (void)resize 
+- (void)fitToContent 
 {
 	NSRect newFrame = [self.window frame];
 	NSRect unionRect = NSZeroRect;
 	
-	for (NSTextField *field in @[self.artistField, self.nameField, self.albumField, self.durationField]) {
+	for (NSTextField *field in @[self.artistField, self.nameField, self.albumField, self.durationField])
+    {
 		[field sizeToFit];
 		unionRect = NSUnionRect(unionRect, [field frame]);
 	}
@@ -161,37 +138,7 @@
 	if (NSWidth(newFrame) < kWindowMinimumWidth) 
 		newFrame.size.width = kWindowMinimumWidth;
 		
-	[self.window setFrame:newFrame display:YES animate:NO];
-}
-
-
-- (void)setPositionCorner:(NSUInteger)pos 
-{
-	NSRect visibleFrame = [[NSScreen mainScreen] visibleFrame];
-	NSRect windowFrame = [self.window frame];
-	NSPoint pointOrigin = NSZeroPoint;
-	
-	switch (pos) 
-	{
-		case 0:	// left up
-			pointOrigin = NSMakePoint(NSMinX(visibleFrame) + 20.f, NSMaxY(visibleFrame) - NSHeight(windowFrame) - 20.f);
-			break;
-		case 1:	// left down
-			pointOrigin = NSMakePoint(NSMinX(visibleFrame) + 20.f, NSMinY(visibleFrame) + 20.f);
-			break;
-		case 2: // right up
-			pointOrigin = NSMakePoint(NSMaxX(visibleFrame) - NSWidth(windowFrame) - 20.f, NSMaxY(visibleFrame) - NSHeight(windowFrame) - 20.f);
-			break;
-		case 3: // right down
-			pointOrigin = NSMakePoint(NSMaxX(visibleFrame) - NSWidth(windowFrame) - 20.f, NSMinY(visibleFrame) + 20.f);
-			break;	
-		default:
-			break;
-	}
-	
-	[self.window setFrameOrigin:pointOrigin];
-	
-	_positionCorner = pos;
+	[self.window setFrame:newFrame display:NO animate:NO];
 }
 
 
@@ -234,9 +181,9 @@
 
 - (void)animationDidStop:(CAAnimation *)animation finished:(BOOL)flag 
 {
-	if ([self.delegate respondsToSelector:@selector(notificationCanBeRemoved)])
+	if ([self.delegate respondsToSelector:@selector(notificationDidDisappear:)])
 	{
-		[self.delegate performSelector:@selector(notificationCanBeRemoved)];
+		[self.delegate notificationDidDisappear:self];
 	}
 }
 
