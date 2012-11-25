@@ -59,27 +59,30 @@
 	if (loginListRef) 
 	{
 		CFArrayRef loginItemArrayRef = LSSharedFileListCopySnapshot(loginListRef, NULL);
-		NSArray *loginItemArray = [[NSArray alloc] initWithArray:(__bridge NSArray *)loginItemArrayRef];
 		
-		for (id itemRef in loginItemArray) 
-		{		
-			CFURLRef itemURLRef = NULL;
-			
-			if (LSSharedFileListItemResolve((__bridge LSSharedFileListItemRef)itemRef, 0, &itemURLRef, NULL) == noErr) 
-			{
-                if ([(__bridge NSURL *)itemURLRef isEqual:bundleURL])
+        if (loginItemArrayRef)
+        {
+            for (id itemRef in (__bridge NSArray *)loginItemArrayRef)
+            {
+                CFURLRef itemURLRef = NULL;
+                
+                if (LSSharedFileListItemResolve((__bridge LSSharedFileListItemRef)itemRef, 0, &itemURLRef, NULL) == noErr)
                 {
-                    result = (LSSharedFileListItemRemove(loginListRef, (__bridge LSSharedFileListItemRef)itemRef) == noErr);
+                    if ([(__bridge NSURL *)itemURLRef isEqual:bundleURL])
+                    {
+                        result = (LSSharedFileListItemRemove(loginListRef, (__bridge LSSharedFileListItemRef)itemRef) == noErr);
+                    }
+                    
+                    if (itemURLRef)
+                    {
+                        CFRelease(itemURLRef);
+                    }
                 }
-			}
-			
-			if (itemURLRef) 
-			{
-                CFRelease(itemURLRef);
-			}
-		}
-		
-		CFRelease(loginItemArrayRef);
+            }
+            
+            CFRelease(loginItemArrayRef);
+        }
+        
 		CFRelease(loginListRef);
 	}
 	
@@ -95,37 +98,39 @@
 	if (loginListRef) 
 	{
 		CFArrayRef loginItemArrayRef = LSSharedFileListCopySnapshot(loginListRef, NULL);
-		NSArray *loginItemArray = [[NSArray alloc] initWithArray:(__bridge NSArray *)loginItemArrayRef];
 		
-		for (id itemRef in loginItemArray) 
-		{
-			CFURLRef itemURLRef = NULL;
-			
-			if (LSSharedFileListItemResolve((__bridge LSSharedFileListItemRef)itemRef, 0,&itemURLRef, NULL) == noErr) 
-			{
-                if ([(__bridge NSURL *)itemURLRef isEqual:bundleURL])
+        if (loginItemArrayRef)
+        {
+            for (id itemRef in (__bridge NSArray *)loginItemArrayRef)
+            {
+                CFURLRef itemURLRef = NULL;
+                
+                if (LSSharedFileListItemResolve((__bridge LSSharedFileListItemRef)itemRef, 0, &itemURLRef, NULL) == noErr)
                 {
-                    result = YES;
+                    if ([(__bridge NSURL *)itemURLRef isEqual:bundleURL])
+                    {
+                        result = YES;
+                    }
+                    
+                    if (itemURLRef)
+                    {
+                        CFRelease(itemURLRef);
+                    }
                 }
-			}
-			
-			if (itemURLRef) 
-			{
-                CFRelease(itemURLRef);
-			}
-			
-			if (result) 
-			{
-                break;
-			}
-		}
-		
-		CFRelease(loginItemArrayRef);
+                
+                if (result) 
+                {
+                    break;
+                }
+            }
+            
+            CFRelease(loginItemArrayRef);
+        }
+        
 		CFRelease(loginListRef);
 	}
 	
 	return result;
 }
-
 
 @end
