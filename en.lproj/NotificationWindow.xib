@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <archive type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="7.10">
 	<data>
-		<int key="IBDocument.SystemTarget">1070</int>
-		<string key="IBDocument.SystemVersion">11C74</string>
-		<string key="IBDocument.InterfaceBuilderVersion">1938</string>
-		<string key="IBDocument.AppKitVersion">1138.23</string>
-		<string key="IBDocument.HIToolboxVersion">567.00</string>
+		<int key="IBDocument.SystemTarget">1080</int>
+		<string key="IBDocument.SystemVersion">12C3006</string>
+		<string key="IBDocument.InterfaceBuilderVersion">2844</string>
+		<string key="IBDocument.AppKitVersion">1187.34</string>
+		<string key="IBDocument.HIToolboxVersion">625.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.CocoaPlugin</string>
-			<string key="NS.object.0">1938</string>
+			<string key="NS.object.0">2844</string>
 		</object>
 		<object class="NSArray" key="IBDocument.IntegratedClassDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<string>NSView</string>
-			<string>NSTextField</string>
-			<string>NSWindowTemplate</string>
-			<string>NSTextFieldCell</string>
-			<string>NSLevelIndicatorCell</string>
+			<string>NSCustomObject</string>
 			<string>NSCustomView</string>
 			<string>NSImageCell</string>
 			<string>NSImageView</string>
 			<string>NSLevelIndicator</string>
-			<string>NSCustomObject</string>
+			<string>NSLevelIndicatorCell</string>
+			<string>NSTextField</string>
+			<string>NSTextFieldCell</string>
+			<string>NSView</string>
+			<string>NSWindowTemplate</string>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -57,7 +57,6 @@
 					<string key="NSFrameSize">{393, 128}</string>
 					<reference key="NSSuperview"/>
 					<reference key="NSWindow"/>
-					<reference key="NSNextKeyView"/>
 				</object>
 				<string key="NSScreenRect">{{0, 0}, {1440, 878}}</string>
 				<string key="NSMaxSize">{10000000000000, 10000000000000}</string>
@@ -74,10 +73,9 @@
 						<string key="NSFrame">{{154, 16}, {65, 13}}</string>
 						<reference key="NSSuperview" ref="342132775"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSLevelIndicatorCell" key="NSCell" id="445661241">
-							<int key="NSCellFlags">130560</int>
+							<int key="NSCellFlags">0</int>
 							<int key="NSCellFlags2">0</int>
 							<reference key="NSControlView" ref="823697604"/>
 							<double key="NSValue">5</double>
@@ -86,6 +84,7 @@
 							<double key="NSCriticalValue">5</double>
 							<int key="NSIndicatorStyle">3</int>
 						</object>
+						<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
 					</object>
 					<object class="NSTextField" id="653522065">
 						<reference key="NSNextResponder" ref="342132775"/>
@@ -96,7 +95,7 @@
 						<reference key="NSNextKeyView" ref="823697604"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSTextFieldCell" key="NSCell" id="190901109">
-							<int key="NSCellFlags">67239488</int>
+							<int key="NSCellFlags">67108928</int>
 							<int key="NSCellFlags2">4200704</int>
 							<string key="NSContents">Duration</string>
 							<object class="NSFont" key="NSSupport" id="24">
@@ -119,6 +118,7 @@
 								<bytes key="NSRGB">MC45MDE5NjA3OTAyIDAuOTAxOTYwNzkwMiAwLjkwMTk2MDc5MDIAA</bytes>
 							</object>
 						</object>
+						<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
 					</object>
 					<object class="NSTextField" id="90727989">
 						<reference key="NSNextResponder" ref="342132775"/>
@@ -129,7 +129,7 @@
 						<reference key="NSNextKeyView" ref="653522065"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSTextFieldCell" key="NSCell" id="366361718">
-							<int key="NSCellFlags">67239488</int>
+							<int key="NSCellFlags">67108928</int>
 							<int key="NSCellFlags2">4200704</int>
 							<string key="NSContents">Album</string>
 							<reference key="NSSupport" ref="24"/>
@@ -140,6 +140,7 @@
 								<bytes key="NSRGB">MC45MDE5NjA3OTAyIDAuOTAxOTYwNzkwMiAwLjkwMTk2MDc5MDIAA</bytes>
 							</object>
 						</object>
+						<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
 					</object>
 					<object class="NSTextField" id="844240284">
 						<reference key="NSNextResponder" ref="342132775"/>
@@ -150,7 +151,7 @@
 						<reference key="NSNextKeyView" ref="90727989"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSTextFieldCell" key="NSCell" id="580832109">
-							<int key="NSCellFlags">67239488</int>
+							<int key="NSCellFlags">67108928</int>
 							<int key="NSCellFlags2">4200704</int>
 							<string key="NSContents">Name</string>
 							<object class="NSFont" key="NSSupport">
@@ -165,6 +166,7 @@
 								<bytes key="NSRGB">MC45MDE5NjA3OTAyIDAuOTAxOTYwNzkwMiAwLjkwMTk2MDc5MDIAA</bytes>
 							</object>
 						</object>
+						<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
 					</object>
 					<object class="NSTextField" id="737395831">
 						<reference key="NSNextResponder" ref="342132775"/>
@@ -175,7 +177,7 @@
 						<reference key="NSNextKeyView" ref="844240284"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSTextFieldCell" key="NSCell" id="586651582">
-							<int key="NSCellFlags">67239488</int>
+							<int key="NSCellFlags">67108928</int>
 							<int key="NSCellFlags2">4200704</int>
 							<string key="NSContents">Artist</string>
 							<reference key="NSSupport" ref="24"/>
@@ -186,6 +188,7 @@
 								<bytes key="NSRGB">MC45MDE5NjA3OTAyIDAuOTAxOTYwNzkwMiAwLjkwMTk2MDc5MDIAA</bytes>
 							</object>
 						</object>
+						<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
 					</object>
 					<object class="NSImageView" id="153528463">
 						<reference key="NSNextResponder" ref="342132775"/>
@@ -208,13 +211,14 @@
 						<reference key="NSNextKeyView" ref="737395831"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSImageCell" key="NSCell" id="763316053">
-							<int key="NSCellFlags">130560</int>
+							<int key="NSCellFlags">134217728</int>
 							<int key="NSCellFlags2">33554432</int>
 							<int key="NSAlign">0</int>
-							<int key="NSScale">2</int>
+							<int key="NSScale">3</int>
 							<int key="NSStyle">0</int>
 							<bool key="NSAnimates">NO</bool>
 						</object>
+						<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
 						<bool key="NSEditable">YES</bool>
 					</object>
 				</object>
@@ -310,7 +314,7 @@
 									<string>NSConditionallySetsEnabled</string>
 									<string>NSValueTransformerName</string>
 								</object>
-								<object class="NSMutableArray" key="dict.values">
+								<object class="NSArray" key="dict.values">
 									<bool key="EncodedWithXMLCoder">YES</bool>
 									<boolean value="NO"/>
 									<string>iTunesTrackArtworkValueTransformer</string>
@@ -411,7 +415,7 @@
 									<string>NSConditionallySetsEnabled</string>
 									<string>NSValueTransformerName</string>
 								</object>
-								<object class="NSMutableArray" key="dict.values">
+								<object class="NSArray" key="dict.values">
 									<bool key="EncodedWithXMLCoder">YES</bool>
 									<boolean value="NO"/>
 									<string>iTunesTrackRatingValueTransformer</string>
@@ -599,7 +603,7 @@
 					<string>73.IBPluginDependency</string>
 					<string>86.IBPluginDependency</string>
 				</object>
-				<object class="NSMutableArray" key="dict.values">
+				<object class="NSArray" key="dict.values">
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -673,7 +677,7 @@
 							<string>nameField</string>
 							<string>subview</string>
 						</object>
-						<object class="NSMutableArray" key="dict.values">
+						<object class="NSArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>NSTextField</string>
 							<string>NSTextField</string>
@@ -692,7 +696,7 @@
 							<string>nameField</string>
 							<string>subview</string>
 						</object>
-						<object class="NSMutableArray" key="dict.values">
+						<object class="NSArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<object class="IBToOneOutletInfo">
 								<string key="name">albumField</string>
