@@ -47,10 +47,9 @@
 	[super windowDidLoad];
 	
 	// Setting main layer to the content view
-	NSView *contentView = [self.window contentView];
 	CALayer *layer = [CALayer layer];
-	[contentView setLayer:layer];
-    [contentView setWantsLayer:YES];
+	[self.window.contentView setLayer:layer];
+    [self.window.contentView setWantsLayer:YES];
 	
 	CALayer *otherLayer = [CALayer layer];
 	otherLayer.cornerRadius = 10.0;
@@ -61,11 +60,7 @@
     [self.subview setWantsLayer:YES];
 	
 	[self.window setAlphaValue:0.0];
-		
-	[[self.window contentView] addSubview:self.subview];
-	
-	[otherLayer display];
-	
+	[self.window.contentView addSubview:self.subview];
 	[self.window setCollectionBehavior:NSWindowCollectionBehaviorCanJoinAllSpaces];
 }
 
@@ -101,7 +96,7 @@
 {
 	[super showWindow:sender];
 	
-	// set anchor back to default
+    // Start appear animation from the center
 	[self.subview.layer setAnchorPoint:CGPointMake(0.5, 0.5)];	
 	[self.subview.layer setFrame:NSRectToCGRect(NSIntegralRect([[self.window contentView] frame]))];
 	
