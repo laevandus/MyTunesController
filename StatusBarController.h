@@ -33,7 +33,6 @@
 {
 	NSStatusItem *mainItem, *controllerItem;
 	NSMenuItem *progressMenuItem, *toggleFetchingMenuItem;
-	LyricsFetcher *lyricsFetcher;
 	
 	NSUInteger _processedTracksCount, _totalTracksCount;
 	BOOL _isFetchingAllLyrics;

@@ -34,6 +34,7 @@
 #import "NetworkReachability.h"
 
 @interface MyTunesControllerAppDelegate()
+@property (nonatomic, strong) LyricsFetcher *mainLyricsFetcher;
 - (void)_createDirectories;
 @end
 
@@ -65,7 +66,6 @@
 	[[NSUserDefaultsController sharedUserDefaultsController] addObserver:self forKeyPath:@"values.NotificationCorner" options:NSKeyValueObservingOptionInitial context:nil];
 	
 	[[iTunesController sharedInstance] setDelegate:self];
-	[[LyricsFetcher defaultFetcher] setDelegate:self];
 	
 	[self.statusBarController addStatusItems];
 }
@@ -117,7 +117,13 @@
 		if ([[lyricsWindowController.track lyrics] length] == 0 && [NetworkReachability hasInternetConnection]) 
 		{
 			// Start fetching
-			[[LyricsFetcher defaultFetcher] fetchLyricsForTrack:[lyricsWindowController track]];
+            if (!self.mainLyricsFetcher)
+            {
+                self.mainLyricsFetcher = [[LyricsFetcher alloc] init];
+                [self.mainLyricsFetcher setDelegate:self];
+            }
+            
+			[self.mainLyricsFetcher fetchLyricsForTrack:[lyricsWindowController track]];
 		}
 	}
 		
@@ -156,7 +162,7 @@
 
 - (void)lyricsFetcher:(LyricsFetcher *)fetcher didFetchLyrics:(NSString *)lyrics forTrack:(iTunesTrack *)track
 {
-	if ([fetcher isEqual:[LyricsFetcher defaultFetcher]]) 
+	if ([fetcher isEqual:self.mainLyricsFetcher])
 	{
 		// Handles main fetcher's requests		
 		if ([lyricsWindowController.track databaseID] == [track databaseID]) 
@@ -170,6 +176,11 @@
 		{
 			track.lyrics = lyrics;
 		}
+        
+        if (!self.mainLyricsFetcher.isFetching)
+        {
+            self.mainLyricsFetcher = nil;
+        }
 	}
 	else
 	{
@@ -247,7 +258,13 @@
 	if ([[lyricsWindowController.track lyrics] length] == 0) 
 	{
 		// Start fetching
-		[[LyricsFetcher defaultFetcher] fetchLyricsForTrack:[lyricsWindowController track]];
+        if (!self.mainLyricsFetcher)
+        {
+            self.mainLyricsFetcher = [[LyricsFetcher alloc] init];
+            [self.mainLyricsFetcher setDelegate:self];
+        }
+        
+		[self.mainLyricsFetcher fetchLyricsForTrack:[lyricsWindowController track]];
 	}
 	
 	[lyricsWindowController showWindow:self];

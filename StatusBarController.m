@@ -36,6 +36,7 @@
 @property NSUInteger processedTracksCount;
 @property NSUInteger totalTracksCount;
 @property BOOL isFetchingAllLyrics;
+@property (strong) LyricsFetcher *lyricsFetcher;
 
 - (void)addStatusBarControllerObservers;
 - (void)removeStatusBarControllerObservers;
@@ -158,10 +159,10 @@ static void *FetchingAllLyricsContext = "FetchingAllLyricsContext";
 - (void)startFetchingAllLyrics
 {	
 	// Initialize lyrics fetcher
-	if (!lyricsFetcher) 
+	if (!self.lyricsFetcher)
 	{
-		lyricsFetcher = [[LyricsFetcher alloc] init];
-		[lyricsFetcher setDelegate:self];
+		self.lyricsFetcher = [[LyricsFetcher alloc] init];
+		[self.lyricsFetcher setDelegate:self];
 	}
 	
 	// Reset counts
@@ -212,7 +213,7 @@ static void *FetchingAllLyricsContext = "FetchingAllLyricsContext";
 			
 			self.totalTracksCount = [tracksWithoutLyrics count];
 			
-			[lyricsFetcher performSelectorOnMainThread:@selector(fetchLyricsForTracks:) withObject:tracksWithoutLyrics waitUntilDone:YES modes:modes];
+			[self.lyricsFetcher performSelectorOnMainThread:@selector(fetchLyricsForTracks:) withObject:tracksWithoutLyrics waitUntilDone:YES modes:modes];
 		}
 		else
 		{
@@ -226,7 +227,8 @@ static void *FetchingAllLyricsContext = "FetchingAllLyricsContext";
 {
 	self.isFetchingAllLyrics = NO;
 	
-	[lyricsFetcher cancelAllFetches];
+	[self.lyricsFetcher cancelAllFetches];
+    self.lyricsFetcher = nil;
 }
 
 
@@ -238,6 +240,11 @@ static void *FetchingAllLyricsContext = "FetchingAllLyricsContext";
 	track.lyrics = lyrics;
 	
 	self.processedTracksCount++;
+    
+    if (!self.lyricsFetcher.isFetching)
+    {
+        self.lyricsFetcher = nil;
+    }
 }
 
 

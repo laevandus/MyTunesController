@@ -30,21 +30,11 @@
 #import "LyricsFetching.h"
 #import "FetchOperation.h"
 
+@interface LyricsFetcher ()
+@property (nonatomic, readwrite, getter = isFetching) BOOL fetching;
+@end
+
 @implementation LyricsFetcher
-
-+ (LyricsFetcher *)defaultFetcher
-{
-	static LyricsFetcher *sharedLyricsFetcherInstance = nil;
-	static dispatch_once_t sharedLyricsFetcherPredicate;
-	
-	dispatch_once(&sharedLyricsFetcherPredicate, ^
-	{
-		sharedLyricsFetcherInstance = [[[self class] alloc] init];
-	});
-	
-	return sharedLyricsFetcherInstance;
-}
-
 
 - (id)init
 {
@@ -87,12 +77,17 @@
 
 
 - (void)fetchOperation:(FetchOperation *)operation didFetchLyrics:(NSString *)lyrics forTrack:(iTunesTrack *)track
-{
-	if ([[self delegate] respondsToSelector:@selector(lyricsFetcher:didFetchLyrics:forTrack:)]) 
+{    
+	if ([self.delegate respondsToSelector:@selector(lyricsFetcher:didFetchLyrics:forTrack:)])
 	{
-		[[self delegate] lyricsFetcher:self didFetchLyrics:lyrics forTrack:track];
+		[self.delegate lyricsFetcher:self didFetchLyrics:lyrics forTrack:track];
 	}
 }
 
+
+- (void)fetchOperationDidFinishFetching:(FetchOperation *)operation
+{
+    self.fetching = [fetchingQueue operationCount] > 1;
+}
 
 @end

@@ -126,15 +126,20 @@
 			
             trackCounter++;
         }
+        
+        if ([self.delegate respondsToSelector:@selector(fetchOperationDidFinishFetching:)])
+        {
+            [self.delegate performSelectorOnMainThread:@selector(fetchOperationDidFinishFetching:) withObject:self waitUntilDone:YES];
+        }
 	}
 }
 
 
 - (void)finalizeFetchingWithInfo:(NSDictionary *)fetchInfo
 {
-	if ([[self delegate] respondsToSelector:@selector(fetchOperation:didFetchLyrics:forTrack:)])
+	if ([self.delegate respondsToSelector:@selector(fetchOperation:didFetchLyrics:forTrack:)])
 	{
-		[[self delegate] fetchOperation:self didFetchLyrics:fetchInfo[@"lyrics"] forTrack:fetchInfo[@"track"]];
+		[self.delegate fetchOperation:self didFetchLyrics:fetchInfo[@"lyrics"] forTrack:fetchInfo[@"track"]];
 	}
 }
 

@@ -34,7 +34,7 @@
 @interface MyTunesControllerAppDelegate : NSObject <NSApplicationDelegate, NSWindowDelegate, iTunesControllerDelegate, LyricsFetcherDelegate> 
 {	
 	NSUInteger notificationCorner;
-	
+
 	LyricsWindowController *lyricsWindowController;
 	NotificationWindowController *notificationWindowController;
 	PreferencesWindowController *preferencesWindowController;
