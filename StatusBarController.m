@@ -101,7 +101,8 @@ static void *FetchingAllLyricsContext = "FetchingAllLyricsContext";
 		{
 			if (self.isFetchingAllLyrics && self.totalTracksCount > 0 && self.processedTracksCount == self.totalTracksCount) 
 			{
-				self.isFetchingAllLyrics = NO;
+                self.isFetchingAllLyrics = NO;
+                self.lyricsFetcher = nil;
 			}
 		}
 		
@@ -218,6 +219,7 @@ static void *FetchingAllLyricsContext = "FetchingAllLyricsContext";
 		else
 		{
 			self.isFetchingAllLyrics = NO;
+            self.lyricsFetcher = nil;
 		}
 	}
 }
@@ -226,8 +228,6 @@ static void *FetchingAllLyricsContext = "FetchingAllLyricsContext";
 - (void)stopFetchingAllLyrics
 {
 	self.isFetchingAllLyrics = NO;
-	
-	[self.lyricsFetcher cancelAllFetches];
     self.lyricsFetcher = nil;
 }
 
@@ -240,11 +240,6 @@ static void *FetchingAllLyricsContext = "FetchingAllLyricsContext";
 	track.lyrics = lyrics;
 	
 	self.processedTracksCount++;
-    
-    if (!self.lyricsFetcher.isFetching)
-    {
-        self.lyricsFetcher = nil;
-    }
 }
 
 

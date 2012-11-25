@@ -209,15 +209,22 @@
 			track.lyrics = lyrics;
 		}
         
-        if (!self.mainLyricsFetcher.isFetching)
-        {
-            self.mainLyricsFetcher = nil;
-        }
+        [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(cleanUpMainLyricsFetcher) object:nil];
+        [self performSelector:@selector(cleanUpMainLyricsFetcher) withObject:nil afterDelay:60.0];
 	}
 	else
 	{
 		NSLog(@"%s ignored LyricsFetcher (%@) in AppDelegate", __func__, fetcher);
 	}
+}
+
+
+- (void)cleanUpMainLyricsFetcher
+{
+    if (!self.mainLyricsFetcher.isFetching)
+    {
+        self.mainLyricsFetcher = nil;
+    }
 }
 
 

@@ -35,7 +35,7 @@
 	NSOperationQueue *fetchingQueue;
 }
 
-@property (nonatomic, readonly, getter = isFetching) BOOL fetching;
+@property (nonatomic, readonly) BOOL isFetching;
 @property (nonatomic, unsafe_unretained) id delegate;
 
 - (void)fetchLyricsForTracks:(NSArray *)tracks;

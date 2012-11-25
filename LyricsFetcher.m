@@ -29,10 +29,6 @@
 #import "LyricsFetching.h"
 #import "FetchOperation.h"
 
-@interface LyricsFetcher ()
-@property (nonatomic, readwrite, getter = isFetching) BOOL fetching;
-@end
-
 @implementation LyricsFetcher
 
 - (id)init
@@ -51,14 +47,18 @@
 - (void)dealloc
 {
 	[self cancelAllFetches];
-	[fetchingQueue waitUntilAllOperationsAreFinished];
+}
+
+
+- (BOOL)isFetching
+{
+    return [fetchingQueue operationCount] > 0;
 }
 
 
 - (void)cancelAllFetches
 {	
 	[fetchingQueue cancelAllOperations];
-    self.fetching = NO;
 }
 
 
@@ -82,12 +82,6 @@
 	{
 		[self.delegate lyricsFetcher:self didFetchLyrics:lyrics forTrack:track];
 	}
-}
-
-
-- (void)fetchOperationDidFinishFetching:(FetchOperation *)operation
-{
-    self.fetching = [fetchingQueue operationCount] > 1;
 }
 
 @end

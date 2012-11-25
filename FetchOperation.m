@@ -126,11 +126,6 @@
 			
             trackCounter++;
         }
-        
-        if ([self.delegate respondsToSelector:@selector(fetchOperationDidFinishFetching:)])
-        {
-            [self.delegate performSelectorOnMainThread:@selector(fetchOperationDidFinishFetching:) withObject:self waitUntilDone:YES];
-        }
 	}
 }
 

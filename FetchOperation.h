@@ -40,8 +40,6 @@
 
 @end
 
-
 @protocol FetchOperationDelegate <NSObject>
 - (void)fetchOperation:(FetchOperation *)operation didFetchLyrics:(NSString *)lyrics forTrack:(iTunesTrack *)track;
-- (void)fetchOperationDidFinishFetching:(FetchOperation *)operation;
 @end
