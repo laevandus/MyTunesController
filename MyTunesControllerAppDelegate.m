@@ -149,6 +149,7 @@
 			[notificationWindowController resize];
 			[notificationWindowController setPositionCorner:notificationCorner];
 			[notificationWindowController showWindow:self];
+            [NSApp activateIgnoringOtherApps:YES];
 		}
 	}
 	else 
@@ -251,6 +252,7 @@
 	{
 		lyricsWindowController = [[LyricsWindowController alloc] init];
 		[lyricsWindowController.window setDelegate:self];
+        [lyricsWindowController.window center];
 	}
 	
 	lyricsWindowController.track = [[iTunesController sharedInstance] currentTrack];
@@ -268,6 +270,7 @@
 	}
 	
 	[lyricsWindowController showWindow:self];
+    [NSApp activateIgnoringOtherApps:YES];
 }
 
 
