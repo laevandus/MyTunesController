@@ -142,9 +142,7 @@
 		}
 		
 		if ([[newTrack name] length]) 
-		{
-            [NSApp activateIgnoringOtherApps:YES];
-            
+		{            
 			notificationWindowController = [[NotificationWindowController alloc] init];
 			[notificationWindowController setDelegate:self];
 			[notificationWindowController setTrack:newTrack];
