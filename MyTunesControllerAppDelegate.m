@@ -106,7 +106,7 @@
 
 #pragma mark iTunesController Delegate
 
-- (void)iTunesTrackDidChange:(iTunesTrack *)newTrack
+- (void)iTunesController:(iTunesController *)iTunesController trackDidChange:(iTunesTrack *)newTrack
 {
 	[self.statusBarController updatePlayButtonState];
 	

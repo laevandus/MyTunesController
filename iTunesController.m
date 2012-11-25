@@ -32,9 +32,9 @@
 + (iTunesController *)sharedInstance 
 {	
 	static iTunesController *sharediTunesControllerInstance = nil;
-	static dispatch_once_t onceToken;
+	static dispatch_once_t iTunesControllerOnceToken;
 	
-	dispatch_once(&onceToken, ^
+	dispatch_once(&iTunesControllerOnceToken, ^
     {
         sharediTunesControllerInstance = [[[self class] alloc] init];
     });
@@ -94,7 +94,7 @@
 
 - (BOOL)isPlaying
 {
-	if (iTunesApp.isRunning == NO)
+	if (!iTunesApp.isRunning)
 		return NO;
 	
 	if (iTunesApp.playerState == iTunesEPlSPlaying)
@@ -127,7 +127,7 @@
 
 - (iTunesTrack *)currentTrack
 {	
-	if (iTunesApp.isRunning == NO) 
+	if (!iTunesApp.isRunning)
 		return nil;
 	
 	return iTunesApp.currentTrack;
@@ -138,11 +138,11 @@
 {	
 	iTunesTrack *track = nil;
 	
-	if ([[aNotification userInfo][@"Player State"] isEqualToString:@"Stopped"] == NO) 
+	if (![[aNotification userInfo][@"Player State"] isEqualToString:@"Stopped"])
 		track = self.currentTrack;
 	
-	if ([self.delegate respondsToSelector:@selector(iTunesTrackDidChange:)])
-		[self.delegate iTunesTrackDidChange:track];
+	if ([self.delegate respondsToSelector:@selector(iTunesController:trackDidChange:)])
+		[self.delegate iTunesController:self trackDidChange:track];
 }
 
 @end

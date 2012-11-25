@@ -28,7 +28,6 @@
 #import "LyricsFetcher.h"
 #import "PlugInManager.h"
 #import "LyricsFetching.h"
-#import "iTunesController.h"
 #import "FetchOperation.h"
 
 @implementation LyricsFetcher
