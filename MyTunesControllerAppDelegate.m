@@ -27,7 +27,7 @@
 
 #import "MyTunesControllerAppDelegate.h"
 #import "NotificationWindowController.h"
-#import "PreferencesController.h"
+#import "PreferencesWindowController.h"
 #import "StatusView.h"
 #import "StatusBarController.h"
 #import "LyricsWindowController.h"
@@ -258,7 +258,7 @@
 {
 	if (preferencesWindowController == nil) 
 	{
-		preferencesWindowController = [[PreferencesController alloc] init];
+		preferencesWindowController = [[PreferencesWindowController alloc] init];
 		[preferencesWindowController.window setDelegate:self];
 	}
 	

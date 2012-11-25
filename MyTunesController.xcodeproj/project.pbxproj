@@ -28,14 +28,14 @@
 		C80CC07B166134C900191D9A /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = C80CC079166134C900191D9A /* MainMenu.xib */; };
 		C80CC082166134D100191D9A /* LyricsWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = C80CC07C166134D100191D9A /* LyricsWindow.xib */; };
 		C80CC083166134D100191D9A /* NotificationWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = C80CC07E166134D100191D9A /* NotificationWindow.xib */; };
-		C80CC084166134D100191D9A /* Preferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = C80CC080166134D100191D9A /* Preferences.xib */; };
+		C80CC084166134D100191D9A /* PreferencesWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = C80CC080166134D100191D9A /* PreferencesWindow.xib */; };
 		C8214EA910E6AB7D008D012C /* StatusView.m in Sources */ = {isa = PBXBuildFile; fileRef = C8214EA810E6AB7D008D012C /* StatusView.m */; };
 		C8214EAE10E6ABC8008D012C /* StatusBarButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C8214EAD10E6ABC8008D012C /* StatusBarButtonCell.m */; };
 		C8214EE610E6AE8B008D012C /* ScriptingBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8214EE510E6AE8B008D012C /* ScriptingBridge.framework */; };
 		C8214EEA10E6AE97008D012C /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8214EE910E6AE97008D012C /* QuartzCore.framework */; };
 		C8214EF810E6B021008D012C /* NotificationWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = C8214EF210E6B021008D012C /* NotificationWindow.m */; };
 		C8214EFA10E6B021008D012C /* NotificationWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8214EF610E6B021008D012C /* NotificationWindowController.m */; };
-		C8214F6E10E6B72C008D012C /* PreferencesController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8214F6C10E6B72C008D012C /* PreferencesController.m */; };
+		C8214F6E10E6B72C008D012C /* PreferencesWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8214F6C10E6B72C008D012C /* PreferencesWindowController.m */; };
 		C82BB73710EE3F7000B24464 /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C82BB73610EE3F7000B24464 /* CoreServices.framework */; };
 		C83BBB7910FBA08000595F2D /* COPYING.txt in Resources */ = {isa = PBXBuildFile; fileRef = C83BBB7810FBA08000595F2D /* COPYING.txt */; };
 		C84CCD4614E028CA000AC7B4 /* LoginItemManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C84CCD4514E028CA000AC7B4 /* LoginItemManager.m */; };
@@ -114,7 +114,7 @@
 		C80CC07A166134C900191D9A /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		C80CC07D166134D100191D9A /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/LyricsWindow.xib; sourceTree = "<group>"; };
 		C80CC07F166134D100191D9A /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/NotificationWindow.xib; sourceTree = "<group>"; };
-		C80CC081166134D100191D9A /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/Preferences.xib; sourceTree = "<group>"; };
+		C80CC081166134D100191D9A /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/PreferencesWindow.xib; sourceTree = "<group>"; };
 		C8214EA710E6AB7D008D012C /* StatusView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatusView.h; sourceTree = "<group>"; };
 		C8214EA810E6AB7D008D012C /* StatusView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatusView.m; sourceTree = "<group>"; };
 		C8214EAC10E6ABC8008D012C /* StatusBarButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatusBarButtonCell.h; sourceTree = "<group>"; };
@@ -126,8 +126,8 @@
 		C8214EF210E6B021008D012C /* NotificationWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationWindow.m; sourceTree = "<group>"; };
 		C8214EF510E6B021008D012C /* NotificationWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationWindowController.h; sourceTree = "<group>"; };
 		C8214EF610E6B021008D012C /* NotificationWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationWindowController.m; sourceTree = "<group>"; };
-		C8214F6B10E6B72C008D012C /* PreferencesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreferencesController.h; sourceTree = "<group>"; };
-		C8214F6C10E6B72C008D012C /* PreferencesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreferencesController.m; sourceTree = "<group>"; };
+		C8214F6B10E6B72C008D012C /* PreferencesWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreferencesWindowController.h; sourceTree = "<group>"; };
+		C8214F6C10E6B72C008D012C /* PreferencesWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreferencesWindowController.m; sourceTree = "<group>"; };
 		C82BB73610EE3F7000B24464 /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = /System/Library/Frameworks/CoreServices.framework; sourceTree = "<absolute>"; };
 		C83BBB7810FBA08000595F2D /* COPYING.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = COPYING.txt; sourceTree = "<group>"; };
 		C84CCD4414E028C9000AC7B4 /* LoginItemManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginItemManager.h; sourceTree = "<group>"; };
@@ -360,7 +360,7 @@
 		C80CC08C1661363E00191D9A /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				C80CC080166134D100191D9A /* Preferences.xib */,
+				C80CC080166134D100191D9A /* PreferencesWindow.xib */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -370,8 +370,8 @@
 			children = (
 				C84CCD4414E028C9000AC7B4 /* LoginItemManager.h */,
 				C84CCD4514E028CA000AC7B4 /* LoginItemManager.m */,
-				C8214F6B10E6B72C008D012C /* PreferencesController.h */,
-				C8214F6C10E6B72C008D012C /* PreferencesController.m */,
+				C8214F6B10E6B72C008D012C /* PreferencesWindowController.h */,
+				C8214F6C10E6B72C008D012C /* PreferencesWindowController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -503,7 +503,7 @@
 				C80CC07B166134C900191D9A /* MainMenu.xib in Resources */,
 				C80CC082166134D100191D9A /* LyricsWindow.xib in Resources */,
 				C80CC083166134D100191D9A /* NotificationWindow.xib in Resources */,
-				C80CC084166134D100191D9A /* Preferences.xib in Resources */,
+				C80CC084166134D100191D9A /* PreferencesWindow.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -520,7 +520,7 @@
 				C8214EAE10E6ABC8008D012C /* StatusBarButtonCell.m in Sources */,
 				C8214EF810E6B021008D012C /* NotificationWindow.m in Sources */,
 				C8214EFA10E6B021008D012C /* NotificationWindowController.m in Sources */,
-				C8214F6E10E6B72C008D012C /* PreferencesController.m in Sources */,
+				C8214F6E10E6B72C008D012C /* PreferencesWindowController.m in Sources */,
 				C8FE898011FF7D6100290DEC /* iTunesController.m in Sources */,
 				C8E933C41200BB0B00F4D6BD /* LayerTextField.m in Sources */,
 				C8D98D9C12032CD200356DC1 /* ImageScaler.m in Sources */,
@@ -589,12 +589,12 @@
 			name = NotificationWindow.xib;
 			sourceTree = "<group>";
 		};
-		C80CC080166134D100191D9A /* Preferences.xib */ = {
+		C80CC080166134D100191D9A /* PreferencesWindow.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
 				C80CC081166134D100191D9A /* en */,
 			);
-			name = Preferences.xib;
+			name = PreferencesWindow.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

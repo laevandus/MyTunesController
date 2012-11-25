@@ -1,5 +1,5 @@
 //
-//  PreferencesController.m
+//  PreferencesWindowController.m
 //  MyTunesController
 //
 //  Created by Toomas Vahter on 25.12.09.
@@ -25,28 +25,25 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-#import "PreferencesController.h"
+#import "PreferencesWindowController.h"
 #import <CoreServices/CoreServices.h>
 #import "LoginItemManager.h"
 
-@implementation PreferencesController
+@implementation PreferencesWindowController
 
 - (id)init 
 {
-	return [self initWithWindowNibName:@"Preferences"];
+	return [self initWithWindowNibName:@"PreferencesWindow"];
 }
 
 
-- (void)showWindow:(id)sender 
+- (void)loadWindow
 {
-	[self.window center];
-	[super showWindow:sender];
-	
+    [super loadWindow];
+
 	LoginItemManager *loginItemManager = [[LoginItemManager alloc] init];
 	NSURL *mainBundleURL = [[NSBundle mainBundle] bundleURL];
 	[self.loginCheckBox setState:[loginItemManager itemExistsAtURL:mainBundleURL] ? NSOnState : NSOffState];
-	
-	[self.window makeKeyAndOrderFront:self];
 }
 
 

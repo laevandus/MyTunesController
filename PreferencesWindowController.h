@@ -1,5 +1,5 @@
 //
-//  PreferencesController.h
+//  PreferencesWindowController.h
 //  MyTunesController
 //
 //  Created by Toomas Vahter on 25.12.09.
@@ -27,7 +27,7 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface PreferencesController : NSWindowController 
+@interface PreferencesWindowController : NSWindowController 
 
 @property (nonatomic, weak) IBOutlet NSButton *loginCheckBox;
 

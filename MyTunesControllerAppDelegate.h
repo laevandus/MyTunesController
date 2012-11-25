@@ -29,7 +29,7 @@
 #import "iTunesController.h"
 #import "LyricsFetcher.h"
 
-@class LyricsWindowController, NotificationWindowController, PreferencesController, StatusBarController, StatusView;
+@class LyricsWindowController, NotificationWindowController, PreferencesWindowController, StatusBarController, StatusView;
 
 @interface MyTunesControllerAppDelegate : NSObject <NSApplicationDelegate, NSWindowDelegate, iTunesControllerDelegate, LyricsFetcherDelegate> 
 {	
@@ -37,7 +37,7 @@
 	
 	LyricsWindowController *lyricsWindowController;
 	NotificationWindowController *notificationWindowController;
-	PreferencesController *preferencesWindowController;
+	PreferencesWindowController *preferencesWindowController;
 }
 
 @property (nonatomic, weak) IBOutlet StatusBarController *statusBarController;
