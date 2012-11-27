@@ -37,6 +37,9 @@
 @property (nonatomic, strong) LyricsFetcher *mainLyricsFetcher;
 - (void)_createDirectories;
 - (NSPoint)notificationWindowOriginForWindowSize:(NSSize)windowSize;
+
+- (void)fetchLyricsForTrackIfNeeded:(iTunesTrack *)track;
+- (void)cleanUpMainLyricsFetcher;
 @end
 
 @implementation MyTunesControllerAppDelegate
@@ -114,23 +117,10 @@
 	if ([lyricsWindowController.window isVisible])
 	{
 		lyricsWindowController.track = newTrack;
-		
-        if (newTrack && [newTrack.lyrics length] == 0)
-        {
-            if ([NetworkReachability hasInternetConnection])
-            {
-                // Start fetching
-                if (!self.mainLyricsFetcher)
-                {
-                    self.mainLyricsFetcher = [[LyricsFetcher alloc] init];
-                    [self.mainLyricsFetcher setDelegate:self];
-                }
-                
-                [self.mainLyricsFetcher fetchLyricsForTrack:newTrack];
-            }
-        }
+		[self fetchLyricsForTrackIfNeeded:newTrack];
 	}
-		
+    
+    // Do not show notification window
 	if (newTrack == nil) 
 		return;
 	
@@ -222,6 +212,25 @@
 }
 
 
+- (void)fetchLyricsForTrackIfNeeded:(iTunesTrack *)track
+{
+    if (track && [track.lyrics length] == 0)
+    {
+        if ([NetworkReachability hasInternetConnection])
+        {
+            // Start fetching
+            if (!self.mainLyricsFetcher)
+            {
+                self.mainLyricsFetcher = [[LyricsFetcher alloc] init];
+                [self.mainLyricsFetcher setDelegate:self];
+            }
+            
+            [self.mainLyricsFetcher fetchLyricsForTrack:track];
+        }
+    }
+}
+
+
 - (void)cleanUpMainLyricsFetcher
 {
     if (!self.mainLyricsFetcher.isFetching)
@@ -294,19 +303,10 @@
         [lyricsWindowController.window center];
 	}
 	
-	lyricsWindowController.track = [[iTunesController sharedInstance] currentTrack];
-	
-	if ([[lyricsWindowController.track lyrics] length] == 0) 
-	{
-		// Start fetching
-        if (!self.mainLyricsFetcher)
-        {
-            self.mainLyricsFetcher = [[LyricsFetcher alloc] init];
-            [self.mainLyricsFetcher setDelegate:self];
-        }
-        
-		[self.mainLyricsFetcher fetchLyricsForTrack:[lyricsWindowController track]];
-	}
+    iTunesTrack *track = [[iTunesController sharedInstance] currentTrack];
+    
+	lyricsWindowController.track = track;
+	[self fetchLyricsForTrackIfNeeded:track];
 	
 	[lyricsWindowController showWindow:self];
     [NSApp activateIgnoringOtherApps:YES];
