@@ -81,35 +81,38 @@
 
 + (NSSet *)keyPathsForValuesAffectingAttributedLyrics 
 {
-    return [NSSet setWithObjects:@"track", @"track.lyrics", nil];
+    return [NSSet setWithObject:@"track.lyrics"];
 }
 
 
 - (NSAttributedString *)attributedLyrics
 {
+    NSString *lyrics = self.track.lyrics;
 	NSColor *lyricsColor = [NSColor colorWithDeviceWhite:0.9 alpha:1.0];
 	NSDictionary *textAttributes = @{NSForegroundColorAttributeName: lyricsColor};
-	return [[self.track lyrics] length] ? [[NSAttributedString alloc] initWithString:[self.track lyrics] attributes:textAttributes] : nil;
+	return [lyrics length] ? [[NSAttributedString alloc] initWithString:lyrics attributes:textAttributes] : nil;
 }
 
 
 + (NSSet *)keyPathsForValuesAffectingTrackDescription 
 {
-    return [NSSet setWithObjects:@"track", @"track.name", @"track.artist", nil];
+    return [NSSet setWithObjects:@"track.name", @"track.artist", nil];
 }
 
 
 - (NSString *)trackDescription
 {
 	NSString *trackDescription = nil;
-	
-	if ([[self.track name] length] && [[self.track artist] length]) 
+	NSString *name = [self.track name];
+    NSString *artist = [self.track artist];
+    
+	if ([name length] && [artist length]) 
 	{
-		trackDescription = [NSString stringWithFormat:@"%@ - %@", self.track.name, self.track.artist];
+		trackDescription = [NSString stringWithFormat:@"%@ - %@", name, artist];
 	}
-	else if ([[self.track name] length])
+	else if ([name length])
 	{
-		trackDescription = [self.track name];
+		trackDescription = name;
 	}
 	
 	return trackDescription;
