@@ -44,25 +44,20 @@
 
 - (id)transformedValue:(id)value 
 {
+    NSImage *artworkImage = nil;
+    
 	if ([value isKindOfClass:[NSArray class]]) 
 	{
-		// TODO: try to get the album artwork instead
 		iTunesArtwork *artwork = nil;
-		NSImage *artworkImage = nil;
 		
 		if ([value count]) 
 			artwork = (iTunesArtwork *)[value lastObject];
 		
 		if (artwork) 
 			artworkImage = [[NSImage alloc] initWithData:artwork.rawData];
-		
-		if (artworkImage == nil) 
-			artworkImage = [NSImage imageNamed:@"mytunescontroller"];
-		
-        return artworkImage;
 	}
 	
-	return value;
+	return artworkImage ? artworkImage : [NSImage imageNamed:@"mytunescontroller"];
 }
 
 @end
