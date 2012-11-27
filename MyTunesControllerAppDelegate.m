@@ -115,17 +115,20 @@
 	{
 		lyricsWindowController.track = newTrack;
 		
-		if ([[lyricsWindowController.track lyrics] length] == 0 && [NetworkReachability hasInternetConnection]) 
-		{
-			// Start fetching
-            if (!self.mainLyricsFetcher)
+        if (newTrack && [newTrack.lyrics length] == 0)
+        {
+            if ([NetworkReachability hasInternetConnection])
             {
-                self.mainLyricsFetcher = [[LyricsFetcher alloc] init];
-                [self.mainLyricsFetcher setDelegate:self];
+                // Start fetching
+                if (!self.mainLyricsFetcher)
+                {
+                    self.mainLyricsFetcher = [[LyricsFetcher alloc] init];
+                    [self.mainLyricsFetcher setDelegate:self];
+                }
+                
+                [self.mainLyricsFetcher fetchLyricsForTrack:newTrack];
             }
-            
-			[self.mainLyricsFetcher fetchLyricsForTrack:[lyricsWindowController track]];
-		}
+        }
 	}
 		
 	if (newTrack == nil) 
