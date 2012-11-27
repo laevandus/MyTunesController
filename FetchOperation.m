@@ -57,8 +57,6 @@
 	@autoreleasepool
 	{
 		BOOL isCurrentTrack = NO;
-		CFAbsoluteTime startTime;
-		CGFloat minimumOperationTimeInSeconds = 0.5;
 		NSInteger currentTrackDatabaseID = 0;
 		NSUInteger trackCounter = 0;
 		iTunesTrack *track = nil;
@@ -70,9 +68,7 @@
 		{
 			if ([NetworkReachability hasInternetConnection])
 			{
-                // Get new reference which does not depend on currentTrack. currentTrack reference changes in the lifetime of the application and therefore I might get invalid object I am setting lyrics to in the delegate.
-                startTime = CFAbsoluteTimeGetCurrent();
-				
+                // Get new reference which does not depend on currentTrack. currentTrack reference changes in the lifetime of the application and therefore I might get invalid object I am setting lyrics to in the delegate.				
                 currentTrackDatabaseID = [[[iTunesController sharedInstance] currentTrack] databaseID];
                 isCurrentTrack = ([track databaseID] == currentTrackDatabaseID);
                 track = isCurrentTrack ? nil : track;
@@ -96,13 +92,7 @@
                     [self performSelectorOnMainThread:@selector(finalizeFetchingWithInfo:) withObject:fetchInfo waitUntilDone:YES modes:modes];
 					
                     // Reduce the interval of querying websites
-                    CFAbsoluteTime spentTimeInSeconds = CFAbsoluteTimeGetCurrent() - startTime;
-					
-                    if (spentTimeInSeconds < minimumOperationTimeInSeconds)
-                    {
-                        useconds_t time = (useconds_t)((minimumOperationTimeInSeconds - spentTimeInSeconds) * 1000000.0);
-                        usleep(time);
-                    }
+                    usleep(500000);
                 }
                 else
                 {
