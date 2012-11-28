@@ -88,9 +88,14 @@
 - (NSAttributedString *)attributedLyrics
 {
     NSString *lyrics = self.track.lyrics;
+    if ([lyrics length] == 0)
+        return nil;
+    
 	NSColor *lyricsColor = [NSColor colorWithDeviceWhite:0.9 alpha:1.0];
 	NSDictionary *textAttributes = @{NSForegroundColorAttributeName: lyricsColor};
-	return [lyrics length] ? [[NSAttributedString alloc] initWithString:lyrics attributes:textAttributes] : nil;
+	NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:lyrics attributes:textAttributes];
+    [attributedString setAlignment:NSCenterTextAlignment range:NSMakeRange(0, [attributedString length])];
+    return attributedString;
 }
 
 
