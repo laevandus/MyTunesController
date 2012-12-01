@@ -38,6 +38,8 @@
 		C83BBB7910FBA08000595F2D /* COPYING.txt in Resources */ = {isa = PBXBuildFile; fileRef = C83BBB7810FBA08000595F2D /* COPYING.txt */; };
 		C84CCD4614E028CA000AC7B4 /* LoginItemManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C84CCD4514E028CA000AC7B4 /* LoginItemManager.m */; };
 		C87678D014E984020068E994 /* FetchOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = C87678CF14E984020068E994 /* FetchOperation.m */; };
+		C888B6D316695F290073B7E6 /* Lyrics.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C888B6D216695F290073B7E6 /* Lyrics.bundle */; };
+		C888B6D416695F8B0073B7E6 /* Lyrics.bundle in Copy PlugIns */ = {isa = PBXBuildFile; fileRef = C888B6D216695F290073B7E6 /* Lyrics.bundle */; };
 		C8B14EB414F8FD2D00C6FDC2 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8B14EB314F8FD2D00C6FDC2 /* SystemConfiguration.framework */; };
 		C8B14EB714F8FD4F00C6FDC2 /* NetworkReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = C8B14EB614F8FD4F00C6FDC2 /* NetworkReachability.m */; };
 		C8B14F0214F90FBF00C6FDC2 /* AZLyrics.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C8B14F0114F90FBF00C6FDC2 /* AZLyrics.bundle */; };
@@ -63,6 +65,7 @@
 			files = (
 				C8B14F0714F91F2D00C6FDC2 /* AZLyrics.bundle in Copy PlugIns */,
 				C803EDDE14CC320D001568E3 /* PLyrics.bundle in Copy PlugIns */,
+				C888B6D416695F8B0073B7E6 /* Lyrics.bundle in Copy PlugIns */,
 			);
 			name = "Copy PlugIns";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -129,6 +132,7 @@
 		C84CCD4514E028CA000AC7B4 /* LoginItemManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginItemManager.m; sourceTree = "<group>"; };
 		C87678CE14E984020068E994 /* FetchOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FetchOperation.h; sourceTree = "<group>"; };
 		C87678CF14E984020068E994 /* FetchOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FetchOperation.m; sourceTree = "<group>"; };
+		C888B6D216695F290073B7E6 /* Lyrics.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = Lyrics.bundle; path = PlugIns/Lyrics.bundle; sourceTree = "<group>"; };
 		C8B14EB314F8FD2D00C6FDC2 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		C8B14EB514F8FD4F00C6FDC2 /* NetworkReachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkReachability.h; sourceTree = "<group>"; };
 		C8B14EB614F8FD4F00C6FDC2 /* NetworkReachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkReachability.m; sourceTree = "<group>"; };
@@ -268,6 +272,7 @@
 			isa = PBXGroup;
 			children = (
 				C8B14F0114F90FBF00C6FDC2 /* AZLyrics.bundle */,
+				C888B6D216695F290073B7E6 /* Lyrics.bundle */,
 				C803ED9414CC1256001568E3 /* PLyrics.bundle */,
 			);
 			name = PlugIns;
@@ -493,6 +498,7 @@
 				C80CC082166134D100191D9A /* LyricsWindow.xib in Resources */,
 				C80CC083166134D100191D9A /* NotificationWindow.xib in Resources */,
 				C80CC084166134D100191D9A /* PreferencesWindow.xib in Resources */,
+				C888B6D316695F290073B7E6 /* Lyrics.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
