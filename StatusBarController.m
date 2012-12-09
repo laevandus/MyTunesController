@@ -284,13 +284,18 @@ static void *FetchingAllLyricsContext = "FetchingAllLyricsContext";
                                               keyEquivalent:@""];
 		[toggleFetchingMenuItem setTarget:self];
 		
+        theItem = [mainMenu addItemWithTitle:NSLocalizedString(@"Menu-item-refetch-lyrics", nil)
+                                      action:@selector(refetchCurrentLyrics:)
+                               keyEquivalent:@""];
+		[theItem setTarget:[NSApp delegate]];
+        
 		[mainMenu addItem:[NSMenuItem separatorItem]];
 		
 		theItem = [mainMenu addItemWithTitle:NSLocalizedString(@"Menu-item-show-lyrics", nil)
                                       action:@selector(showLyricsWindow)
                                keyEquivalent:@""];
 		[theItem setTarget:[NSApp delegate]];
-		
+        
 		[mainMenu addItem:[NSMenuItem separatorItem]];
 		
 		theItem = [mainMenu addItemWithTitle:NSLocalizedString(@"Menu-item-quit", nil)

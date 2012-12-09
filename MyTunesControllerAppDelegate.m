@@ -38,7 +38,7 @@
 - (void)_createDirectories;
 - (NSPoint)notificationWindowOriginForWindowSize:(NSSize)windowSize;
 
-- (void)fetchLyricsForTrackIfNeeded:(iTunesTrack *)track;
+- (void)fetchLyricsForTrack:(iTunesTrack *)track;
 - (void)cleanUpMainLyricsFetcher;
 @end
 
@@ -117,7 +117,8 @@
 	if ([lyricsWindowController.window isVisible])
 	{
 		lyricsWindowController.track = newTrack;
-		[self fetchLyricsForTrackIfNeeded:newTrack];
+        if (newTrack && [newTrack.lyrics length] == 0)
+            [self fetchLyricsForTrack:newTrack];
 	}
     
     // Do not show notification window
@@ -212,21 +213,27 @@
 }
 
 
-- (void)fetchLyricsForTrackIfNeeded:(iTunesTrack *)track
+- (IBAction)refetchCurrentLyrics:(id)sender
 {
-    if (track && [track.lyrics length] == 0)
+    iTunesTrack *track = [[iTunesController sharedInstance] currentTrack];
+    
+    if (track)
+        [self fetchLyricsForTrack:track];
+}
+
+
+- (void)fetchLyricsForTrack:(iTunesTrack *)track
+{
+    if ([NetworkReachability hasInternetConnection])
     {
-        if ([NetworkReachability hasInternetConnection])
+        // Start fetching
+        if (!self.mainLyricsFetcher)
         {
-            // Start fetching
-            if (!self.mainLyricsFetcher)
-            {
-                self.mainLyricsFetcher = [[LyricsFetcher alloc] init];
-                [self.mainLyricsFetcher setDelegate:self];
-            }
-            
-            [self.mainLyricsFetcher fetchLyricsForTrack:track];
+            self.mainLyricsFetcher = [[LyricsFetcher alloc] init];
+            [self.mainLyricsFetcher setDelegate:self];
         }
+        
+        [self.mainLyricsFetcher fetchLyricsForTrack:track];
     }
 }
 
@@ -306,7 +313,8 @@
     iTunesTrack *track = [[iTunesController sharedInstance] currentTrack];
     
 	lyricsWindowController.track = track;
-	[self fetchLyricsForTrackIfNeeded:track];
+    if (track && [track.lyrics length] == 0)
+        [self fetchLyricsForTrack:track];
 	
 	[lyricsWindowController showWindow:self];
     [NSApp activateIgnoringOtherApps:YES];

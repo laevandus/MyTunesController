@@ -42,6 +42,8 @@
 
 "Menu-item-processing-tracks-format" = "Fetching %1$ld of %2$ld";
 
+"Menu-item-refetch-lyrics" = "Refresh Current Lyrics";
+
 "Menu-item-show-lyrics" = "Show Lyrics…";
 
 "Menu-item-quit" = "Quit";

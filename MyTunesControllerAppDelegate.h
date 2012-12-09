@@ -43,6 +43,9 @@
 
 @property (nonatomic, weak) IBOutlet StatusBarController *statusBarController;
 
+// Menu actions
+- (IBAction)refetchCurrentLyrics:(id)sender;
+
 // Managing application windows
 - (void)showAboutPanel;
 - (void)showLyricsWindow;
