@@ -32,7 +32,7 @@
 
 "Menu-item-preferences" = "Preferences…";
 
-"Menu-item-fetch-all-lyrics" = "Fetch All Lyrics";
+"Menu-item-fetch-all-lyrics" = "Fetch Missing Lyrics";
 
 "Menu-item-stop-fetching-lyrics" = "Stop Fetching Lyrics";
 
