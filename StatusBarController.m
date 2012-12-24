@@ -69,6 +69,7 @@
 }
 
 
+#pragma mark -
 #pragma mark Actions
 
 - (IBAction)playPrevious:(id)sender 
@@ -89,9 +90,10 @@
 }
 
 
+#pragma mark -
 #pragma mark KVO
 
-static void *FetchingAllLyricsContext = "FetchingAllLyricsContext";
+static void *const FetchingAllLyricsContext = "FetchingAllLyricsContext";
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context 
 {
@@ -142,6 +144,7 @@ static void *FetchingAllLyricsContext = "FetchingAllLyricsContext";
 }
 
 
+#pragma mark -
 #pragma mark -
 
 - (void)toggleFetchingAllLyrics
@@ -232,6 +235,7 @@ static void *FetchingAllLyricsContext = "FetchingAllLyricsContext";
 }
 
 
+#pragma mark -
 #pragma mark LyricsFetcher Delegate
 
 - (void)lyricsFetcher:(LyricsFetcher *)fetcher didFetchLyrics:(NSString *)lyrics forTrack:(iTunesTrack *)track
@@ -243,6 +247,7 @@ static void *FetchingAllLyricsContext = "FetchingAllLyricsContext";
 }
 
 
+#pragma mark -
 #pragma mark Updating UI
 
 - (void)addStatusItems

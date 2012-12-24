@@ -53,6 +53,7 @@
 }
 
 
+#pragma mark -
 #pragma mark Application Delegate
 
 - (NSApplicationTerminateReply)applicationShouldTerminate:(NSApplication *)sender 
@@ -110,6 +111,7 @@ static void* const UserDefaultsContext = "UserDefaultsContext";
 }
 
 
+#pragma mark -
 #pragma mark iTunesController Delegate
 
 - (void)iTunesController:(iTunesController *)tunesController trackDidChange:(iTunesTrack *)newTrack
@@ -186,6 +188,7 @@ static void* const UserDefaultsContext = "UserDefaultsContext";
 }
 
 
+#pragma mark -
 #pragma mark LyricsFetcher Delegate
 
 - (void)lyricsFetcher:(LyricsFetcher *)fetcher didFetchLyrics:(NSString *)lyrics forTrack:(iTunesTrack *)track
@@ -249,6 +252,7 @@ static void* const UserDefaultsContext = "UserDefaultsContext";
 }
 
 
+#pragma mark -
 #pragma mark NotificationWindowController Delegate
 
 - (void)notificationDidDisappear:(NotificationWindowController *)notification
@@ -260,6 +264,7 @@ static void* const UserDefaultsContext = "UserDefaultsContext";
 }
 
 
+#pragma mark -
 #pragma mark NSWindow Delegate
 
 - (void)windowWillClose:(NSNotification *)notification
@@ -279,6 +284,7 @@ static void* const UserDefaultsContext = "UserDefaultsContext";
 }
 
 
+#pragma mark -
 #pragma mark KVO
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context 
@@ -297,6 +303,7 @@ static void* const UserDefaultsContext = "UserDefaultsContext";
 }
 
 
+#pragma mark -
 #pragma mark Managing Windows
 
 - (void)showAboutPanel

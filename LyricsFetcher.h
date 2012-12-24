@@ -44,7 +44,6 @@
 
 @end
 
-
 @protocol LyricsFetcherDelegate <NSObject>
 - (void)lyricsFetcher:(LyricsFetcher *)fetcher didFetchLyrics:(NSString *)lyrics forTrack:(iTunesTrack *)track;
 @end
