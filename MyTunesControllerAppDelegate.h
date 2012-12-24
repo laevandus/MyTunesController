@@ -53,4 +53,4 @@
 
 @end
 
-extern NSString *CONotificationCorner;
+extern NSString *const kPreferencesNotificationCorner;

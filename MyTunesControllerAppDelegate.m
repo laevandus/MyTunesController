@@ -48,7 +48,7 @@
 {
 	if (self == [MyTunesControllerAppDelegate class]) 
 	{
-		[[NSUserDefaults standardUserDefaults] registerDefaults:@{CONotificationCorner: @3U}];
+		[[NSUserDefaults standardUserDefaults] registerDefaults:@{kPreferencesNotificationCorner: @3U}];
 	}
 }
 
@@ -61,13 +61,15 @@
 }
 
 
+static void* const UserDefaultsContext = "UserDefaultsContext";
+
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification 
 {
 	srand((unsigned int)time(NULL));
 	
 	[self _createDirectories];
 	
-	[[NSUserDefaultsController sharedUserDefaultsController] addObserver:self forKeyPath:@"values.NotificationCorner" options:NSKeyValueObservingOptionInitial context:nil];
+	[[NSUserDefaultsController sharedUserDefaultsController] addObserver:self forKeyPath:@"values.NotificationCorner" options:NSKeyValueObservingOptionInitial context:UserDefaultsContext];
 	
 	[[iTunesController sharedInstance] setDelegate:self];
 	
@@ -281,9 +283,12 @@
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context 
 {
-	if ([keyPath isEqualToString:@"values.NotificationCorner"]) 
+	if (context == UserDefaultsContext)
 	{
-		notificationCorner = [[[NSUserDefaults standardUserDefaults] objectForKey:CONotificationCorner] unsignedIntValue];
+        if ([keyPath isEqualToString:@"values.NotificationCorner"])
+        {
+            notificationCorner = [[[NSUserDefaults standardUserDefaults] objectForKey:kPreferencesNotificationCorner] unsignedIntValue];
+        }
 	} 
 	else 
 	{
@@ -335,4 +340,4 @@
 
 @end
 
-NSString *CONotificationCorner = @"NotificationCorner";
+NSString* const kPreferencesNotificationCorner = @"NotificationCorner";
