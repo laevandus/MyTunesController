@@ -145,7 +145,6 @@ static void *const FetchingAllLyricsContext = "FetchingAllLyricsContext";
 
 
 #pragma mark -
-#pragma mark -
 
 - (void)toggleFetchingAllLyrics
 {
