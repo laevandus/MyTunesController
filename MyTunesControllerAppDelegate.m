@@ -139,7 +139,7 @@ static void* const UserDefaultsContext = "UserDefaultsContext";
 			notificationWindowController = nil;
 		}
 		
-		if ([[newTrack name] length]) 
+		if ([[newTrack name] length])
 		{            
 			notificationWindowController = [[NotificationWindowController alloc] init];
 			[notificationWindowController setDelegate:self];
@@ -149,6 +149,7 @@ static void* const UserDefaultsContext = "UserDefaultsContext";
             NSRect windowFrame = notificationWindowController.window.frame;
             windowFrame.origin = [self notificationWindowOriginForWindowSize:windowFrame.size];
             [notificationWindowController.window setFrame:windowFrame display:NO];
+            [notificationWindowController.window makeKeyWindow];
             
 			[notificationWindowController showWindow:self];
             [notificationWindowController performSelector:@selector(disappear) withObject:nil afterDelay:5.0];
