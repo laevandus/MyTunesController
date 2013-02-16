@@ -44,7 +44,7 @@
 
 "Menu-item-processing-tracks-format" = "Updating %1$ld of %2$ld";
 
-"Menu-item-refetch-lyrics" = "Update Playing Lyrics";
+"Menu-item-refetch-lyrics" = "Update Current Lyrics";
 
 "Menu-item-show-lyrics" = "Show Lyrics…";
 
