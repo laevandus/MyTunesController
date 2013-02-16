@@ -35,7 +35,8 @@
 
 @property NSUInteger processedTracksCount;
 @property NSUInteger totalTracksCount;
-@property BOOL isFetchingAllLyrics;
+@property (getter = isFetchingAllLyrics) BOOL fetchingAllLyrics;
+@property (getter = isIgnoringTracksWithLyrics) BOOL ignoreTracksWithLyrics;
 @property (strong) LyricsFetcher *lyricsFetcher;
 
 - (void)addStatusBarControllerObservers;
@@ -103,7 +104,7 @@ static void *const FetchingAllLyricsContext = "FetchingAllLyricsContext";
 		{
 			if (self.isFetchingAllLyrics && self.totalTracksCount > 0 && self.processedTracksCount == self.totalTracksCount) 
 			{
-                self.isFetchingAllLyrics = NO;
+                self.fetchingAllLyrics = NO;
                 self.lyricsFetcher = nil;
 			}
 		}
@@ -124,7 +125,7 @@ static void *const FetchingAllLyricsContext = "FetchingAllLyricsContext";
 	{
 		[self addObserver:self forKeyPath:@"processedTracksCount" options:NSKeyValueObservingOptionInitial context:FetchingAllLyricsContext];
 		[self addObserver:self forKeyPath:@"totalTracksCount" options:NSKeyValueObservingOptionInitial context:FetchingAllLyricsContext];
-		[self addObserver:self forKeyPath:@"isFetchingAllLyrics" options:NSKeyValueObservingOptionInitial context:FetchingAllLyricsContext];
+		[self addObserver:self forKeyPath:@"fetchingAllLyrics" options:NSKeyValueObservingOptionInitial context:FetchingAllLyricsContext];
 		
 		_isObservingStatusBarController = YES;
 	}
@@ -137,7 +138,7 @@ static void *const FetchingAllLyricsContext = "FetchingAllLyricsContext";
 	{
 		[self removeObserver:self forKeyPath:@"processedTracksCount"];
 		[self removeObserver:self forKeyPath:@"totalTracksCount"];
-		[self removeObserver:self forKeyPath:@"isFetchingAllLyrics"];
+		[self removeObserver:self forKeyPath:@"fetchingAllLyrics"];
 		
 		_isObservingStatusBarController = NO;
 	}
@@ -173,7 +174,7 @@ static void *const FetchingAllLyricsContext = "FetchingAllLyricsContext";
 	self.totalTracksCount = 0;
 	
 	// Start processing tracks in the background
-	self.isFetchingAllLyrics = YES;
+	self.fetchingAllLyrics = YES;
 	[self performSelectorInBackground:@selector(_processTracks) withObject:nil];
 }
 
@@ -183,11 +184,10 @@ static void *const FetchingAllLyricsContext = "FetchingAllLyricsContext";
 	@autoreleasepool 
 	{
 		iTunesPlaylist *musicPlaylist = [[iTunesController sharedInstance] playlistWithName:@"Music"];
-		
+        
 		if (musicPlaylist) 
 		{			
-			// Find tracks without lyrics
-			NSMutableArray *tracksWithoutLyrics = [[NSMutableArray alloc] init];
+			NSMutableArray *tracksToProcess = [[NSMutableArray alloc] init];
 			iTunesTrack *track = nil;
 			
 			NSArray *modes = @[NSRunLoopCommonModes];
@@ -199,28 +199,30 @@ static void *const FetchingAllLyricsContext = "FetchingAllLyricsContext";
 			{
                 currentIndex++;
 				
-                if ([track.lyrics length] == 0)
+                if (self.isIgnoringTracksWithLyrics)
                 {
-                    [tracksWithoutLyrics addObject:track];
+                    if ([track.lyrics length] == 0)
+                        [tracksToProcess addObject:track];
+                }
+                else
+                {
+                    [tracksToProcess addObject:track];
                 }
 				
                 if (!self.isFetchingAllLyrics)
-                {
                     break;
-                }
 				
                 // Update analyzing status
                 title = [NSString stringWithFormat:NSLocalizedString(@"Menu-item-analyzing-tracks-detailed", nil), currentIndex, totalCount];
                 [progressMenuItem performSelectorOnMainThread:@selector(setTitle:) withObject:title waitUntilDone:YES modes:modes];
 			}
 			
-			self.totalTracksCount = [tracksWithoutLyrics count];
-			
-			[self.lyricsFetcher performSelectorOnMainThread:@selector(fetchLyricsForTracks:) withObject:tracksWithoutLyrics waitUntilDone:YES modes:modes];
+			self.totalTracksCount = [tracksToProcess count];
+			[self.lyricsFetcher performSelectorOnMainThread:@selector(fetchLyricsForTracks:) withObject:tracksToProcess waitUntilDone:YES modes:modes];
 		}
 		else
 		{
-			self.isFetchingAllLyrics = NO;
+			self.fetchingAllLyrics = NO;
             self.lyricsFetcher = nil;
 		}
 	}
@@ -229,7 +231,9 @@ static void *const FetchingAllLyricsContext = "FetchingAllLyricsContext";
 
 - (void)stopFetchingAllLyrics
 {
-	self.isFetchingAllLyrics = NO;
+	self.fetchingAllLyrics = NO;
+    [self.lyricsFetcher cancelAllFetches];
+    self.lyricsFetcher.delegate = nil;
     self.lyricsFetcher = nil;
 }
 
@@ -239,9 +243,7 @@ static void *const FetchingAllLyricsContext = "FetchingAllLyricsContext";
 
 - (void)lyricsFetcher:(LyricsFetcher *)fetcher didFetchLyrics:(NSString *)lyrics forTrack:(iTunesTrack *)track
 {
-	// Lyrics are only fetched to the tracks without lyrics
-	track.lyrics = lyrics;
-	
+	track.lyrics = lyrics;	
 	self.processedTracksCount++;
 }
 
@@ -283,7 +285,7 @@ static void *const FetchingAllLyricsContext = "FetchingAllLyricsContext";
 		[progressMenuItem setEnabled:NO];
 		[progressMenuItem setHidden:YES];
 		
-		toggleFetchingMenuItem = [mainMenu addItemWithTitle:NSLocalizedString(@"Menu-item-fetch-all-lyrics", nil)
+		toggleFetchingMenuItem = [mainMenu addItemWithTitle:NSLocalizedString(@"Menu-item-fetch-missing-lyrics", nil)
                                                      action:@selector(toggleFetchingAllLyrics)
                                               keyEquivalent:@""];
 		[toggleFetchingMenuItem setTarget:self];
@@ -320,6 +322,31 @@ static void *const FetchingAllLyricsContext = "FetchingAllLyricsContext";
 }
 
 
+- (void)menuNeedsUpdate:(NSMenu *)menu
+{
+    if ([menu isEqual:mainItem.menu])
+    {
+        if (self.isFetchingAllLyrics)
+        {
+            [toggleFetchingMenuItem setTitle:NSLocalizedString(@"Menu-item-stop-fetching-lyrics", nil)];
+        }
+        else
+        {
+            if ([NSEvent modifierFlags] & NSAlternateKeyMask)
+            {
+                [toggleFetchingMenuItem setTitle:NSLocalizedString(@"Menu-item-fetch-all-lyrics", nil)];
+                self.ignoreTracksWithLyrics = NO;
+            }
+            else
+            {
+                [toggleFetchingMenuItem setTitle:NSLocalizedString(@"Menu-item-fetch-missing-lyrics", nil)];
+                self.ignoreTracksWithLyrics = YES;
+            }
+        }
+    }
+}
+
+
 - (void)updatePlayButtonState
 {
 	NSImage *playButtonImage = [NSImage imageNamed:[[iTunesController sharedInstance] isPlaying] ? @"pause" : @"play"];
@@ -352,7 +379,7 @@ static void *const FetchingAllLyricsContext = "FetchingAllLyricsContext";
 	else
 	{
 		[progressMenuItem setHidden:YES];
-		[toggleFetchingMenuItem setTitle:NSLocalizedString(@"Menu-item-fetch-all-lyrics", nil)];
+		[toggleFetchingMenuItem setTitle:NSLocalizedString(@"Menu-item-fetch-missing-lyrics", nil)];
 	}
 }
 

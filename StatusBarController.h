@@ -35,7 +35,8 @@
 	NSMenuItem *progressMenuItem, *toggleFetchingMenuItem;
 	
 	NSUInteger _processedTracksCount, _totalTracksCount;
-	BOOL _isFetchingAllLyrics;
+	BOOL _fetchingAllLyrics;
+    BOOL _ignoreTracksWithLyrics;
 	BOOL _isObservingStatusBarController;
 }
 

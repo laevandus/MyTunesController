@@ -57,7 +57,8 @@
 
 
 - (void)cancelAllFetches
-{	
+{
+    [[fetchingQueue operations] makeObjectsPerformSelector:@selector(setDelegate:) withObject:nil];
 	[fetchingQueue cancelAllOperations];
 }
 

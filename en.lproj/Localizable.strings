@@ -32,17 +32,19 @@
 
 "Menu-item-preferences" = "Preferences…";
 
-"Menu-item-fetch-all-lyrics" = "Fetch Missing Lyrics";
+"Menu-item-fetch-missing-lyrics" = "Update Missing Lyrics";
 
-"Menu-item-stop-fetching-lyrics" = "Stop Fetching Lyrics";
+"Menu-item-fetch-all-lyrics" = "Update All Lyrics";
+
+"Menu-item-stop-fetching-lyrics" = "Stop Updating Lyrics";
 
 "Menu-item-analyzing-tracks" = "Analyzing tracks…";
 
 "Menu-item-analyzing-tracks-detailed" = "Analyzing %1$ld of %2$ld";
 
-"Menu-item-processing-tracks-format" = "Fetching %1$ld of %2$ld";
+"Menu-item-processing-tracks-format" = "Updating %1$ld of %2$ld";
 
-"Menu-item-refetch-lyrics" = "Refresh Current Lyrics";
+"Menu-item-refetch-lyrics" = "Update Playing Lyrics";
 
 "Menu-item-show-lyrics" = "Show Lyrics…";
 
