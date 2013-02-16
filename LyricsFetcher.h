@@ -31,11 +31,8 @@
 @protocol LyricsFetcherDelegate;
 
 @interface LyricsFetcher : NSObject
-{
-	NSOperationQueue *fetchingQueue;
-}
 
-@property (nonatomic, readonly) BOOL isFetching;
+@property (nonatomic, readonly, getter = isFetching) BOOL fetching;
 @property (nonatomic, unsafe_unretained) id delegate;
 
 - (void)fetchLyricsForTracks:(NSArray *)tracks;

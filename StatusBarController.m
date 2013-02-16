@@ -218,7 +218,7 @@ static void *const FetchingAllLyricsContext = "FetchingAllLyricsContext";
 			}
 			
 			self.totalTracksCount = [tracksToProcess count];
-			[self.lyricsFetcher performSelectorOnMainThread:@selector(fetchLyricsForTracks:) withObject:tracksToProcess waitUntilDone:YES modes:modes];
+			[self.lyricsFetcher fetchLyricsForTracks:tracksToProcess];
 		}
 		else
 		{

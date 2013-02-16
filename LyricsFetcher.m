@@ -29,6 +29,10 @@
 #import "LyricsFetching.h"
 #import "FetchOperation.h"
 
+@interface LyricsFetcher ()
+@property (strong) NSOperationQueue *fetchingQueue;
+@end
+
 @implementation LyricsFetcher
 
 - (id)init
@@ -36,8 +40,8 @@
 	if ((self = [super init])) 
 	{		
 		// Create serial queue
-		fetchingQueue = [[NSOperationQueue alloc] init];
-		[fetchingQueue setMaxConcurrentOperationCount:1];
+		_fetchingQueue = [[NSOperationQueue alloc] init];
+		[_fetchingQueue setMaxConcurrentOperationCount:1];
 	}
 	
 	return self;
@@ -52,14 +56,14 @@
 
 - (BOOL)isFetching
 {
-    return [fetchingQueue operationCount] > 0;
+    return [self.fetchingQueue operationCount] > 0;
 }
 
 
 - (void)cancelAllFetches
 {
-    [[fetchingQueue operations] makeObjectsPerformSelector:@selector(setDelegate:) withObject:nil];
-	[fetchingQueue cancelAllOperations];
+    [[self.fetchingQueue operations] makeObjectsPerformSelector:@selector(setDelegate:) withObject:nil];
+	[self.fetchingQueue cancelAllOperations];
 }
 
 
@@ -73,16 +77,14 @@
 {
 	FetchOperation *operation = [[FetchOperation alloc] initWithTracks:tracks];
 	[operation setDelegate:self];
-	[fetchingQueue addOperation:operation];
+	[self.fetchingQueue addOperation:operation];
 }
 
 
 - (void)fetchOperation:(FetchOperation *)operation didFetchLyrics:(NSString *)lyrics forTrack:(iTunesTrack *)track
 {    
 	if ([self.delegate respondsToSelector:@selector(lyricsFetcher:didFetchLyrics:forTrack:)])
-	{
 		[self.delegate lyricsFetcher:self didFetchLyrics:lyrics forTrack:track];
-	}
 }
 
 @end

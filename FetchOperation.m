@@ -43,9 +43,7 @@
 - (id)initWithTracks:(NSArray *)tracks
 {
 	if ((self = [super init]))
-	{
 		_tracks = tracks;
-	}
 	
 	return self;
 }
@@ -74,9 +72,7 @@
                 track = isCurrentTrack ? nil : track;
 				
                 if (track == nil)
-                {
                     track = [self _searchTrackWithDatabaseID:currentTrackDatabaseID];
-                }
 				
                 if (track)
                 {
@@ -110,9 +106,7 @@
             }
 			
             if ([self isCancelled])
-            {
                 break;
-            }
 			
             trackCounter++;
         }
@@ -123,9 +117,7 @@
 - (void)finalizeFetchingWithInfo:(NSDictionary *)fetchInfo
 {
 	if ([self.delegate respondsToSelector:@selector(fetchOperation:didFetchLyrics:forTrack:)])
-	{
 		[self.delegate fetchOperation:self didFetchLyrics:fetchInfo[@"lyrics"] forTrack:fetchInfo[@"track"]];
-	}
 }
 
 
@@ -173,9 +165,7 @@
 			fetchedLyrics = [(id<LyricsFetching>)bundleInstance lyricsForTrackName:[track name] artist:[track artist] album:[track album]];
 			
 			if ([fetchedLyrics length] > 0 || [self isCancelled])
-			{
                 break;
-			}
 		}
 	}
 	
