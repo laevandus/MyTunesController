@@ -33,7 +33,7 @@
 {
     NSWindow *result = [super initWithContentRect:contentRect styleMask:NSBorderlessWindowMask backing:NSBackingStoreBuffered defer:NO];
     [result setBackgroundColor:[NSColor clearColor]];
-    [result setLevel:NSStatusWindowLevel];
+    [result setLevel:NSFloatingWindowLevel];
     [result setAlphaValue:0.0];
     [result setOpaque:NO];
     [result setHasShadow:YES];
