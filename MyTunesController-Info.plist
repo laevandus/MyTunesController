@@ -31,6 +31,6 @@
 	<key>SUPublicDSAKeyFile</key>
 	<string>dsa_pub.pem</string>
 	<key>SUFeedURL</key>
-	<string>https://github.com/downloads/laevandus/MyTunesController/appcast.xml</string>
+	<string>https://dl.dropbox.com/u/3975518/MyTunesController/appcast.xml</string>
 </dict>
 </plist>
